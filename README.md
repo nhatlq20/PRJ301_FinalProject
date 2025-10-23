@@ -1,7 +1,7 @@
 ﻿# PRJ301_FinalProject
 
 ```text
-PharmacyShop/
+PharmacyLife/
 ├── pom.xml
 ├── src/main/java/
 │   └── com/example/pharmacyshop/
@@ -72,3 +72,4 @@ PharmacyShop/
         └── images/                      (Để chứa ảnh sản phẩm)
 
 ```
+
