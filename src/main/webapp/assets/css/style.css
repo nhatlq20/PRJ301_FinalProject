@@ -10,7 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 /* Global Styles */
 body { 
     min-height: 100vh; 
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b82f6 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,8 +39,8 @@ body {
 }
 
 .form-control:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
 }
 
 .form-control.is-invalid {
@@ -53,7 +53,7 @@ body {
 
 /* Button Styles */
 .btn-login, .btn-register {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e3c72 0%, #3b82f6 100%);
     border: none;
     border-radius: 10px;
     padding: 12px;
@@ -63,7 +63,7 @@ body {
 
 .btn-login:hover, .btn-register:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
 }
 
 /* Alert Styles */
@@ -86,7 +86,7 @@ body {
 }
 
 .input-group:focus-within .input-group-text {
-    border-color: #667eea;
+    border-color: #3b82f6;
 }
 
 /* Password Strength Indicator */
@@ -111,4 +111,30 @@ body {
 /* Register specific styles */
 .register-page {
     padding: 20px 0;
+}
+
+/* Additional Blue Theme Enhancements */
+.login-card:hover, .register-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(30, 60, 114, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Icon colors for blue theme */
+.text-primary {
+    color: #3b82f6 !important;
+}
+
+/* Link hover effects */
+a.text-decoration-none:hover {
+    color: #1e3c72 !important;
+    transition: color 0.3s ease;
+}
+
+/* Card header enhancement */
+.card-body h3 {
+    background: linear-gradient(135deg, #1e3c72, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }

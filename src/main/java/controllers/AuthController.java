@@ -1,7 +1,9 @@
 package controllers;
 
-import dals.UserDAO;
+import dao.UserDAO;
 import models.User;
+import utils.HashUtil;
+import utils.Validator;
 import java.io.IOException;
 import java.util.List;
 import jakarta.servlet.ServletException;
@@ -10,12 +12,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.mindrot.jbcrypt.BCrypt;
 
-/**
- *
- * @author qnhat
- */
+
 @WebServlet(name = "AuthController", urlPatterns = {"/auth"})
 public class AuthController extends HttpServlet {
 
@@ -59,11 +57,15 @@ public class AuthController extends HttpServlet {
             throws ServletException, IOException {
         String usernameOrEmail = request.getParameter("usernameOrEmail");
         String password = request.getParameter("password");
-        if (usernameOrEmail == null || password == null || usernameOrEmail.trim().isEmpty() || password.trim().isEmpty()) {
-            request.setAttribute("errorMessage", "Vui lòng điền đầy đủ thông tin!");
+        
+        // Validate input
+        Validator.ValidationResult validationResult = Validator.validateLogin(usernameOrEmail, password);
+        if (!validationResult.isValid()) {
+            request.setAttribute("errorMessage", validationResult.getErrorMessage());
             request.getRequestDispatcher("/view/login.jsp").forward(request, response);
             return;
         }
+        
         User user = getUserByUsernameOrEmail(usernameOrEmail);
         if (user == null) {
             request.setAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng!");
@@ -73,18 +75,15 @@ public class AuthController extends HttpServlet {
 
         boolean passwordMatches = false;
         String stored = user.getPassword();
-        if (stored != null) stored = stored.trim();
-        try {
-            passwordMatches = BCrypt.checkpw(password, stored);
-        } catch (IllegalArgumentException ex) {
-            // stored password is not a valid bcrypt hash (legacy plaintext). Fallback to plaintext compare
-            if (stored != null && stored.equals(password)) {
-                passwordMatches = true;
-                // rehash with bcrypt and update DB
-                String newHash = BCrypt.hashpw(password, BCrypt.gensalt());
+        HashUtil.PasswordCheckResult result = HashUtil.checkPasswordAndRehash(password, stored);
+        
+        if (result.isMatches()) {
+            passwordMatches = true;
+            // If password was rehashed, update it in the database
+            if (result.needsRehash()) {
                 try {
-                    userDAO.updatePassword(user.getUserID(), newHash);
-                    user.setPassword(newHash);
+                    userDAO.updatePassword(user.getUserID(), result.getNewHash());
+                    user.setPassword(result.getNewHash());
                 } catch (Exception e) {
                     // log but allow login
                     e.printStackTrace();
@@ -103,8 +102,8 @@ public class AuthController extends HttpServlet {
         session.setAttribute("userId", user.getUserID());
         session.setAttribute("username", user.getUsername());
         session.setAttribute("isLoggedIn", true);
-        // After successful login redirect to /medicine which is mapped to MedicineController
-        response.sendRedirect(request.getContextPath() + "/medicine");
+        // After successful login redirect to /home which is mapped to HomeController
+        response.sendRedirect(request.getContextPath() + "/home");
     }
 
     private void handleRegister(HttpServletRequest request, HttpServletResponse response)
@@ -115,37 +114,36 @@ public class AuthController extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
         String fullName = request.getParameter("fullName");
         String phoneNumber = request.getParameter("phoneNumber");
-        if (username == null || email == null || password == null || username.trim().isEmpty() || email.trim().isEmpty() || password.trim().isEmpty()) {
-            request.setAttribute("errorMessage", "Vui lòng điền đầy đủ thông tin bắt buộc!");
+        
+        // Validate input
+        Validator.ValidationResult validationResult = Validator.validateRegistration(
+            username, email, password, confirmPassword, fullName, phoneNumber);
+        if (!validationResult.isValid()) {
+            request.setAttribute("errorMessage", validationResult.getErrorMessage());
             request.getRequestDispatcher("/view/register.jsp").forward(request, response);
             return;
         }
-        if (!password.equals(confirmPassword)) {
-            request.setAttribute("errorMessage", "Mật khẩu xác nhận không khớp!");
-            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
-            return;
-        }
-        if (password.length() < 6) {
-            request.setAttribute("errorMessage", "Mật khẩu phải có ít nhất 6 ký tự!");
-            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
-            return;
-        }
+        
+        // Check if username already exists
         User existingUserByUsername = getUserByUsernameOrEmail(username);
         if (existingUserByUsername != null) {
             request.setAttribute("errorMessage", "Tên đăng nhập đã tồn tại!");
             request.getRequestDispatcher("/view/register.jsp").forward(request, response);
             return;
         }
+        
+        // Check if email already exists
         User existingUserByEmail = getUserByUsernameOrEmail(email);
         if (existingUserByEmail != null) {
             request.setAttribute("errorMessage", "Email đã được sử dụng!");
             request.getRequestDispatcher("/view/register.jsp").forward(request, response);
             return;
         }
+        
         User newUser = new User();
         newUser.setUsername(username);
         newUser.setEmail(email);
-        newUser.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+        newUser.setPassword(HashUtil.hashPassword(password));
         newUser.setFullName(fullName != null ? fullName : "");
         newUser.setPhoneNumber(phoneNumber != null ? phoneNumber : "");
         newUser.setIsActive(true);
