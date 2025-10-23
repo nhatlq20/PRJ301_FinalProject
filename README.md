@@ -5,6 +5,9 @@ PharmacyLife/
 ├── pom.xml
 ├── src/main/java/
 │   └── com/example/pharmacyshop/
+│       ├── config/
+│       │   ├── EmmailInformation.java        (Bạn đang làm)
+│       │
 │       ├── controller/
 │       │   ├── AuthController.java        (Bạn đang làm)
 │       │   ├── HomeController.java        (Hiển thị trang chủ)
@@ -15,14 +18,14 @@ PharmacyLife/
 │       │
 │       ├── dao/
 │       │   ├── UserDAO.java               (Bạn đã có)
-│       │   ├── ProductDAO.java          (CRUD sản phẩm, get sản phẩm, filter, pagination)
+│       │   ├── ProductDAO.java        (CRUD sản phẩm, get sản phẩm, filter, pagination)
 │       │   ├── CategoryDAO.java         (Lấy danh mục sản phẩm)
 │       │   └── OrderDAO.java            (Lưu đơn hàng, chi tiết đơn hàng)
 │       │
 │       ├── model/
 │       │   ├── User.java                  (Bạn đã có)
 │       │   ├── Role.java                  (Bạn đã có)
-│       │   ├── Product.java             (id, name, price, description, image, categoryID)
+│       │   ├── Product.java            (id, name, price, description, image, categoryID)
 │       │   ├── Category.java            (id, name)
 │       │   ├── Cart.java                (Chứa danh sách các 'Item')
 │       │   ├── Item.java                (Chứa 'Product' và 'quantity')
@@ -33,6 +36,8 @@ PharmacyLife/
 │       │   ├── DBContext.java             (Bạn đã có)
 │       │   ├── HashUtil.java              (Bạn đã có)
 │       │   └── Validator.java             (Bạn đã có)
+│       │   ├── OptService.java              (Bạn đã có)
+│       │   ├── EmailServide.java              (Bạn đã có)
 │       │
 │       └── filter/
 │           ├── AuthFilter.java            (Bạn đã có - Chặn khi chưa login)
@@ -44,6 +49,10 @@ PharmacyLife/
     │   │   ├── auth/
     │   │   │   ├── login.jsp            (Bạn đã có)
     │   │   │   └── register.jsp         (Bạn đã có)
+    │   │   │   └── forgot-password.jsp
+    │   │   │   └── reset-password.jsp        
+    │   │   │   └── reset-password-simple.jsp
+    │   │   │   └── verify-otp.jsp     
     │   │   │
     │   │   ├── client/                  (Các trang cho người dùng)
     │   │   │   ├── home.jsp
@@ -72,4 +81,5 @@ PharmacyLife/
         └── images/                      (Để chứa ảnh sản phẩm)
 
 ```
+
 
