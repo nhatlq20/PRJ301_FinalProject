@@ -44,7 +44,7 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // You can add authentication checks here if needed (e.g., ensure user is logged in)
-        request.getRequestDispatcher("/view/medicine/home.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/client/home.jsp").forward(request, response);
     }
 
     /**

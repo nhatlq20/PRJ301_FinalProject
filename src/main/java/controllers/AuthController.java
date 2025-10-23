@@ -29,7 +29,7 @@ public class AuthController extends HttpServlet {
             handleRegister(request, response);
         } else {
             request.setAttribute("errorMessage", "Hành động không hợp lệ");
-            request.getRequestDispatcher("/view/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/login.jsp").forward(request, response);
         }
     }
 
@@ -47,9 +47,9 @@ public class AuthController extends HttpServlet {
         }
         // default views
         if ("register".equals(action)) {
-            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/register.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("/view/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/login.jsp").forward(request, response);
         }
     }
 
@@ -62,14 +62,14 @@ public class AuthController extends HttpServlet {
         Validator.ValidationResult validationResult = Validator.validateLogin(usernameOrEmail, password);
         if (!validationResult.isValid()) {
             request.setAttribute("errorMessage", validationResult.getErrorMessage());
-            request.getRequestDispatcher("/view/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/login.jsp").forward(request, response);
             return;
         }
         
         User user = getUserByUsernameOrEmail(usernameOrEmail);
         if (user == null) {
             request.setAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng!");
-            request.getRequestDispatcher("/view/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/login.jsp").forward(request, response);
             return;
         }
 
@@ -93,7 +93,7 @@ public class AuthController extends HttpServlet {
 
         if (!passwordMatches) {
             request.setAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng!");
-            request.getRequestDispatcher("/view/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/login.jsp").forward(request, response);
             return;
         }
 
@@ -120,7 +120,7 @@ public class AuthController extends HttpServlet {
             username, email, password, confirmPassword, fullName, phoneNumber);
         if (!validationResult.isValid()) {
             request.setAttribute("errorMessage", validationResult.getErrorMessage());
-            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/register.jsp").forward(request, response);
             return;
         }
         
@@ -128,7 +128,7 @@ public class AuthController extends HttpServlet {
         User existingUserByUsername = getUserByUsernameOrEmail(username);
         if (existingUserByUsername != null) {
             request.setAttribute("errorMessage", "Tên đăng nhập đã tồn tại!");
-            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/register.jsp").forward(request, response);
             return;
         }
         
@@ -136,7 +136,7 @@ public class AuthController extends HttpServlet {
         User existingUserByEmail = getUserByUsernameOrEmail(email);
         if (existingUserByEmail != null) {
             request.setAttribute("errorMessage", "Email đã được sử dụng!");
-            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/register.jsp").forward(request, response);
             return;
         }
         
@@ -152,10 +152,10 @@ public class AuthController extends HttpServlet {
         boolean success = userDAO.createUser(newUser);
         if (success) {
             request.setAttribute("successMessage", "Đăng ký thành công! Vui lòng đăng nhập.");
-            request.getRequestDispatcher("/view/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/login.jsp").forward(request, response);
         } else {
             request.setAttribute("errorMessage", "Đăng ký thất bại, vui lòng thử lại!");
-            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/auth/register.jsp").forward(request, response);
         }
     }
 
@@ -166,7 +166,7 @@ public class AuthController extends HttpServlet {
             session.invalidate();
         }
         request.setAttribute("successMessage", "Đăng xuất thành công!");
-        request.getRequestDispatcher("/view/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/auth/login.jsp").forward(request, response);
     }
 
     private void handleGetAllUsers(HttpServletRequest request, HttpServletResponse response)
