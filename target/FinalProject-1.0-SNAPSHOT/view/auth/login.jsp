@@ -62,6 +62,11 @@
                                 <button type="submit" class="btn btn-primary btn-login"><i class="fas fa-sign-in-alt me-2"></i>Đăng nhập</button>
                             </div>
                             <div class="text-center">
+                                <p class="mb-2">
+                                    <a href="<c:url value='/auth?action=forgot-password'/>" class="text-decoration-none fw-semibold">
+                                        <i class="fas fa-key me-1"></i>Quên mật khẩu?
+                                    </a>
+                                </p>
                                 <p class="mb-0">Chưa có tài khoản? 
                                     <a href="<c:url value='/auth?action=register'/>" class="text-decoration-none fw-semibold">Đăng ký ngay</a>
                                 </p>

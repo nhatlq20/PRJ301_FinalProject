@@ -12,4 +12,7 @@ D:\FA25\PRJ301\FinalProject\src\main\java\controllers\AdminController.java
 D:\FA25\PRJ301\FinalProject\src\main\java\controllers\AuthController.java
 D:\FA25\PRJ301\FinalProject\src\main\java\dao\OrderDAO.java
 D:\FA25\PRJ301\FinalProject\src\main\java\dao\UserDAO.java
+D:\FA25\PRJ301\FinalProject\src\main\java\utils\OtpService.java
+D:\FA25\PRJ301\FinalProject\src\main\java\config\EmailInformation.java
+D:\FA25\PRJ301\FinalProject\src\main\java\utils\EmailService.java
 D:\FA25\PRJ301\FinalProject\src\main\java\utils\Validator.java
