@@ -11,7 +11,7 @@ body {
 }
 
 .header {
-    background-image: url('../img/header1.png');
+    background-image: url('../img/header.png');
     background-size: 100% auto;
     background-position: center top;
     background-repeat: no-repeat;
@@ -41,17 +41,7 @@ body {
     position: relative;
 }
 
-<<<<<<< HEAD
-.logo-text:hover {
-    color: #f0f0f0;
-    text-decoration: none;
-}
-=======
-/*.logo-text:hover {
-    color: #f0f0f0;
-    text-decoration: none;
-}*/
->>>>>>> origin/friends-version
+
 
 .logo-subtitle {
     font-size: 18px;
@@ -89,22 +79,37 @@ body {
 }
 
 .nav-link {
-    color: white;
+    color: white !important;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 22px;
+    font-weight: 600;
     padding: 12px 24px;
     border-radius: 25px;
     transition: all 0.3s ease;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     z-index: 10;
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1;
+}
+
+.nav-link i {
+    color: white;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    vertical-align: middle;
 }
 
 .nav-link:hover {
     background-color: rgba(255,255,255,0.2);
-    color: white;
+    color: white !important;
     text-decoration: none;
+}
+
+.nav-link:hover i {
+    color: white;
 }
 
 .cart-link {
