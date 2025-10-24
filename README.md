@@ -18,14 +18,14 @@ PharmacyLife/
 │       │
 │       ├── dao/
 │       │   ├── UserDAO.java              (Bạn đã có)
-│       │   ├── ProductDAO.java          (CRUD sản phẩm, get sản phẩm, filter, pagination)
+│       │   ├── MedicineDAO.java          (CRUD sản phẩm, get sản phẩm, filter, pagination)
 │       │   ├── CategoryDAO.java         (Lấy danh mục sản phẩm)
 │       │   └── OrderDAO.java            (Lưu đơn hàng, chi tiết đơn hàng)
 │       │
 │       ├── model/
 │       │   ├── User.java                (Bạn đã có)
 │       │   ├── Role.java                (Bạn đã có)
-│       │   ├── Product.java             (id, name, price, description, image, categoryID)
+│       │   ├── Medicine.java             
 │       │   ├── Category.java            (id, name)
 │       │   ├── Cart.java                (Chứa danh sách các 'Item')
 │       │   ├── Item.java                (Chứa 'Product' và 'quantity')
@@ -81,6 +81,7 @@ PharmacyLife/
         └── images/                      (Để chứa ảnh sản phẩm)
 
 ```
+
 
 
 
