@@ -4,14 +4,25 @@
 
 <link rel="stylesheet" type="text/css" href="../../assets/css/header.css">
 
+<link rel="stylesheet" type="text/css" href="../../assets/css/home.css">
+<link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
+
+
+
 <header class="header">
     <!-- Logo Section -->
     <div class="logo-section">
-        <a href="home" class="logo-text">
+
+    <a href="${pageContext.request.contextPath}/view/client/home.jsp" class="logo-link">
+        <img src="${pageContext.request.contextPath}/assets/img/PharmacyLife_1.png" alt="PharmacyLife Logo" class="site-logo">
+        <div class="logo-text">
             PharmacyLife<br>
             <span class="logo-subtitle">Your Health - Your Life</span>
-        </a>
-    </div>
+        </div>
+    </a>
+</div>
+
+
     
     <!-- Search Section -->
     <div class="search-section">

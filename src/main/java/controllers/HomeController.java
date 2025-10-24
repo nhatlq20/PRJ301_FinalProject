@@ -5,10 +5,15 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
+
+import dao.CategoryDAO;
+import dao.MedicineDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.Category;
 
 /**
  *
@@ -28,7 +33,21 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Forward to the medicines list view
-      
+      // Lấy danh sách danh mục có kèm số lượng sản phẩm
+        CategoryDAO categoryDAO = new CategoryDAO();
+        MedicineDAO medicineDAO = new MedicineDAO();
+
+        List<Category> listCategory = categoryDAO.getAllCategories();
+
+        // Gửi qua JSP
+        request.setAttribute("listCategory", listCategory);
+        // Debug log: print how many categories were loaded (visible in server console)
+        if (listCategory == null) {
+            System.out.println("HomeController: listCategory is null");
+        } else {
+            System.out.println("HomeController: loaded categories count = " + listCategory.size());
+        }
+        request.getRequestDispatcher("/view/client/home.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -43,8 +62,8 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // You can add authentication checks here if needed (e.g., ensure user is logged in)
-        request.getRequestDispatcher("/view/client/home.jsp").forward(request, response);
+    // Populate categories and forward to home page (use the same processing as POST)
+    processRequest(request, response);
     }
 
     /**

@@ -41,10 +41,17 @@ body {
     position: relative;
 }
 
+<<<<<<< HEAD
 .logo-text:hover {
     color: #f0f0f0;
     text-decoration: none;
 }
+=======
+/*.logo-text:hover {
+    color: #f0f0f0;
+    text-decoration: none;
+}*/
+>>>>>>> origin/friends-version
 
 .logo-subtitle {
     font-size: 18px;
@@ -107,4 +114,42 @@ body {
 .cart-icon {
     font-size: 18px;
     margin-right: 5px;
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+/* ===== Logo Layout ===== */
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff; /* hoặc màu chữ bạn đang dùng */
+}
+
+.site-logo {
+    height: 45px; /* chỉnh kích thước logo */
+    width: auto;
+    margin-right: 10px; /* khoảng cách giữa logo và chữ */
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0bd549;
+    line-height: 1.2;
+}
+
+.logo-subtitle {
+    font-size: 0.9rem;
+    color: #0bd549; /* màu nhẹ hơn cho tagline */
+}
+
+>>>>>>> origin/friends-version
