@@ -1,12 +1,12 @@
 controllers\HomeController.class
 controllers\OrderController.class
 utils\OtpService.class
-dao\OrderDAO.class
 controllers\AuthController.class
 controllers\AdminController.class
 models\User.class
 utils\HashUtil.class
 dao\CategoryDAO.class
+models\Category.class
 utils\OtpService$OtpData.class
 models\Role.class
 utils\DBContext.class
@@ -15,8 +15,9 @@ utils\EmailService$1.class
 utils\Validator.class
 utils\EmailService.class
 controllers\CartController.class
+models\Medicine.class
 dao\UserDAO.class
+dao\MedicineDAO.class
 config\EmailInformation.class
 controllers\ProductController.class
-dao\ProductDAO.class
 utils\Validator$ValidationResult.class
