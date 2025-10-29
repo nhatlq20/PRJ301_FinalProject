@@ -75,10 +75,15 @@ body {
 .nav-section {
     display: flex;
     align-items: center;
-    gap: 30px;
+
+    gap: 43px; /* Increased gap between nav items */
+    min-width: 380px; /* Ensure minimum width for nav section */
+    justify-content: flex-end; /* Align items to the right */
+    padding-left: 20px; /* Add some padding on the left */
 }
 
-.nav-link {
+.nav-link i {
+
     color: white !important;
     text-decoration: none;
     font-size: 22px;
@@ -91,13 +96,25 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
+
+    gap: 25px; /* Increased gap between icon and text */
+    margin-left: -20px; /* Move the entire nav-link left */
+
     line-height: 1;
 }
 
 .nav-link i {
     color: white;
-    font-size: 24px;
+
+    font-size: 44px !important; /* Increased icon size further */ 
+    height: 55px; /* Match search bar total height */
+    display: flex;
+    align-items: center; /* Center icon vertically */}
+    
+/* Specific styling for cart icon */
+.cart-link i {
+    font-size: 42px; /* Match user icon size */
+
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     vertical-align: middle;
 }
@@ -122,10 +139,6 @@ body {
 
 }
 
-
-
-
-
 /* ===== Logo Layout ===== */
 .logo-section {
     display: flex;
@@ -140,9 +153,11 @@ body {
 }
 
 .site-logo {
-    height: 45px; /* chỉnh kích thước logo */
+
+    height: 80px; /* chỉnh kích thước logo */
     width: auto;
-    margin-right: 10px; /* khoảng cách giữa logo và chữ */
+    margin-right: 13px; /* khoảng cách giữa logo và chữ */
+
 }
 
 .logo-text {

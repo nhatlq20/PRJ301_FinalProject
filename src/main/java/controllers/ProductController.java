@@ -1,17 +1,22 @@
+
 package controllers;
 
 import dao.MedicineDAO;
 import java.io.IOException;
 import java.util.List;
 import models.Medicine;
+import java.io.PrintWriter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+
 public class ProductController extends HttpServlet {
     
     private MedicineDAO medicineDAO = new MedicineDAO();
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -24,6 +29,7 @@ public class ProductController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String action = request.getParameter("action");
         
         if ("delete".equals(action)) {
@@ -40,6 +46,7 @@ public class ProductController extends HttpServlet {
         request.setAttribute("medicines", medicines);
         
         request.getRequestDispatcher("/view/admin/product.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,4 +1,4 @@
-﻿# PRJ301_FinalProject
+# PRJ301_FinalProject
 
 ```text
 PharmacyLife/
@@ -81,8 +81,3 @@ PharmacyLife/
         └── images/                      (Để chứa ảnh sản phẩm)
 
 ```
-
-
-
-
-

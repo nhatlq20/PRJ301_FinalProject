@@ -123,6 +123,7 @@ public class AuthController extends HttpServlet {
         session.setAttribute("userId", user.getUserID());
         session.setAttribute("username", user.getUsername());
         session.setAttribute("isLoggedIn", true);
+
         
         // Get user's role and redirect accordingly
         List<String> roles = user.getRoles();
@@ -136,6 +137,7 @@ public class AuthController extends HttpServlet {
             // Default redirect for other roles or if role is not set
             response.sendRedirect(request.getContextPath() + "/home");
         }
+
     }
 
     private void handleRegister(HttpServletRequest request, HttpServletResponse response)

@@ -12,6 +12,7 @@ import java.util.List;
 import models.User;
 import utils.DBContext;
 
+
 public class UserDAO {
 
     private DBContext dbContext = new DBContext();
@@ -34,6 +35,7 @@ public class UserDAO {
     }
 
     public List<User> GetAllUser() {
+
         final String sql = "SELECT u.*, r.RoleName " +
                 "FROM dbo.Users u " +
                 "LEFT JOIN dbo.UserRoles ur ON u.UserID = ur.UserID " +
@@ -44,6 +46,7 @@ public class UserDAO {
                 "u.CreatedAt, u.UpdatedAt, r.RoleName";
         List<User> users = new ArrayList<>();
         try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+
             while (rs.next()) {
                 users.add(mapRowToUser(rs));
             }
@@ -54,6 +57,7 @@ public class UserDAO {
     }
 
     public User findByUsernameOrEmail(String usernameOrEmail) {
+
         final String sql = "SELECT u.*, r.RoleName " +
                 "FROM dbo.Users u " +
                 "LEFT JOIN dbo.UserRoles ur ON u.UserID = ur.UserID " +
@@ -63,6 +67,7 @@ public class UserDAO {
                 "u.FullName, u.PhoneNumber, u.IsActive, " +
                 "u.CreatedAt, u.UpdatedAt, r.RoleName";
         try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setString(1, usernameOrEmail);
             ps.setString(2, usernameOrEmail);
             try (ResultSet rs = ps.executeQuery()) {
@@ -77,9 +82,11 @@ public class UserDAO {
     }
 
     public boolean createUser(User user) {
+
         // First insert the user
         final String sqlUser = "INSERT INTO dbo.Users (Username, Email, Password, FullName, PhoneNumber, IsActive, CreatedAt, UpdatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sqlUser, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getEmail());
             ps.setString(3, user.getPassword());
@@ -88,6 +95,7 @@ public class UserDAO {
             ps.setBoolean(6, user.isIsActive());
             ps.setTimestamp(7, java.sql.Timestamp.valueOf(user.getCreatedAt().atStartOfDay()));
             ps.setTimestamp(8, java.sql.Timestamp.valueOf(user.getUpdatedAt().atStartOfDay()));
+
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
@@ -107,6 +115,7 @@ public class UserDAO {
                 }
             }
             return false;
+
         } catch (SQLException ex) {
             throw new RuntimeException("Failed to create user", ex);
         }
@@ -122,7 +131,9 @@ public class UserDAO {
         boolean isActiveBool = rs.getBoolean("IsActive");
         Timestamp createdAtTs = rs.getTimestamp("CreatedAt");
         Timestamp updatedAtTs = rs.getTimestamp("UpdatedAt");
+
         String roleName = rs.getString("RoleName");
+
 
         LocalDate createdAt = createdAtTs != null ? createdAtTs.toLocalDateTime().toLocalDate() : null;
         LocalDate updatedAt = updatedAtTs != null ? updatedAtTs.toLocalDateTime().toLocalDate() : null;
@@ -137,6 +148,7 @@ public class UserDAO {
         u.setIsActive(isActiveBool);
         u.setCreatedAt(createdAt);
         u.setUpdatedAt(updatedAt);
+
         
         if (roleName != null) {
             List<String> roles = new ArrayList<>();
@@ -144,6 +156,7 @@ public class UserDAO {
             u.setRoles(roles);
         }
         
+
         return u;
     }
 

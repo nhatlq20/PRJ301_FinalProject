@@ -75,8 +75,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     }
 }
 
-
-
 .featured-products {
     background-color: #f5f8ff;
     border-radius: 8px;
@@ -120,5 +118,56 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     min-height: 40px;
 }
 
+.nav-categories {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #0072bc, #0062a3);
+    padding: 10px 30px;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
 
+.nav-categories {
+    display: flex;
+    align-items: center;
+}
+
+.nav-categories-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-categories-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-box {
+    width: 60%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    font-size: 16px;
+}
+
+.nav-categories a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-categories a:hover {
+    opacity: 0.8;
+}
+
+body {
+    margin: 0;
+}
 
