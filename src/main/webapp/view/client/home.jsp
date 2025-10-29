@@ -1,8 +1,3 @@
-<%-- 
-    Document   : list
-    Created on : Oct 22, 2025, 11:08:04 PM
-    Author     : qnhat
---%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -301,13 +296,6 @@
             </script>
     </body>
 </html>
-
-
-
-
-
-
-
 
 
 

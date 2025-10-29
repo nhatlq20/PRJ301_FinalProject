@@ -123,8 +123,19 @@ public class AuthController extends HttpServlet {
         session.setAttribute("userId", user.getUserID());
         session.setAttribute("username", user.getUsername());
         session.setAttribute("isLoggedIn", true);
-        // After successful login redirect to /home which is mapped to HomeController
-        response.sendRedirect(request.getContextPath() + "/home");
+        
+        // Get user's role and redirect accordingly
+        List<String> roles = user.getRoles();
+        String roleName = roles != null && !roles.isEmpty() ? roles.get(0) : null;
+        
+        if ("admin".equalsIgnoreCase(roleName)) {
+            response.sendRedirect(request.getContextPath() + "/product");
+        } else if ("customer".equalsIgnoreCase(roleName)) {
+            response.sendRedirect(request.getContextPath() + "/home");
+        } else {
+            // Default redirect for other roles or if role is not set
+            response.sendRedirect(request.getContextPath() + "/home");
+        }
     }
 
     private void handleRegister(HttpServletRequest request, HttpServletResponse response)
