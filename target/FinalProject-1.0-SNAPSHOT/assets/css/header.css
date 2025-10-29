@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-image: url('../img/header1.png');
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+    height: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    width: 100%;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    color: white;
+    text-decoration: none;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    z-index: 10;
+    position: relative;
+}
+
+
+
+.logo-subtitle {
+    font-size: 18px;
+    font-weight: normal;
+    display: block;
+}
+
+.search-section {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 40px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    background-color: rgba(255,255,255,0.95);
+    z-index: 10;
+    position: relative;
+}
+
+.search-bar:focus {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.nav-section {
+    display: flex;
+    align-items: center;
+    gap: 43px; /* Increased gap between nav items */
+    min-width: 380px; /* Ensure minimum width for nav section */
+    justify-content: flex-end; /* Align items to the right */
+    padding-left: 20px; /* Add some padding on the left */
+}
+
+.nav-link i {
+    color: white !important;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    z-index: 10;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Increased gap between icon and text */
+    margin-left: -20px; /* Move the entire nav-link left */
+    line-height: 1;
+}
+
+.nav-link i {
+    color: white;
+    font-size: 44px !important; /* Increased icon size further */ 
+    height: 55px; /* Match search bar total height */
+    display: flex;
+    align-items: center; /* Center icon vertically */}
+    
+/* Specific styling for cart icon */
+.cart-link i {
+    font-size: 42px; /* Match user icon size */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    vertical-align: middle;
+}
+
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.2);
+    color: white !important;
+    text-decoration: none;
+}
+
+.nav-link:hover i {
+    color: white;
+}
+
+.cart-link {
+    position: relative;
+}
+
+.cart-icon {
+    font-size: 18px;
+    margin-right: 5px;
+
+}
+
+
+/* ===== Logo Layout ===== */
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff; /* hoặc màu chữ bạn đang dùng */
+}
+
+.site-logo {
+    height: 80px; /* chỉnh kích thước logo */
+    width: auto;
+    margin-right: 13px; /* khoảng cách giữa logo và chữ */
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0bd549;
+    line-height: 1.2;
+}
+
+.logo-subtitle {
+    font-size: 0.9rem;
+    color: #0bd549; /* màu nhẹ hơn cho tagline */
+}
+
