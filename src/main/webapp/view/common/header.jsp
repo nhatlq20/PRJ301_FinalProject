@@ -28,15 +28,15 @@
 
         <!-- Navigation Section -->
         <div class="nav-section">
-            <a href="auth" class="nav-link">
+            <a href="auth" class="login-btn">
                 <i class="fas fa-user-circle"></i>
                 <% if (session.getAttribute("user") !=null) { %>
                     ${sessionScope.user.fullName}
-                    <% } else { %>
-                        Login
-                        <% } %>
+                <% } else { %>
+                    Đăng nhập
+                <% } %>
             </a>
-            <a href="cart" class="nav-link cart-link">
+            <a href="cart" class="cart-btn">
                 <i class="fas fa-shopping-cart"></i>
                 Giỏ hàng
             </a>

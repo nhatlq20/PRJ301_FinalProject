@@ -1,4 +1,3 @@
-
 package dao;
 
 import java.sql.Connection;
@@ -12,14 +11,13 @@ import java.util.List;
 import models.User;
 import utils.DBContext;
 
-
 public class UserDAO {
 
     private DBContext dbContext = new DBContext();
 
     public User CheckUser(String usernameOrEmail, String passwordMd5) {
         final String sql = "SELECT * FROM dbo.Users WHERE (Username = ? OR Email = ?) AND Password = ? AND IsActive = 1";
-            try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, usernameOrEmail);
             ps.setString(2, usernameOrEmail);
             ps.setString(3, passwordMd5);
@@ -36,14 +34,14 @@ public class UserDAO {
 
     public List<User> GetAllUser() {
 
-        final String sql = "SELECT u.*, r.RoleName " +
-                "FROM dbo.Users u " +
-                "LEFT JOIN dbo.UserRoles ur ON u.UserID = ur.UserID " +
-                "LEFT JOIN dbo.Roles r ON ur.RoleID = r.RoleID " +
-                "WHERE u.IsActive = 1 " +
-                "GROUP BY u.UserID, u.Username, u.Email, u.Password, " +
-                "u.FullName, u.PhoneNumber, u.IsActive, " +
-                "u.CreatedAt, u.UpdatedAt, r.RoleName";
+        final String sql = "SELECT u.*, r.RoleName "
+                + "FROM dbo.Users u "
+                + "LEFT JOIN dbo.UserRoles ur ON u.UserID = ur.UserID "
+                + "LEFT JOIN dbo.Roles r ON ur.RoleID = r.RoleID "
+                + "WHERE u.IsActive = 1 "
+                + "GROUP BY u.UserID, u.Username, u.Email, u.Password, "
+                + "u.FullName, u.PhoneNumber, u.IsActive, "
+                + "u.CreatedAt, u.UpdatedAt, r.RoleName";
         List<User> users = new ArrayList<>();
         try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
@@ -58,14 +56,14 @@ public class UserDAO {
 
     public User findByUsernameOrEmail(String usernameOrEmail) {
 
-        final String sql = "SELECT u.*, r.RoleName " +
-                "FROM dbo.Users u " +
-                "LEFT JOIN dbo.UserRoles ur ON u.UserID = ur.UserID " +
-                "LEFT JOIN dbo.Roles r ON ur.RoleID = r.RoleID " +
-                "WHERE u.IsActive = 1 AND (u.Username = ? OR u.Email = ?) " +
-                "GROUP BY u.UserID, u.Username, u.Email, u.Password, " +
-                "u.FullName, u.PhoneNumber, u.IsActive, " +
-                "u.CreatedAt, u.UpdatedAt, r.RoleName";
+        final String sql = "SELECT u.*, r.RoleName "
+                + "FROM dbo.Users u "
+                + "LEFT JOIN dbo.UserRoles ur ON u.UserID = ur.UserID "
+                + "LEFT JOIN dbo.Roles r ON ur.RoleID = r.RoleID "
+                + "WHERE u.IsActive = 1 AND (u.Username = ? OR u.Email = ?) "
+                + "GROUP BY u.UserID, u.Username, u.Email, u.Password, "
+                + "u.FullName, u.PhoneNumber, u.IsActive, "
+                + "u.CreatedAt, u.UpdatedAt, r.RoleName";
         try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, usernameOrEmail);
@@ -95,7 +93,6 @@ public class UserDAO {
             ps.setBoolean(6, user.isIsActive());
             ps.setTimestamp(7, java.sql.Timestamp.valueOf(user.getCreatedAt().atStartOfDay()));
             ps.setTimestamp(8, java.sql.Timestamp.valueOf(user.getUpdatedAt().atStartOfDay()));
-
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
@@ -134,7 +131,6 @@ public class UserDAO {
 
         String roleName = rs.getString("RoleName");
 
-
         LocalDate createdAt = createdAtTs != null ? createdAtTs.toLocalDateTime().toLocalDate() : null;
         LocalDate updatedAt = updatedAtTs != null ? updatedAtTs.toLocalDateTime().toLocalDate() : null;
 
@@ -149,14 +145,11 @@ public class UserDAO {
         u.setCreatedAt(createdAt);
         u.setUpdatedAt(updatedAt);
 
-        
         if (roleName != null) {
             List<String> roles = new ArrayList<>();
             roles.add(roleName);
             u.setRoles(roles);
         }
-        
-
         return u;
     }
 

@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package config;
 
-/**
- *
- * @author qnhat
- */
 public class EmailInformation {
     private static final String EMAIL_HOST = "smtp.gmail.com";
     private static final String EMAIL_PORT = "587";

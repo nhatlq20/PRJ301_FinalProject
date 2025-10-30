@@ -3,6 +3,7 @@ package models;
 import java.time.LocalDateTime;
 
 public class Category {
+
     private String categoryID;
     private String categoryName;
     private LocalDateTime createdAt;
@@ -59,11 +60,11 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" +
-                "categoryID='" + categoryID + '\'' +
-                ", categoryName='" + categoryName + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+        return "Category{"
+                + "categoryID='" + categoryID + '\''
+                + ", categoryName='" + categoryName + '\''
+                + ", createdAt=" + createdAt
+                + ", updatedAt=" + updatedAt
+                + '}';
     }
 }
