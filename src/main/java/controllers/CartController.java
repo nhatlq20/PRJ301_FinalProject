@@ -1,11 +1,11 @@
 package controllers;
 
+import filter.AuthenticationFilter;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import dao.CartDAO;
 import models.User;
 
@@ -16,16 +16,14 @@ public class CartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        User user = (session != null) ? (User) session.getAttribute("user") : null;
+        User user = requireAuthenticatedUser(request, response);
+        if (user == null) {
+            return;
+        }
         String action = request.getParameter("action");
 
         if ("add".equalsIgnoreCase(action)) {
             handleAdd(request, response, user);
-            return;
-        }
-        if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/auth");
             return;
         }
         if ("update".equalsIgnoreCase(action)) {
@@ -54,10 +52,6 @@ public class CartController extends HttpServlet {
     }
 
     private void handleAdd(HttpServletRequest request, HttpServletResponse response, User user) throws IOException {
-        if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/auth");
-            return;
-        }
         String id = request.getParameter("id");
         int qty = parseQty(request.getParameter("qty"));
         if (id != null && !id.isEmpty()) {
@@ -65,6 +59,15 @@ public class CartController extends HttpServlet {
         }
         String back = request.getHeader("Referer");
         response.sendRedirect(back != null ? back : (request.getContextPath() + "/cart"));
+    }
+
+    private User requireAuthenticatedUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Object attr = request.getAttribute(AuthenticationFilter.AUTHENTICATED_USER_ATTRIBUTE);
+        if (attr instanceof User) {
+            return (User) attr;
+        }
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+        return null;
     }
 
     private int parseQty(String q) {

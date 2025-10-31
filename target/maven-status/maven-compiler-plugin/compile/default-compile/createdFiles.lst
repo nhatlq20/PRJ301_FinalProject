@@ -20,7 +20,9 @@ utils\Validator$ValidationResult.class
 utils\OtpService.class
 controllers\AdminController.class
 utils\HashUtil.class
+filter\AdminFilter.class
 models\Role.class
+filter\AuthenticationFilter.class
 utils\HashUtil$PasswordCheckResult.class
 utils\EmailService.class
 models\CartItem.class
