@@ -6,6 +6,7 @@ dao\CartDAO.class
 dao\CategoryDAO.class
 models\Category.class
 utils\OtpService$OtpData.class
+controllers\ProductListController.class
 models\Cart.class
 utils\DBContext.class
 utils\EmailService$1.class

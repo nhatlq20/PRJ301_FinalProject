@@ -23,8 +23,16 @@
             </div>
             <div class="col-12 col-lg-7">
                 <h3 class="fw-bold mb-2"><c:out value='${medicine.medicineName}'/></h3>
-                <div class="h4 text-primary fw-bold mb-3">
-                    <fmt:formatNumber value="${medicine.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${medicine.unit}'/>
+                <div class="h4 fw-bold mb-3">
+                    <c:choose>
+                        <c:when test="${medicine.sellingPrice != null && medicine.sellingPrice > 0}">
+                            <span class="text-primary"><fmt:formatNumber value="${medicine.sellingPrice}" type="number" groupingUsed="true"/>₫</span>
+                            <span class="text-secondary"> / <c:out value='${medicine.unit}'/></span>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="text-muted">Cần được sự tư vấn của bác sĩ</span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <p class="text-secondary">Mô tả ngắn: <c:out value='${medicine.shortDescription}'/></p>
                 <div class="row gy-2 small">

@@ -216,3 +216,61 @@ body {
 }
 .header .cart-btn:hover { background: #1751c9; color: #e0eaff; }
 
+/* User avatar dropdown */
+.user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 1.06rem;
+  cursor: pointer;
+  padding: 8px 10px;
+  text-decoration: none;
+}
+.user-trigger:hover { text-decoration: none; }
+.user-trigger .avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-trigger .avatar i { color: #fff; font-size: 0.95rem; }
+.user-trigger .name { max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.user-trigger .caret { font-size: 0.8rem; opacity: 0.9; }
+
+.user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #ffffff;
+  color: #1f2937;
+  min-width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 8px;
+  display: none;
+  z-index: 1000;
+}
+.user-item {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #1f2937;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.user-item:hover { background: #f3f4f6; color: #111827; }
+.user-menu:hover .user-dropdown { display: block; }
+.user-menu:focus-within .user-dropdown { display: block; }
+.user-menu.open .user-dropdown { display: block; }
+

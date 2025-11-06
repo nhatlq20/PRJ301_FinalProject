@@ -278,6 +278,7 @@ body {
 }
 
  Bestsellers Grid Layout 
+
 .bestsellers-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -334,6 +335,8 @@ body {
 .bestsellers-grid .bestseller-card-small .card-body {
     padding: 15px;
 }
+
+/* ✅ ĐÃ SỬA: legacy .banner3 removed; replaced by .bestsellers-banner */
 
 .nav-categories ul {
   display: flex;
@@ -457,6 +460,52 @@ body {
   box-shadow: 0 8px 34px rgba(60, 105, 220, 0.06);
   padding: 48px 12px 38px 12px;
   margin-bottom: 40px;
+}
+
+/* ✅ ĐÃ SỬA: Bestsellers banner: show Banner3 image behind the title */
+#bestsellers .bestsellers-banner {
+  background-image: url('../img/banner/Banner3.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  height: 56px;
+  max-width: 1050px; /* match .bestsellers-grid width */
+  margin: -16px auto 12px; /* move up and reduce bottom spacing */
+  border-radius: 10px;
+}
+
+#bestsellers .bestsellers-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 575px) {
+  #bestsellers .bestsellers-banner { height: 48px; margin: -12px auto 10px; }
+  #bestsellers .bestsellers-title { font-size: 1rem; }
+}
+
+/* ✅ ĐÃ SỬA: Today featured: title moved outside container, align left and reduce top gap */
+.featured-products.py-5 > .container.mb-4 {
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.featured-products.py-5 > .container.mb-4 .d-flex {
+  justify-content: flex-start;
+  align-items: center;
+}
+.featured-products.py-5 > .container.mb-4 h3 {
+  margin: 0;
 }
 #bestsellers .bestsellers-grid {
   display: grid;

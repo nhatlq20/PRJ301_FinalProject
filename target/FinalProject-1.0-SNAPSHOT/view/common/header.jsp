@@ -28,14 +28,24 @@
 
         <!-- Navigation Section -->
         <div class="nav-section">
-            <a href="auth" class="login-btn">
-                <i class="fas fa-user-circle"></i>
-                <% if (session.getAttribute("user") !=null) { %>
-                    ${sessionScope.user.fullName}
-                <% } else { %>
+            <% if (session.getAttribute("user") != null) { %>
+                <div class="user-menu">
+                    <a class="user-trigger" href="${pageContext.request.contextPath}/profile">
+                        <span class="avatar"><i class="fas fa-user"></i></span>
+                        <span class="name">${sessionScope.user.fullName}</span>
+                        <i class="fas fa-chevron-down caret"></i>
+                    </a>
+                    <div class="user-dropdown">
+                        <a class="user-item" href="${pageContext.request.contextPath}/profile">Thông tin cá nhân</a>
+                        <a class="user-item" href="${pageContext.request.contextPath}/auth?action=logout">Đăng xuất</a>
+                    </div>
+                </div>
+            <% } else { %>
+                <a href="auth" class="login-btn">
+                    <i class="fas fa-user-circle"></i>
                     Đăng nhập
-                <% } %>
-            </a>
+                </a>
+            <% } %>
             <a href="cart" class="cart-btn">
                 <i class="fas fa-shopping-cart"></i>
                 Giỏ hàng
@@ -43,3 +53,4 @@
         </div>
     </header>
 
+    

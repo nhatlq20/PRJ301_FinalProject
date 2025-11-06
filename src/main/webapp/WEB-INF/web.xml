@@ -24,6 +24,10 @@
         <servlet-name>ProductDetailController</servlet-name>
         <servlet-class>controllers.ProductDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductListController</servlet-name>
+        <servlet-class>controllers.ProductListController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -49,6 +53,10 @@
     <servlet-mapping>
         <servlet-name>ProductDetailController</servlet-name>
         <url-pattern>/product/detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductListController</servlet-name>
+        <url-pattern>/products</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
