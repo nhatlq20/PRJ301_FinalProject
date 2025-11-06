@@ -16,7 +16,7 @@ public class MedicineDAO {
         List<Medicine> medicines = new ArrayList<>();
         String sql = "SELECT m.*, c.CategoryName FROM Medicine m " +
                     "LEFT JOIN Category c ON m.CategoryID = c.CategoryID " +
-                    "ORDER BY m.MedicineName";
+                    "ORDER BY m.MedicineID ASC";
         
         try (Connection conn = dbContext.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -84,6 +84,7 @@ public class MedicineDAO {
         String sql = "SELECT m.*, c.CategoryName FROM Medicine m " +
                     "LEFT JOIN Category c ON m.CategoryID = c.CategoryID " +
                     "WHERE m.MedicineName LIKE ? OR m.ShortDescription LIKE ? OR m.Manufacturer LIKE ? " +
+                    "OR m.Indications LIKE ? OR m.Ingredients LIKE ? " +
                     "ORDER BY m.MedicineName";
         
         try (Connection conn = dbContext.getConnection();
@@ -93,6 +94,8 @@ public class MedicineDAO {
             ps.setString(1, searchPattern);
             ps.setString(2, searchPattern);
             ps.setString(3, searchPattern);
+            ps.setString(4, searchPattern);
+            ps.setString(5, searchPattern);
             
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {

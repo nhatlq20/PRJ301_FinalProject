@@ -52,7 +52,7 @@
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
                             <i class="fas fa-lock fa-4x text-primary mb-3"></i>
-                            <h3 class="fw-bold text-dark">Đặt lại mật khẩu</h3>
+                            <h3 class="fw-bold">Đặt lại mật khẩu</h3>
                             <p class="text-muted">Tạo mật khẩu mới cho tài khoản của bạn</p>
                         </div>
 
@@ -76,7 +76,7 @@
                             
                             <div class="mb-3">
                                 <label for="newPassword" class="form-label fw-semibold">
-                                    <i class="fas fa-lock me-1"></i>Mật khẩu mới
+                                    <i class="fas fa-lock me-1 text-primary"></i>Mật khẩu mới
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -110,7 +110,7 @@
                             
                             <div class="mb-4">
                                 <label for="confirmPassword" class="form-label fw-semibold">
-                                    <i class="fas fa-lock me-1"></i>Xác nhận mật khẩu
+                                    <i class="fas fa-lock me-1 text-primary"></i>Xác nhận mật khẩu
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -133,7 +133,7 @@
                             
                             <div class="text-center">
                                 <p class="mb-0">
-                                    <a href="<c:url value='/auth'/>" class="text-decoration-none">Quay lại đăng nhập</a>
+                                    <a href="<c:url value='/auth'/>" class="text-decoration-none text-primary fw-semibold">Quay lại đăng nhập</a>
                                 </p>
                             </div>
                         </form>

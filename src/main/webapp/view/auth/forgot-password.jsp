@@ -18,7 +18,7 @@
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
                             <i class="fas fa-key fa-4x text-primary mb-3"></i>
-                            <h3 class="fw-bold text-dark">Quên mật khẩu</h3>
+                            <h3 class="fw-bold">Quên mật khẩu</h3>
                             <p class="text-muted">Nhập email để nhận mã OTP</p>
                         </div>
 
@@ -41,7 +41,7 @@
                             <input type="hidden" name="action" value="forgot-password">
                             <div class="mb-4">
                                 <label for="email" class="form-label fw-semibold">
-                                    <i class="fas fa-envelope me-1"></i>Email
+                                    <i class="fas fa-envelope me-1 text-primary"></i>Email
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-at"></i></span>
@@ -61,7 +61,7 @@
                             
                             <div class="text-center">
                                 <p class="mb-0">Nhớ mật khẩu? 
-                                    <a href="<c:url value='/auth'/>" class="text-decoration-none fw-semibold">Đăng nhập</a>
+                                    <a href="<c:url value='/auth'/>" class="text-decoration-none fw-semibold text-primary">Đăng nhập</a>
                                 </p>
                             </div>
                         </form>

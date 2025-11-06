@@ -129,6 +129,10 @@ public class AuthController extends HttpServlet {
         List<String> roles = user.getRoles();
         String roleName = roles != null && !roles.isEmpty() ? roles.get(0) : null;
         
+        // store role helpers for views
+        session.setAttribute("roleName", roleName);
+        session.setAttribute("isAdmin", Boolean.valueOf("admin".equalsIgnoreCase(roleName)));
+
         if ("admin".equalsIgnoreCase(roleName)) {
             response.sendRedirect(request.getContextPath() + "/product");
         } else if ("customer".equalsIgnoreCase(roleName)) {

@@ -33,12 +33,12 @@
             transition: all 0.3s ease;
         }
         .otp-digit:focus {
-            border-color: #0d6efd;
-            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
             outline: none;
         }
         .otp-digit.filled {
-            border-color: #198754;
+            border-color: #3b82f6;
             background-color: #f8f9fa;
         }
     </style>
@@ -51,7 +51,7 @@
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
                             <i class="fas fa-shield-alt fa-4x text-primary mb-3"></i>
-                            <h3 class="fw-bold text-dark">Xác thực OTP</h3>
+                            <h3 class="fw-bold">Xác thực OTP</h3>
                             <p class="text-muted">Nhập mã OTP đã được gửi đến email của bạn</p>
                         </div>
 
@@ -76,7 +76,7 @@
                             
                             <div class="mb-4">
                                 <label class="form-label fw-semibold text-center d-block">
-                                    <i class="fas fa-key me-1"></i>Mã OTP (6 chữ số)
+                                    <i class="fas fa-key me-1 text-primary"></i>Mã OTP (6 chữ số)
                                 </label>
                                 <div class="otp-container">
                                     <input type="text" class="otp-digit" maxlength="1" data-index="0" autocomplete="off">
@@ -100,10 +100,10 @@
                             
                             <div class="text-center">
                                 <p class="mb-0">Không nhận được mã? 
-                                    <a href="<c:url value='/auth?action=forgot-password'/>" class="text-decoration-none fw-semibold">Gửi lại</a>
+                                    <a href="<c:url value='/auth?action=forgot-password'/>" class="text-decoration-none fw-semibold text-primary">Gửi lại</a>
                                 </p>
                                 <p class="mb-0 mt-2">
-                                    <a href="<c:url value='/auth'/>" class="text-decoration-none">Quay lại đăng nhập</a>
+                                    <a href="<c:url value='/auth'/>" class="text-decoration-none text-primary fw-semibold">Quay lại đăng nhập</a>
                                 </p>
                             </div>
                         </form>

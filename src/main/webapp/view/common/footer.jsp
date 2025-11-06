@@ -1,7 +1,7 @@
 
 <%-- Document : footer Created on : Oct 24, 2025, 10:57:23 AM Author : qnhat --%>
 
-    <%@page contentType="text/html" pageEncoding="UTF-8" %>
+    <%@page pageEncoding="UTF-8" %>
 
         <link rel="stylesheet" href="<c:url value='/assets/css/footer.css'/>">
 

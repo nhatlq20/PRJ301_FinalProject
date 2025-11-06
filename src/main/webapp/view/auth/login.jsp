@@ -18,7 +18,7 @@
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
                             <i class="fas fa-user-circle fa-4x text-primary mb-3"></i>
-                            <h3 class="fw-bold text-dark">Đăng nhập</h3>
+                            <h3 class="fw-bold">Đăng nhập</h3>
                             <p class="text-muted">Chào mừng bạn quay trở lại!</p>
                         </div>
 
@@ -41,7 +41,7 @@
                             <input type="hidden" name="action" value="login">
                             <div class="mb-3">
                                 <label for="usernameOrEmail" class="form-label fw-semibold">
-                                    <i class="fas fa-user me-1"></i>Tên đăng nhập hoặc Email
+                                    <i class="fas fa-user me-1 text-primary"></i>Tên đăng nhập hoặc Email
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-at"></i></span>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label fw-semibold">
-                                    <i class="fas fa-lock me-1"></i>Mật khẩu
+                                    <i class="fas fa-lock me-1 text-primary"></i>Mật khẩu
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -63,12 +63,12 @@
                             </div>
                             <div class="text-center">
                                 <p class="mb-2">
-                                    <a href="<c:url value='/auth?action=forgot-password'/>" class="text-decoration-none fw-semibold">
+                                    <a href="<c:url value='/auth?action=forgot-password'/>" class="text-decoration-none fw-semibold text-primary">
                                         <i class="fas fa-key me-1"></i>Quên mật khẩu?
                                     </a>
                                 </p>
                                 <p class="mb-0">Chưa có tài khoản? 
-                                    <a href="<c:url value='/auth?action=register'/>" class="text-decoration-none fw-semibold">Đăng ký ngay</a>
+                                    <a href="<c:url value='/auth?action=register'/>" class="text-decoration-none fw-semibold text-primary">Đăng ký ngay</a>
                                 </p>
                             </div>
                         </form>

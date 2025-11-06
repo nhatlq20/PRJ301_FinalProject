@@ -246,10 +246,18 @@
                                                                     onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                                 <div class="card-body" onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                                     <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                                                    <p class="text-primary fw-semibold mb-1">
-                                                                        <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
-                                                                    </p>
-                                                                    <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                                    <c:choose>
+                                                                        <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                                            <p class="text-primary fw-semibold mb-1">
+                                                                                <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
+                                                                            </p>
+                                                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -264,10 +272,18 @@
                                                                     onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                                 <div class="card-body" onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                                     <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                                                    <p class="text-primary fw-semibold mb-1">
-                                                                        <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
-                                                                    </p>
-                                                                    <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                                    <c:choose>
+                                                                        <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                                            <p class="text-primary fw-semibold mb-1">
+                                                                                <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
+                                                                            </p>
+                                                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -296,10 +312,18 @@
                                                         onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                     <div class="card-body" onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                         <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                                        <p class="text-primary fw-semibold mb-1">
-                                                            <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
-                                                        </p>
-                                                        <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                        <c:choose>
+                                                            <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                                <p class="text-primary fw-semibold mb-1">
+                                                                    <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
+                                                                </p>
+                                                                <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                                                <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </div>
                                                 </div>
                                             </div>
@@ -325,10 +349,18 @@
                                                         onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                     <div class="card-body" onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                         <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                                        <p class="text-primary fw-semibold mb-1">
-                                                            <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
-                                                        </p>
-                                                        <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                        <c:choose>
+                                                            <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                                <p class="text-primary fw-semibold mb-1">
+                                                                    <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
+                                                                </p>
+                                                                <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                                                <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </div>
                                                 </div>
                                             </div>
@@ -354,10 +386,18 @@
                                                         onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                     <div class="card-body" onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                         <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                                        <p class="text-primary fw-semibold mb-1">
-                                                            <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
-                                                        </p>
-                                                        <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                        <c:choose>
+                                                            <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                                <p class="text-primary fw-semibold mb-1">
+                                                                    <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
+                                                                </p>
+                                                                <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                                                <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </div>
                                                 </div>
                                             </div>
@@ -383,10 +423,18 @@
                                                         onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                     <div class="card-body" onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                         <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                                        <p class="text-primary fw-semibold mb-1">
-                                                            <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
-                                                        </p>
-                                                        <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                        <c:choose>
+                                                            <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                                <p class="text-primary fw-semibold mb-1">
+                                                                    <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
+                                                                </p>
+                                                                <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                                                <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </div>
                                                 </div>
                                             </div>
@@ -412,10 +460,18 @@
                                                         onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                     <div class="card-body" onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                         <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                                        <p class="text-primary fw-semibold mb-1">
-                                                            <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
-                                                        </p>
-                                                        <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                        <c:choose>
+                                                            <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                                <p class="text-primary fw-semibold mb-1">
+                                                                    <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
+                                                                </p>
+                                                                <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                                                <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </div>
                                                 </div>
                                             </div>
@@ -587,8 +643,26 @@
                                             onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                         <div class="card-body" onclick="window.location.href='${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                             <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                            <p class="text-primary fw-semibold mb-1"><fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/></p>
-                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                            <c:choose>
+                                                <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                    <p class="text-primary fw-semibold mb-1"><fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/></p>
+                                                    <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                                    <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                    <p class="text-primary fw-semibold mb-1"><fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/></p>
+                                                    <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                                    <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
                                 </div>

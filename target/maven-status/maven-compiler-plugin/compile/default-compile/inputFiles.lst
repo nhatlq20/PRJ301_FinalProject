@@ -7,6 +7,7 @@ D:\FA25\PRJ301\FinalProject\src\main\java\filter\AdminFilter.java
 D:\FA25\PRJ301\FinalProject\src\main\java\dao\CartDAO.java
 D:\FA25\PRJ301\FinalProject\src\main\java\models\User.java
 D:\FA25\PRJ301\FinalProject\src\main\java\dao\MedicineDAO.java
+D:\FA25\PRJ301\FinalProject\src\main\java\controllers\SearchController.java
 D:\FA25\PRJ301\FinalProject\src\main\java\controllers\AuthController.java
 D:\FA25\PRJ301\FinalProject\src\main\java\dao\UserDAO.java
 D:\FA25\PRJ301\FinalProject\src\main\java\utils\EmailService.java
@@ -16,7 +17,9 @@ D:\FA25\PRJ301\FinalProject\src\main\java\controllers\CartController.java
 D:\FA25\PRJ301\FinalProject\src\main\java\models\Category.java
 D:\FA25\PRJ301\FinalProject\src\main\java\controllers\ProductDetailController.java
 D:\FA25\PRJ301\FinalProject\src\main\java\utils\DBContext.java
+D:\FA25\PRJ301\FinalProject\src\main\java\controllers\ProfileController.java
 D:\FA25\PRJ301\FinalProject\src\main\java\controllers\HomeController.java
+D:\FA25\PRJ301\FinalProject\src\main\java\controllers\StaffController.java
 D:\FA25\PRJ301\FinalProject\src\main\java\utils\HashUtil.java
 D:\FA25\PRJ301\FinalProject\src\main\java\controllers\OrderController.java
 D:\FA25\PRJ301\FinalProject\src\main\java\controllers\AdminController.java

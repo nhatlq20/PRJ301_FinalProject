@@ -18,7 +18,7 @@
                         <div class="card-body p-5">
                             <div class="text-center mb-4">
                                 <i class="fas fa-user-plus fa-4x text-primary mb-3"></i>
-                                <h3 class="fw-bold text-dark">Đăng ký tài khoản</h3>
+                                <h3 class="fw-bold">Đăng ký tài khoản</h3>
                                 <p class="text-muted">Tạo tài khoản mới để bắt đầu</p>
                             </div>
 
@@ -41,7 +41,7 @@
                                 <input type="hidden" name="action" value="register">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="username" class="form-label fw-semibold"><i class="fas fa-user me-1"></i>Tên đăng nhập <span class="text-danger">*</span></label>
+                                        <label for="username" class="form-label fw-semibold"><i class="fas fa-user me-1 text-primary"></i>Tên đăng nhập <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fas fa-at"></i></span>
                                             <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên đăng nhập" required>
@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="email" class="form-label fw-semibold"><i class="fas fa-envelope me-1"></i>Email <span class="text-danger">*</span></label>
+                                        <label for="email" class="form-label fw-semibold"><i class="fas fa-envelope me-1 text-primary"></i>Email <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                             <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email" required>
@@ -59,14 +59,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="fullName" class="form-label fw-semibold"><i class="fas fa-id-card me-1"></i>Họ và tên</label>
+                                        <label for="fullName" class="form-label fw-semibold"><i class="fas fa-id-card me-1 text-primary"></i>Họ và tên</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Nhập họ và tên">
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="phoneNumber" class="form-label fw-semibold"><i class="fas fa-phone me-1"></i>Số điện thoại</label>
+                                        <label for="phoneNumber" class="form-label fw-semibold"><i class="fas fa-phone me-1 text-primary"></i>Số điện thoại</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                             <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Nhập số điện thoại">
@@ -74,7 +74,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="password" class="form-label fw-semibold"><i class="fas fa-lock me-1"></i>Mật khẩu <span class="text-danger">*</span></label>
+                                    <label for="password" class="form-label fw-semibold"><i class="fas fa-lock me-1 text-primary"></i>Mật khẩu <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                         <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="confirmPassword" class="form-label fw-semibold"><i class="fas fa-lock me-1"></i>Xác nhận mật khẩu <span class="text-danger">*</span></label>
+                                    <label for="confirmPassword" class="form-label fw-semibold"><i class="fas fa-lock me-1 text-primary"></i>Xác nhận mật khẩu <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                         <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu" required>
@@ -98,7 +98,7 @@
                                     <button type="submit" class="btn btn-primary btn-register"><i class="fas fa-user-plus me-2"></i>Đăng ký</button>
                                 </div>
                                 <div class="text-center">
-                                    <p class="mb-0">Đã có tài khoản? <a href="<c:url value='/auth'/>" class="text-decoration-none fw-semibold">Đăng nhập ngay</a></p>
+                                    <p class="mb-0">Đã có tài khoản? <a href="<c:url value='/auth'/>" class="text-decoration-none fw-semibold text-primary">Đăng nhập ngay</a></p>
                                 </div>
                             </form>
                         </div>
