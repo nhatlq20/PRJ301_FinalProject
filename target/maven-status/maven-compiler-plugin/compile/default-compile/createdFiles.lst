@@ -1,16 +1,22 @@
 controllers\HomeController.class
 controllers\OrderController.class
+dao\OrderDAO.class
 controllers\AuthController.class
 models\User.class
 dao\CartDAO.class
 dao\CategoryDAO.class
 models\Category.class
 utils\OtpService$OtpData.class
+<<<<<<< HEAD
 controllers\ProfileController.class
+=======
+controllers\PlaceOrderServlet.class
+>>>>>>> origin/HuyTung
 models\Cart.class
 utils\DBContext.class
 utils\EmailService$1.class
 utils\Validator.class
+filter\CartCountFilter.class
 controllers\CartController.class
 models\Medicine.class
 controllers\ProductDetailController.class
@@ -18,9 +24,11 @@ dao\UserDAO.class
 controllers\SearchController.class
 dao\MedicineDAO.class
 controllers\ProductController.class
+models\Order.class
 utils\Validator$ValidationResult.class
 utils\OtpService.class
 controllers\AdminController.class
+controllers\CheckoutServlet.class
 utils\HashUtil.class
 filter\AdminFilter.class
 models\Role.class
@@ -30,3 +38,4 @@ controllers\StaffController.class
 utils\EmailService.class
 models\CartItem.class
 config\EmailInformation.class
+models\OrderItem.class

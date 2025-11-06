@@ -9,6 +9,20 @@ public class CartItem {
     private String unit;
     private BigDecimal price; // selling price
     private int quantity;
+    
+    /** Constructor mặc định */
+    public CartItem() {
+    }
+
+    /** Constructor khởi tạo nhanh từ Medicine */
+    public CartItem(String medicineID, String medicineName, String imageUrl, String unit, BigDecimal price, int quantity) {
+        this.medicineID = medicineID;
+        this.medicineName = medicineName;
+        this.imageUrl = imageUrl;
+        this.unit = unit;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
     public String getMedicineID() { return medicineID; }
     public void setMedicineID(String medicineID) { this.medicineID = medicineID; }
@@ -27,4 +41,9 @@ public class CartItem {
 
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
+    
+    // Tính tổng tiền cho 1 item
+    public BigDecimal getTotal() {
+        return price.multiply(new BigDecimal(quantity));
+    }
 }
