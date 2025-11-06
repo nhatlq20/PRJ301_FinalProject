@@ -24,6 +24,17 @@
         <servlet-name>ProductDetailController</servlet-name>
         <servlet-class>controllers.ProductDetailController</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>controllers.CheckoutServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>PlaceOrderServlet</servlet-name>
+        <servlet-class>controllers.PlaceOrderServlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -50,9 +61,19 @@
         <servlet-name>ProductDetailController</servlet-name>
         <url-pattern>/product/detail</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
+<!--    <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/product/cart</url-pattern>
+    </servlet-mapping>-->
+    
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>PlaceOrderServlet</servlet-name>
+        <url-pattern>/placeOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

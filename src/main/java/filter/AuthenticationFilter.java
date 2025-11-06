@@ -10,7 +10,10 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import models.User;
 
-@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/cart", "/order", "/product/cart"})
+@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {
+    "/cart", "/order", "/product/cart", "/checkout", "/placeOrder"
+})
+
 public class AuthenticationFilter extends HttpFilter {
 
     public static final String AUTHENTICATED_USER_ATTRIBUTE = "authenticatedUser";
@@ -23,6 +26,7 @@ public class AuthenticationFilter extends HttpFilter {
 
         if (user == null) {
             response.sendRedirect(request.getContextPath() + "/auth");
+//            response.sendRedirect(request.getContextPath() + "/view/auth/login.jsp");
             return;
         }
 
@@ -30,4 +34,3 @@ public class AuthenticationFilter extends HttpFilter {
         chain.doFilter(request, response);
     }
 }
-

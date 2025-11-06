@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import models.CartItem;
 
 public class CartDAO {
+
     private final DBContext dbContext = new DBContext();
 
     private Integer getOrCreateCartId(int userId) throws SQLException {
@@ -15,7 +16,9 @@ public class CartDAO {
         try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(selectSql)) {
             ps.setInt(1, userId);
             try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) return rs.getInt(1);
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
             }
         }
         // create new cart
@@ -23,7 +26,9 @@ public class CartDAO {
         try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(insertSql)) {
             ps.setInt(1, userId);
             try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) return rs.getInt(1);
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
             }
         }
         return null;
@@ -32,7 +37,9 @@ public class CartDAO {
     public void addOrIncrement(int userId, String medicineId, int quantity) {
         try {
             Integer cartId = getOrCreateCartId(userId);
-            if (cartId == null) return;
+            if (cartId == null) {
+                return;
+            }
             final String checkSql = "SELECT Quantity FROM dbo.CartItems WHERE CartID = ? AND MedicineID = ?";
             final String insertSql = "INSERT INTO dbo.CartItems(CartID, MedicineID, Quantity) VALUES(?, ?, ?)";
             final String updateSql = "UPDATE dbo.CartItems SET Quantity = Quantity + ? WHERE CartID = ? AND MedicineID = ?";
@@ -66,10 +73,12 @@ public class CartDAO {
         List<CartItem> items = new ArrayList<>();
         try {
             Integer cartId = getOrCreateCartId(userId);
-            if (cartId == null) return items;
-            final String sql = "SELECT ci.MedicineID, ci.Quantity, m.MedicineName, m.ImageUrl, m.SellingPrice, m.Unit " +
-                    "FROM dbo.CartItems ci JOIN dbo.Medicine m ON m.MedicineID = ci.MedicineID " +
-                    "WHERE ci.CartID = ? ORDER BY m.MedicineName";
+            if (cartId == null) {
+                return items;
+            }
+            final String sql = "SELECT ci.MedicineID, ci.Quantity, m.MedicineName, m.ImageUrl, m.SellingPrice, m.Unit "
+                    + "FROM dbo.CartItems ci JOIN dbo.Medicine m ON m.MedicineID = ci.MedicineID "
+                    + "WHERE ci.CartID = ? ORDER BY m.MedicineName";
             try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setInt(1, cartId);
                 try (ResultSet rs = ps.executeQuery()) {
@@ -94,7 +103,9 @@ public class CartDAO {
     public void setQuantity(int userId, String medicineId, int quantity) {
         try {
             Integer cartId = getOrCreateCartId(userId);
-            if (cartId == null) return;
+            if (cartId == null) {
+                return;
+            }
             if (quantity <= 0) {
                 remove(userId, medicineId);
                 return;
@@ -114,7 +125,9 @@ public class CartDAO {
     public void remove(int userId, String medicineId) {
         try {
             Integer cartId = getOrCreateCartId(userId);
-            if (cartId == null) return;
+            if (cartId == null) {
+                return;
+            }
             final String sql = "DELETE FROM dbo.CartItems WHERE CartID = ? AND MedicineID = ?";
             try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setInt(1, cartId);
@@ -130,7 +143,9 @@ public class CartDAO {
         models.Cart cart = new models.Cart();
         try {
             Integer cartId = getOrCreateCartId(userId);
-            if (cartId == null) return cart;
+            if (cartId == null) {
+                return cart;
+            }
             cart.setCartId(cartId);
             cart.setUserId(userId);
             // read cart meta if exists
@@ -152,4 +167,27 @@ public class CartDAO {
         }
         return cart;
     }
+
+    // ✅ Đếm tổng số lượng sản phẩm trong giỏ (dùng cho badge ở header)
+    public int countItems(int userId) {
+        try {
+            Integer cartId = getOrCreateCartId(userId);
+            if (cartId == null) {
+                return 0;
+            }
+            final String sql = "SELECT SUM(Quantity) AS Total FROM dbo.CartItems WHERE CartID = ?";
+            try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, cartId);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getInt("Total");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to count cart items", e);
+        }
+        return 0;
+    }
+
 }
