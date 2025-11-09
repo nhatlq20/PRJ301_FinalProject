@@ -18,6 +18,7 @@
         <link href="<c:url value='/assets/css/style.css'/>" rel="stylesheet">
     </head>
 
+
     <body>
         <%@ include file="../common/header.jsp" %>
         <nav class="nav-categories">
@@ -26,7 +27,6 @@
                 <li><a href="#bestsellers" class="active" data-duration="500">Sản phẩm bán chạy nhất</a></li>
                 <li><a href="#featured-categories" data-duration="550">Danh mục nổi bật</a></li>
                 <li><a href="#favorite-brands" data-duration="600">Thương hiệu yêu thích</a></li>
-                <!--                                <li><a href="#seasonal" data-duration="650">Bệnh theo mùa</a></li>-->
                 <li><a href="#health-corner" data-duration="650">Góc sức khỏe</a></li>
                 <li><a href="#cardio" data-duration="700">Thuốc tim mạch</a></li>
                 <li><a href="#supplements" data-duration="750">Thuốc bổ &amp; vitamin</a></li>
@@ -615,22 +615,11 @@
                 });
             });
         </script>
+    </body>
+
+</html>
 
 
-
-
-
-
-
-
-
-
-
-
-
-<!-- ===================================== -->
-<!-- 🔹 SẢN PHẨM NỔI BẬT HÔM NAY (6 ảnh thật) -->
-<!-- ===================================== -->
 <section class="featured-products py-5">
     <div id="today-featured" class="container">
         <div class="d-flex align-items-center mb-4">
@@ -671,41 +660,10 @@
                     </div>
                 </div>
             </c:forEach>
+
         </div>
     </div>
-</section>
-
-<!-- 🔹 Floating AI Chat Icon -->
-<div id="chat-launcher">
-  <img src="${pageContext.request.contextPath}/assets/img/chatbot-icon.png" alt="Chatbot" />
-</div>
-
-<!-- Chat Window -->
-<div id="chat-window" class="hidden">
-  <div class="chat-header">
-    <img src="${pageContext.request.contextPath}/assets/img/chatbot-icon.png" alt="Logo" class="chat-logo">
-    <span>Chat với Dược Sĩ Pharmacy</span>
-    <button id="close-chat">&times;</button>
-  </div>
-
-  <div class="chat-body" id="chat-body">
-    <div class="chat-placeholder">
-      <p>Xin chào 👋<br>Bạn cần hỗ trợ gì hôm nay?</p>
-    </div>
-  </div>
-
-  <div class="chat-footer">
-    <input type="text" id="chat-input" placeholder="Nhập tin nhắn..." />
-    <button id="send-btn"><i class="bi bi-send-fill"></i></button>
-  </div>
-</div>
-    
-<%@ include file="../common/footer.jsp" %>
-
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/ai.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/chatbox.js"></script>
-
+    <%@ include file="../common/footer.jsp" %>
 </body>
 
 </html>

@@ -13,8 +13,12 @@ html {
 body {
     margin: 0;
     padding: 0;
+    padding-top: 115px !important; /* Khoảng cách cho header fixed - MUST HAVE !important */
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
     background-color: #f8f9fa;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
 }
 
  Category Card 
@@ -598,9 +602,44 @@ html, body {
 }
 
 /* ✅ Giới hạn header và nav không vượt quá chiều rộng trang */
-.header, .nav-section, .nav-categories, .main-content {
+.header, .nav-section, .nav-categories {
   max-width: 100vw;
   overflow-x: clip;
+}
+
+/* ✅ Main content layout - đảm bảo không bị lỗi hiển thị */
+.main-content {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  display: block;
+  clear: both;
+}
+
+.categories-section {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  display: block;
+  clear: both;
+}
+
+/* ✅ Đảm bảo categories-grid không bị lỗi hiển thị */
+.categories-grid {
+  display: grid !important;
+  position: relative;
+  clear: both;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ✅ Đảm bảo category-card không bị lỗi hiển thị */
+.category-card {
+  position: relative;
+  display: flex !important;
+  overflow: hidden;
 }
 
 

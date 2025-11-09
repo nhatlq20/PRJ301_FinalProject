@@ -7,6 +7,7 @@ dao\CartDAO.class
 dao\CategoryDAO.class
 models\Category.class
 utils\OtpService$OtpData.class
+controllers\ProfileController.class
 controllers\PlaceOrderServlet.class
 models\Cart.class
 utils\DBContext.class
@@ -18,6 +19,7 @@ controllers\CartController.class
 models\Medicine.class
 controllers\ProductDetailController.class
 dao\UserDAO.class
+controllers\SearchController.class
 dao\MedicineDAO.class
 controllers\ProductController.class
 models\Order.class
@@ -30,7 +32,9 @@ filter\AdminFilter.class
 models\Role.class
 filter\AuthenticationFilter.class
 utils\HashUtil$PasswordCheckResult.class
+controllers\StaffController.class
 utils\EmailService.class
+controllers\MyOrderController.class
 models\CartItem.class
 controllers\AIController.class
 config\EmailInformation.class

@@ -36,6 +36,11 @@
     </servlet>
     
     <servlet>
+        <servlet-name>MyOrderController</servlet-name>
+        <servlet-class>controllers.MyOrderController</servlet-class>
+    </servlet>
+    
+    <servlet>
         <servlet-name>AIController</servlet-name>
         <servlet-class>controllers.AIController</servlet-class>
     </servlet>
@@ -77,6 +82,11 @@
     <servlet-mapping>
         <servlet-name>PlaceOrderServlet</servlet-name>
         <url-pattern>/placeOrder</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>MyOrderController</servlet-name>
+        <url-pattern>/my-orders</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>

@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -67,14 +66,12 @@
         <!-- Cart Dropdown -->
         <div class="cart-wrapper">
             <a href="${pageContext.request.contextPath}/cart" class="cart-btn">
-
                 <i class="fas fa-shopping-cart position-relative">
                     <span class="cart-badge" id="cartCount">
                         <c:out value="${cartCount != null ? cartCount : 0}" />
                     </span>
                 </i>
-
-
+            </a>
             <!-- Dropdown -->
             <div class="cart-dropdown shadow-sm" id="cartDropdown">
                 <div class="cart-header fw-semibold px-3 py-2 border-bottom">Giỏ hàng</div>
@@ -87,7 +84,7 @@
                             <c:forEach var="it" items="${cartItems}">
                                 <div class="cart-item d-flex align-items-center p-2 border-bottom">
                                     <img src="${it.imageUrl}" alt="${it.medicineName}" class="cart-img me-2">
-                                    <div class="flex-grow-1">
+                                    <div class="flex-grow-1" style="min-width: 0;">
                                         <div class="cart-name text-truncate">${it.medicineName}</div>
                                         <div class="cart-price text-primary fw-semibold">
                                             <fmt:formatNumber value="${it.price}" type="number" groupingUsed="true"/>₫

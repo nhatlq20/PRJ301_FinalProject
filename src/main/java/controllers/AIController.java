@@ -30,7 +30,7 @@ public class AIController extends HttpServlet {
     // 🔹 Nếu bạn có API Key OpenAI, đặt ở đây
 //    private static final String API_KEY = "sk-xxxxx";
     //private static final String API_KEY = "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"; // TODO: đổi bằng key của bạn
-    private static final String GEMINI_API_KEY = "AIzaSyD1GOAIoY_rQX32Jb1xAKaEFefFcXgc1p8";
+    private static final String GEMINI_API_KEY = "";           // AIzaSyD1GOAIoY_rQX32Jb1xAKaEFefFcXgc1p8
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
