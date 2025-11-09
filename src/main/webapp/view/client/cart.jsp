@@ -1,86 +1,125 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ hàng</title>
-    <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <%@ include file="../common/header.jsp" %>
+    <head>
+        <meta charset="UTF-8">
+        <title>Giỏ hàng</title>
+        <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/css/cart.css" rel="stylesheet">
+    </head>
+    <body>
+        <%@ include file="../common/header.jsp" %>
 
-    <div class="container py-4">
-        <h3 class="fw-bold mb-4">Giỏ hàng của bạn</h3>
+        <div class="container py-4">
+            <a href="${pageContext.request.contextPath}/home" class="text-decoration-none back-link">← Tiếp tục mua sắm</a>
+            <h4 class="fw-bold mt-3 mb-4">Giỏ hàng của bạn</h4>
 
-        <c:set var="items" value="${empty cart ? cartItems : cart.items}"/>
+            <c:set var="items" value="${empty cart ? cartItems : cart.items}" />
 
-        <c:choose>
-            <c:when test="${empty items}">
-                <div class="alert alert-info">Giỏ hàng trống. <a href="${pageContext.request.contextPath}/home">Tiếp tục mua sắm</a></div>
-            </c:when>
-            <c:otherwise>
-                <div class="table-responsive">
-                    <table class="table align-middle">
-                        <thead>
-                            <tr>
-                                <th>Sản phẩm</th>
-                                <th>Đơn giá</th>
-                                <th class="text-center" style="width:160px;">Số lượng</th>
-                                <th>Thành tiền</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:set var="total" value="0"/>
-                            <c:forEach var="it" items="${items}">
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center gap-3">
-                                            <img src="<c:out value='${it.imageUrl}'/>" alt="<c:out value='${it.medicineName}'/>" style="width:64px;height:64px;object-fit:contain;">
-                                            <div>
-                                                <div class="fw-semibold"><a href="${pageContext.request.contextPath}/product/detail?id=${it.medicineID}" class="text-decoration-none">${it.medicineName}</a></div>
-                                                <small class="text-muted">ĐVT: ${it.unit}</small>
+            <c:choose>
+                <c:when test="${empty items}">
+                    <div class="alert alert-info text-center py-4 rounded shadow-sm">
+                        Giỏ hàng trống. <a href="${pageContext.request.contextPath}/home" class="fw-semibold">Tiếp tục mua sắm</a>
+                    </div>
+                </c:when>
+
+                <c:otherwise>
+                    <form action="${pageContext.request.contextPath}/checkout" method="post">
+                        <div class="cart-container">
+                            <!-- DANH SÁCH SẢN PHẨM -->
+                            <div class="cart-list">
+                                <div class="d-flex align-items-center mb-3">
+                                    <input type="checkbox" id="selectAll" class="form-check-input checkbox-large me-2" checked>
+                                    <label for="selectAll" class="fw-semibold">
+                                        Chọn tất cả (<c:out value='${fn:length(items)}'/>)
+                                    </label>
+                                </div>
+
+                                <c:forEach var="it" items="${items}">
+                                    <div class="cart-item d-flex align-items-center" data-id="${it.medicineID}">
+                                        <!-- Checkbox -->
+                                        <input type="checkbox" 
+                                               class="form-check-input item-check checkbox-large me-3"
+                                               name="selectedIds"
+                                               value="${it.medicineID}"
+                                               checked>
+
+                                        <!-- Ảnh sản phẩm -->
+                                        <img src="<c:out value='${it.imageUrl}'/>"
+                                             alt="<c:out value='${it.medicineName}'/>"
+                                             class="product-img me-3">
+
+                                        <!-- Tên + Giá -->
+                                        <div class="flex-grow-1">
+                                            <a href="${pageContext.request.contextPath}/product/detail?id=${it.medicineID}"
+                                               class="product-name d-block mb-1">${it.medicineName}</a>
+                                            <div class="price text-primary fw-semibold" data-price="${it.price}">
+                                                <fmt:formatNumber value="${it.price}" type="number" groupingUsed="true"/>₫
                                             </div>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <fmt:formatNumber value="${it.price}" type="number" groupingUsed="true"/>₫
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="btn-group" role="group">
-                                            <a class="btn btn-outline-secondary" href="${pageContext.request.contextPath}/cart?action=update&id=${it.medicineID}&qty=${it.quantity - 1}">-</a>
-                                            <span class="btn btn-light disabled" style="width:60px;">${it.quantity}</span>
-                                            <a class="btn btn-outline-secondary" href="${pageContext.request.contextPath}/cart?action=update&id=${it.medicineID}&qty=${it.quantity + 1}">+</a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <fmt:formatNumber value="${it.price * it.quantity}" type="number" groupingUsed="true"/>₫
-                                        <c:set var="total" value="${total + (it.price * it.quantity)}"/>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="${pageContext.request.contextPath}/cart?action=remove&id=${it.medicineID}" class="btn btn-sm btn-outline-danger">Xóa</a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <a class="btn btn-outline-secondary" href="${pageContext.request.contextPath}/home">Tiếp tục mua sắm</a>
-                    <div class="h5 m-0">Tổng cộng: <strong class="text-primary">
-                        <c:choose>
-                            <c:when test="${not empty cart}"><fmt:formatNumber value="${cart.totalPrice}" type="number" groupingUsed="true"/>₫</c:when>
-                            <c:otherwise><fmt:formatNumber value="${total}" type="number" groupingUsed="true"/>₫</c:otherwise>
-                        </c:choose>
-                    </strong></div>
-                </div>
-            </c:otherwise>
-        </c:choose>
-    </div>
 
-    <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
-</body>
+                                        <!-- Nhóm tăng giảm số lượng -->
+                                        <div class="quantity-group d-flex align-items-center me-3">
+                                            <button type="button" class="btn btn-outline-secondary btn-minus px-2">-</button>
+                                            <input type="text" class="form-control text-center quantity-input" value="${it.quantity}">
+                                            <button type="button" class="btn btn-outline-secondary btn-plus px-2">+</button>
+                                        </div>
+
+                                        <!-- Thành tiền -->
+                                        <div class="item-total text-end me-3 fw-semibold">
+                                            <fmt:formatNumber value="${it.price * it.quantity}" type="number" groupingUsed="true"/>₫
+                                        </div>
+
+                                        <!-- Nút xóa -->
+                                        <a href="${pageContext.request.contextPath}/cart?action=remove&id=${it.medicineID}"
+                                           class="btn btn-sm btn-outline-danger delete-btn">🗑</a>
+                                    </div>
+                                </c:forEach>
+                            </div>
+
+                            <!-- TỔNG KẾT -->
+                            <div class="cart-summary">
+                                <div class="discount-banner">Áp dụng ưu đãi để được giảm giá</div>
+                                <div class="summary-content">
+                                    <h6 class="fw-bold mb-3">Tổng thanh toán</h6>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Tổng tiền:</span>
+                                        <span id="cartTotal" class="fw-semibold text-primary">
+                                            <fmt:formatNumber value="${total}" type="number" groupingUsed="true"/>₫
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2 text-muted">
+                                        <span>Giảm giá trực tiếp:</span>
+                                        <span>0₫</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-3 text-muted">
+                                        <span>Giảm giá voucher:</span>
+                                        <span>0₫</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between fw-bold mb-3">
+                                        <span>Thành tiền:</span>
+                                        <span id="cartFinal" class="text-primary fs-5">
+                                            <fmt:formatNumber value="${total}" type="number" groupingUsed="true"/>₫
+                                        </span>
+                                    </div>
+
+                                    <!-- ✅ Nút mua hàng thực sự gửi form -->
+                                    <button type="submit" class="btn-buy">Mua hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </c:otherwise>
+            </c:choose>
+        </div>
+
+        <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/cart.js"></script>
+    </body>
 </html>

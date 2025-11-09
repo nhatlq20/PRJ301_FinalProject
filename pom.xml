@@ -5,10 +5,10 @@
     <artifactId>FinalProject</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>FinalProject</name>
+    <name>FinalProject5</name>
     
     <properties>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.release>24</maven.compiler.release>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
