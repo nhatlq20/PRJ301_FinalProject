@@ -165,4 +165,28 @@ public class UserDAO {
             throw new RuntimeException("Failed to update user password", ex);
         }
     }
+
+    // Lấy danh sách khách hàng (role = customer)
+    public List<User> getAllCustomers() {
+        final String sql = "SELECT u.*, r.RoleName "
+                + "FROM dbo.Users u "
+                + "LEFT JOIN dbo.UserRoles ur ON u.UserID = ur.UserID "
+                + "LEFT JOIN dbo.Roles r ON ur.RoleID = r.RoleID "
+                + "WHERE u.IsActive = 1 AND (r.RoleName = 'customer' OR r.RoleName IS NULL) "
+                + "GROUP BY u.UserID, u.Username, u.Email, u.Password, "
+                + "u.FullName, u.PhoneNumber, u.IsActive, "
+                + "u.CreatedAt, u.UpdatedAt, r.RoleName "
+                + "ORDER BY u.CreatedAt DESC";
+        List<User> customers = new ArrayList<>();
+        try (Connection conn = dbContext.getConnection(); 
+             PreparedStatement ps = conn.prepareStatement(sql); 
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                customers.add(mapRowToUser(rs));
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException("Failed to get all customers", ex);
+        }
+        return customers;
+    }
 }

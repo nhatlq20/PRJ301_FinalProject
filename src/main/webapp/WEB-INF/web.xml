@@ -35,6 +35,11 @@
         <servlet-class>controllers.PlaceOrderServlet</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>MyOrderController</servlet-name>
+        <servlet-class>controllers.MyOrderController</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -74,6 +79,11 @@
     <servlet-mapping>
         <servlet-name>PlaceOrderServlet</servlet-name>
         <url-pattern>/placeOrder</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>MyOrderController</servlet-name>
+        <url-pattern>/my-orders</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

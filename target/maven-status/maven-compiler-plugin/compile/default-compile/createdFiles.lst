@@ -7,11 +7,8 @@ dao\CartDAO.class
 dao\CategoryDAO.class
 models\Category.class
 utils\OtpService$OtpData.class
-<<<<<<< HEAD
 controllers\ProfileController.class
-=======
 controllers\PlaceOrderServlet.class
->>>>>>> origin/HuyTung
 models\Cart.class
 utils\DBContext.class
 utils\EmailService$1.class
@@ -36,6 +33,7 @@ filter\AuthenticationFilter.class
 utils\HashUtil$PasswordCheckResult.class
 controllers\StaffController.class
 utils\EmailService.class
+controllers\MyOrderController.class
 models\CartItem.class
 config\EmailInformation.class
 models\OrderItem.class

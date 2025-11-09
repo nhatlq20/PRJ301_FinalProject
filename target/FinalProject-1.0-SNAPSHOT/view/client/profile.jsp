@@ -8,8 +8,33 @@
         <title>Hồ sơ cá nhân</title>
         <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="<c:url value='/assets/css/header.css'/>" rel="stylesheet">
+        <!-- CSS này phải được load sau tất cả CSS khác để override -->
         <style>
-            .profile-wrap { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+            /* Reset và override tất cả CSS khác - MUST BE LAST */
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            /* Tăng specificity để override home.css và header.css */
+            html body.profile-page,
+            html body {
+                margin: 0 !important;
+                padding: 0 !important;
+                padding-top: 115px !important; /* Khoảng cách cho header fixed - MUST BE LAST */
+                background-color: #f8fafc !important;
+            }
+            .profile-container {
+                margin-top: 0 !important;
+                padding-top: 24px !important;
+            }
+            .profile-wrap { 
+                max-width: 980px; 
+                margin: 0 auto !important; 
+                padding: 0 16px !important;
+            }
             .profile-card { background: #fff; border-radius: 14px; box-shadow: 0 6px 24px rgba(0,0,0,.08); overflow: hidden; }
             .profile-header { display: flex; align-items: center; gap: 16px; padding: 22px 22px 0; }
             .profile-avatar { width: 64px; height: 64px; border-radius: 50%; background: #e8eefc; display:flex;align-items:center;justify-content:center; }
@@ -26,10 +51,11 @@
             .btn-outline-secondary { border-color:#cbd5e1; color:#334155; }
         </style>
     </head>
-    <body>
+    <body class="profile-page" style="padding-top: 115px !important; margin: 0 !important; background-color: #f8fafc !important;">
         <%@ include file="../common/header.jsp" %>
 
-        <div class="profile-wrap">
+        <div class="profile-container">
+            <div class="profile-wrap">
             <div class="profile-card">
                 <div class="profile-header">
                     <div class="profile-avatar"><i class="fas fa-user"></i></div>
@@ -66,10 +92,20 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
 
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+        <!-- CSS override cuối cùng để đảm bảo padding-top được áp dụng -->
+        <style>
+            /* Override tất cả CSS khác - phải được load cuối cùng */
+            html body.profile-page {
+                padding-top: 115px !important;
+                margin: 0 !important;
+                background-color: #f8fafc !important;
+            }
+        </style>
     </body>
     </html>
 

@@ -1,83 +1,113 @@
-# PRJ301_FinalProject
+# File Tree: PRJ301_FinalProject
 
-```text
-PharmacyLife/
-├── pom.xml
-├── src/main/java/
-│   └── com/example/pharmacyshop/
-│       ├── config/
-│       │   ├── EmmailInformation.java     (Bạn đang làm)
-│       │
-│       ├── controller/
-│       │   ├── AuthController.java        (Bạn đang làm)
-│       │   ├── HomeController.java        (Hiển thị trang chủ)
-│       │   ├── ProductController.java     (Xử lý xem SP, filter, pagination)
-│       │   ├── CartController.java        (Xử lý thêm/sửa/xóa giỏ hàng)
-│       │   ├── OrderController.java       (Xử lý đặt hàng, xem lịch sử)
-│       │   └── AdminController.java       (Xử lý CRUD sản phẩm, quản lý user)
-│       │
-│       ├── dao/
-│       │   ├── UserDAO.java              (Bạn đã có)
-│       │   ├── MedicineDAO.java          (CRUD sản phẩm, get sản phẩm, filter, pagination)
-│       │   ├── CategoryDAO.java         (Lấy danh mục sản phẩm)
-│       │   └── OrderDAO.java            (Lưu đơn hàng, chi tiết đơn hàng)
-│       │
-│       ├── model/
-│       │   ├── User.java                (Bạn đã có)
-│       │   ├── Role.java                (Bạn đã có)
-│       │   ├── Medicine.java             
-│       │   ├── Category.java            (id, name)
-│       │   ├── Cart.java                (Chứa danh sách các 'Item')
-│       │   ├── Item.java                (Chứa 'Product' và 'quantity')
-│       │   ├── Order.java               (id, userID, orderDate, total, status)
-│       │   └── OrderDetail.java         (orderID, productID, quantity, price)
-│       │
-│       ├── util/
-│       │   ├── DBContext.java             (Bạn đã có)
-│       │   ├── HashUtil.java              (Bạn đã có)
-│       │   └── Validator.java             (Bạn đã có)
-│       │   ├── OptService.java            (Bạn đã có)
-│       │   ├── EmailServide.java          (Bạn đã có)
-│       │
-│       └── filter/
-│           ├── AuthFilter.java            (Bạn đã có - Chặn khi chưa login)
-│           └── AdminFilter.java           (Chặn vào trang admin nếu role != ADMIN)
-│
-└── src/main/webapp/
-    ├── WEB-INF/
-    │   ├── views/
-    │   │   ├── auth/
-    │   │   │   ├── login.jsp                    (Bạn đã có)
-    │   │   │   └── register.jsp                 (Bạn đã có)
-    │   │   │   └── forgot-password.jsp
-    │   │   │   └── reset-password.jsp        
-    │   │   │   └── reset-password-simple.jsp
-    │   │   │   └── verify-otp.jsp     
-    │   │   │
-    │   │   ├── client/                  (Các trang cho người dùng)
-    │   │   │   ├── home.jsp
-    │   │   │   ├── products.jsp         (Trang danh sách sản phẩm, có filter/pagination)
-    │   │   │   ├── product-detail.jsp
-    │   │   │   ├── cart.jsp             (Trang giỏ hàng)
-    │   │   │   ├── checkout.jsp         (Trang thanh toán)
-    │   │   │   └── order-history.jsp    (Lịch sử đơn hàng của cá nhân)
-    │   │   │
-    │   │   ├── admin/                   (Các trang quản trị - CRUD)
-    │   │   │   ├── dashboard.jsp
-    │   │   │   ├── manage-products.jsp  (Bảng list sản phẩm + nút Add/Edit/Delete)
-    │   │   │   ├── product-form.jsp     (Form để Add/Edit sản phẩm)
-    │   │   │   └── manage-orders.jsp
-    │   │   │
-    │   │   └── common/                  (Các thành phần dùng chung)
-    │   │       ├── header.jsp
-    │   │       ├── footer.jsp
-    │   │       └── sidebar.jsp          (Thanh bên chứa danh mục/filter)
-    │   │
-    │   └── web.xml
-    │
-    └── assets/
-        ├── css/
-        ├── js/
-        └── images/                      (Để chứa ảnh sản phẩm)
+**Generated:** 11/9/2025, 9:21:29 PM
+**Root Path:** `d:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject`
 
 ```
+├── 📁 src
+│   └── 📁 main
+│       ├── 📁 java
+│       │   ├── 📁 config
+│       │   │   └── ☕ EmailInformation.java
+│       │   ├── 📁 controllers
+│       │   │   ├── ☕ AdminController.java
+│       │   │   ├── ☕ AuthController.java
+│       │   │   ├── ☕ CartController.java
+│       │   │   ├── ☕ CheckoutServlet.java
+│       │   │   ├── ☕ HomeController.java
+│       │   │   ├── ☕ MyOrderController.java
+│       │   │   ├── ☕ OrderController.java
+│       │   │   ├── ☕ PlaceOrderServlet.java
+│       │   │   ├── ☕ ProductController.java
+│       │   │   ├── ☕ ProductDetailController.java
+│       │   │   ├── ☕ ProfileController.java
+│       │   │   ├── ☕ SearchController.java
+│       │   │   ├── ☕ StaffController.java
+│       │   │   └── ☕ medicineDAO.java
+│       │   ├── 📁 dao
+│       │   │   ├── ☕ CartDAO.java
+│       │   │   ├── ☕ CategoryDAO.java
+│       │   │   ├── ☕ MedicineDAO.java
+│       │   │   ├── ☕ OrderDAO.java
+│       │   │   └── ☕ UserDAO.java
+│       │   ├── 📁 filter
+│       │   │   ├── ☕ AdminFilter.java
+│       │   │   ├── ☕ AuthenticationFilter.java
+│       │   │   └── ☕ CartCountFilter.java
+│       │   ├── 📁 models
+│       │   │   ├── ☕ Cart.java
+│       │   │   ├── ☕ CartItem.java
+│       │   │   ├── ☕ Category.java
+│       │   │   ├── ☕ Medicine.java
+│       │   │   ├── ☕ Order.java
+│       │   │   ├── ☕ OrderItem.java
+│       │   │   ├── ☕ Role.java
+│       │   │   └── ☕ User.java
+│       │   └── 📁 utils
+│       │       ├── ☕ DBContext.java
+│       │       ├── ☕ EmailService.java
+│       │       ├── ☕ HashUtil.java
+│       │       ├── ☕ OtpService.java
+│       │       └── ☕ Validator.java
+│       ├── 📁 resources
+│       │   └── 📁 META-INF
+│       │       └── ⚙️ persistence.xml
+│       └── 📁 webapp
+│           ├── 📁 META-INF
+│           │   └── ⚙️ context.xml
+│           ├── 📁 WEB-INF
+│           │   ├── ⚙️ beans.xml
+│           │   └── ⚙️ web.xml
+│           ├── 📁 assets
+│           │   ├── 📁 css
+│           │   │   ├── 🎨 cart.css
+│           │   │   ├── 🎨 checkout.css
+│           │   │   ├── 🎨 footer.css
+│           │   │   ├── 🎨 header.css
+│           │   │   ├── 🎨 home.css
+│           │   │   ├── 🎨 order-success.css
+│           │   │   ├── 🎨 product.css
+│           │   │   └── 🎨 style.css
+│           │   ├── 📁 img
+│           │   └── 📁 js
+│           │       ├── 📄 cart.js
+│           │       ├── 📄 header.js
+│           │       └── 📄 main.js
+│           └── 📁 view
+│               ├── 📁 admin
+│               │   ├── 📄 dashboard.jsp
+│               │   ├── 📄 product-add.jsp
+│               │   ├── 📄 product-content.jsp
+│               │   ├── 📄 product-edit.jsp
+│               │   ├── 📄 product.jsp
+│               │   ├── 📄 staff-content.jsp
+│               │   └── 📄 staff.jsp
+│               ├── 📁 auth
+│               │   ├── 📄 forgot-password.jsp
+│               │   ├── 📄 login.jsp
+│               │   ├── 📄 register.jsp
+│               │   ├── 📄 reset-password.jsp
+│               │   └── 📄 verify-otp.jsp
+│               ├── 📁 client
+│               │   ├── 📄 cart.jsp
+│               │   ├── 📄 checkout.jsp
+│               │   ├── 📄 home.jsp
+│               │   ├── 📄 my-order-detail.jsp
+│               │   ├── 📄 my-orders.jsp
+│               │   ├── 📄 order-detail.jsp
+│               │   ├── 📄 order-list.jsp
+│               │   ├── 📄 order-success.jsp
+│               │   ├── 📄 product-detail.jsp
+│               │   ├── 📄 profile-content.jsp
+│               │   ├── 📄 profile.jsp
+│               │   └── 📄 search-results.jsp
+│               └── 📁 common
+│                   ├── 📄 footer.jsp
+│                   ├── 📄 header.jsp
+│                   └── 📄 sidebar.jsp
+├── ⚙️ .gitignore
+├── 📝 README.md
+├── ⚙️ nb-configuration.xml
+└── ⚙️ pom.xml
+```
+

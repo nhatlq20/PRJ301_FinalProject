@@ -8,6 +8,7 @@
 body {
     margin: 0;
     padding: 0;
+    padding-top: 115px !important; /* Khoảng cách cho header fixed - MUST HAVE !important */
 }
 
 .header {
@@ -21,11 +22,12 @@ body {
     justify-content: space-between;
     padding: 0 40px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     z-index: 9999;
     overflow: visible !important; /* ✅ Cho phép dropdown hiển thị ra ngoài header */
-
 }
 
 .logo-section {
@@ -54,8 +56,8 @@ body {
 
 .search-section {
     flex: 1;
-    max-width: 500px;
-    margin: 0 40px;
+    max-width: 600px;
+    margin: 0 40px 0 0;
 }
 
 .search-bar {
@@ -78,21 +80,11 @@ body {
 .nav-section {
     display: flex;
     align-items: center;
-
     gap: 43px; /* Increased gap between nav items */
     min-width: 380px; /* Ensure minimum width for nav section */
     justify-content: flex-end; /* Align items to the right */
-    padding-left: 20px; /* Add some padding on the left */
-    position: relative;   /* ✅ Thêm dòng này */
-    z-index: 1000;        /* ✅ Và dòng này */
-    gap: 43px;
-    /* Increased gap between nav items */
-    min-width: 380px;
-    /* Ensure minimum width for nav section */
-    justify-content: flex-end;
-    /* Align items to the right */
-    padding-left: 20px;
-    /* Add some padding on the left */
+    position: relative;
+    z-index: 1000;
 }
 
 .nav-link i {

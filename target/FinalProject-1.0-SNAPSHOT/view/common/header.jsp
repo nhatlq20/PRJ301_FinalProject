@@ -1,11 +1,8 @@
 
-<<<<<<< HEAD
-<%@page pageEncoding="UTF-8" %>
-=======
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
->>>>>>> origin/HuyTung
+
 
 <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -14,58 +11,14 @@
 
 
 <header class="header">
+
     <!-- Logo Section -->
     <div class="logo-section">
 
-<<<<<<< HEAD
-            <a href="${pageContext.request.contextPath}/home" class="logo-link">
-                <img src="${pageContext.request.contextPath}/assets/img/PharmacyLife_1.png" alt="PharmacyLife Logo"
-                    class="site-logo">
-                <div class="logo-text">
-                    PharmacyLife<br>
-                    <span class="logo-subtitle">Your Health - Your Life</span>
-                </div>
-            </a>
-        </div>
 
-        <!-- Search Section -->
-        <div class="search-section">
-            <form action="${pageContext.request.contextPath}/search" method="GET" style="width: 100%;">
-                <input type="text" class="search-bar" placeholder="Tìm kiếm sản phẩm..." name="q" id="searchInput">
-            </form>
-        </div>
-
-        <!-- Navigation Section -->
-        <div class="nav-section">
-            <% if (session.getAttribute("user") != null) { %>
-                <div class="user-menu">
-                    <a class="user-trigger" href="${pageContext.request.contextPath}/profile">
-                        <span class="avatar"><i class="fas fa-user"></i></span>
-                        <span class="name">${sessionScope.user.fullName}</span>
-                        <i class="fas fa-chevron-down caret"></i>
-                    </a>
-                    <div class="user-dropdown">
-                        <a class="user-item" href="${pageContext.request.contextPath}/profile">Thông tin cá nhân</a>
-                        <% if ("admin".equalsIgnoreCase((String)session.getAttribute("roleName"))) { %>
-                            <div style="border-top:1px solid #eef2f7; margin:6px 6px 8px;"></div>
-                            <a class="user-item" href="${pageContext.request.contextPath}/product">Quản lí sản phẩm</a>
-                            <a class="user-item" href="${pageContext.request.contextPath}/staff">Quản lí nhân viên</a>
-                        <% } %>
-                        <a class="user-item" href="${pageContext.request.contextPath}/auth?action=logout">Đăng xuất</a>
-                    </div>
-                </div>
-            <% } else { %>
-                <a href="${pageContext.request.contextPath}/auth" class="login-btn">
-                    <i class="fas fa-user-circle"></i>
-                    Đăng nhập
-                </a>
-            <% } %>
-            <a href="${pageContext.request.contextPath}/cart" class="cart-btn">
-                <i class="fas fa-shopping-cart"></i>
-=======
-        <a href="home" class="logo-link">
+        <a href="${pageContext.request.contextPath}/home" class="logo-link">
             <img src="${pageContext.request.contextPath}/assets/img/PharmacyLife_1.png" alt="PharmacyLife Logo"
-                 class="site-logo">
+                class="site-logo">
             <div class="logo-text">
                 PharmacyLife<br>
                 <span class="logo-subtitle">Your Health - Your Life</span>
@@ -73,31 +26,49 @@
         </a>
     </div>
 
+
     <!-- Search Section -->
     <div class="search-section">
-        <input type="text" class="search-bar" placeholder="Tìm kiếm sản phẩm..." name="search">
+        <form action="${pageContext.request.contextPath}/search" method="GET" style="width: 100%;">
+            <input type="text" class="search-bar" placeholder="Tìm kiếm sản phẩm..." name="q" id="searchInput">
+        </form>
     </div>
 
     <!-- Navigation Section -->
     <div class="nav-section">
-        <a href="auth" class="login-btn">
-            <i class="fas fa-user-circle"></i>
-            <% if (session.getAttribute("user") != null) { %>
-            ${sessionScope.user.fullName}
-            <% } else { %>
-            Đăng nhập
-            <% }%>
-        </a>
+        <% if (session.getAttribute("user") != null) { %>
+            <div class="user-menu">
+                <a class="user-trigger" href="${pageContext.request.contextPath}/profile">
+                    <span class="avatar"><i class="fas fa-user"></i></span>
+                    <span class="name">${sessionScope.user.fullName}</span>
+                    <i class="fas fa-chevron-down caret"></i>
+                </a>
+                <div class="user-dropdown">
+                    <a class="user-item" href="${pageContext.request.contextPath}/profile">Thông tin cá nhân</a>
+                    <a class="user-item" href="${pageContext.request.contextPath}/my-orders">Xem đơn hàng</a>
+                    <% if ("admin".equalsIgnoreCase((String)session.getAttribute("roleName"))) { %>
+                        <div style="border-top:1px solid #eef2f7; margin:6px 6px 8px;"></div>
+                        <a class="user-item" href="${pageContext.request.contextPath}/order">Quản lí đơn hàng</a>
+                        <a class="user-item" href="${pageContext.request.contextPath}/product">Quản lí sản phẩm</a>
+                        <a class="user-item" href="${pageContext.request.contextPath}/staff">Quản lí khách hàng</a>
+                    <% } %>
+                    <a class="user-item" href="${pageContext.request.contextPath}/auth?action=logout">Đăng xuất</a>
+                </div>
+            </div>
+        <% } else { %>
+            <a href="${pageContext.request.contextPath}/auth" class="login-btn">
+                <i class="fas fa-user-circle"></i>
+                Đăng nhập
+            </a>
+        <% } %>
         <!-- Cart Dropdown -->
         <div class="cart-wrapper">
-            <a href="cart" class="cart-btn">
+            <a href="${pageContext.request.contextPath}/cart" class="cart-btn">
                 <i class="fas fa-shopping-cart position-relative">
                     <span class="cart-badge" id="cartCount">
                         <c:out value="${cartCount != null ? cartCount : 0}" />
                     </span>
                 </i>
->>>>>>> origin/HuyTung
-                Giỏ hàng
             </a>
 
             <!-- Dropdown -->
@@ -131,7 +102,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </header>
 <script src="${pageContext.request.contextPath}/assets/js/header.js"></script>

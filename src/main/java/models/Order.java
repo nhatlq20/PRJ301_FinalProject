@@ -2,6 +2,7 @@ package models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Order {
     private long orderID;          // bigint
@@ -51,4 +52,13 @@ public class Order {
 
     public BigDecimal getTotalAmount() { return totalAmount; }
     public void setTotalAmount(BigDecimal totalAmount) { this.totalAmount = totalAmount; }
+    
+    // Helper method để format date cho JSP
+    public String getFormattedOrderDate() {
+        if (orderDate == null) {
+            return "N/A";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return orderDate.format(formatter);
+    }
 }

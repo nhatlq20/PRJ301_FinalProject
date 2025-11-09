@@ -119,4 +119,12 @@ public class User {
     public void setRoles(List<String> roles) {
         this.roles = roles;
     }
+
+    // Helper method để format ngày tạo
+    public String getFormattedCreatedDate() {
+        if (createdAt == null) {
+            return "N/A";
+        }
+        return createdAt.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
 }

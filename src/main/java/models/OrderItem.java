@@ -7,6 +7,8 @@ public class OrderItem {
     private String medicineID;
     private int quantity;
     private BigDecimal unitPrice;
+    private String medicineName;
+    private String imageUrl;
 
     public OrderItem() {}
 
@@ -29,4 +31,10 @@ public class OrderItem {
 
     public BigDecimal getUnitPrice() { return unitPrice; }
     public void setUnitPrice(BigDecimal unitPrice) { this.unitPrice = unitPrice; }
+
+    public String getMedicineName() { return medicineName; }
+    public void setMedicineName(String medicineName) { this.medicineName = medicineName; }
+
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }

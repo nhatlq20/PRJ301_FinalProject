@@ -36,7 +36,7 @@
 
         <div class="btn-wrap">
             <a href="${pageContext.request.contextPath}/home" class="btn btn-primary">Về trang chủ</a>
-            <a href="${pageContext.request.contextPath}/order" class="btn btn-outline">Xem đơn hàng</a>
+            <a href="${pageContext.request.contextPath}/my-orders" class="btn btn-outline">Xem đơn hàng</a>
         </div>
     </main>
 

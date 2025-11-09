@@ -7,9 +7,7 @@ package controllers;
 import dao.CartDAO;
 import dao.OrderDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -44,7 +42,6 @@ public class PlaceOrderServlet extends HttpServlet {
         }
 
         String[] selectedIds = request.getParameterValues("selectedIds");
-        String paymentMethod = request.getParameter("paymentMethod");
         BigDecimal total = new BigDecimal(request.getParameter("total"));
         String shippingAddress = request.getParameter("shippingAddress");
 
@@ -65,21 +62,35 @@ public class PlaceOrderServlet extends HttpServlet {
 
         long orderId = orderDAO.insertOrder(order);
         if (orderId == -1) {
-            response.sendRedirect("/view/client/checkout.jsp?msg=Lỗi khi tạo đơn hàng");
+            response.sendRedirect(request.getContextPath() + "/checkout?error=Lỗi khi tạo đơn hàng");
             return;
         }
 
         // ✅ Lưu chi tiết sản phẩm
+        boolean allItemsSaved = true;
         for (CartItem item : cart.getItems()) {
             for (String id : selectedIds) {
                 if (item.getMedicineID().equals(id)) {
-                    orderDAO.insertOrderItem(orderId, item);
-                    cartDAO.remove(user.getUserID(), id);
+                    try {
+                        orderDAO.insertOrderItem(orderId, item);
+                        cartDAO.remove(user.getUserID(), id);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        allItemsSaved = false;
+                    }
                 }
             }
         }
 
+        if (!allItemsSaved) {
+            // Nếu có lỗi khi lưu chi tiết, vẫn giữ đơn hàng nhưng cảnh báo
+            System.out.println("Warning: Some order items may not have been saved for order: " + orderId);
+        }
+
+        // Xóa cart khỏi session sau khi đặt hàng thành công
         session.removeAttribute("cart");
-        response.sendRedirect("/view/client/order-success.jsp?orderId=" + orderId);
+        
+        // Redirect đến trang thành công với orderId
+        response.sendRedirect(request.getContextPath() + "/view/client/order-success.jsp?orderId=" + orderId + "&total=" + total);
     }
 }
