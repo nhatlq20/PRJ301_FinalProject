@@ -19,6 +19,7 @@
         <a href="${pageContext.request.contextPath}/home" class="logo-link">
             <img src="${pageContext.request.contextPath}/assets/img/PharmacyLife_1.png" alt="PharmacyLife Logo"
                 class="site-logo">
+
             <div class="logo-text">
                 PharmacyLife<br>
                 <span class="logo-subtitle">Your Health - Your Life</span>
@@ -32,10 +33,12 @@
         <form action="${pageContext.request.contextPath}/search" method="GET" style="width: 100%;">
             <input type="text" class="search-bar" placeholder="Tìm kiếm sản phẩm..." name="q" id="searchInput">
         </form>
+
     </div>
 
     <!-- Navigation Section -->
     <div class="nav-section">
+
         <% if (session.getAttribute("user") != null) { %>
             <div class="user-menu">
                 <a class="user-trigger" href="${pageContext.request.contextPath}/profile">
@@ -64,12 +67,13 @@
         <!-- Cart Dropdown -->
         <div class="cart-wrapper">
             <a href="${pageContext.request.contextPath}/cart" class="cart-btn">
+
                 <i class="fas fa-shopping-cart position-relative">
                     <span class="cart-badge" id="cartCount">
                         <c:out value="${cartCount != null ? cartCount : 0}" />
                     </span>
                 </i>
-            </a>
+
 
             <!-- Dropdown -->
             <div class="cart-dropdown shadow-sm" id="cartDropdown">

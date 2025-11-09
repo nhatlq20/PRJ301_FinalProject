@@ -28,6 +28,10 @@ body {
     width: 100%;
     z-index: 9999;
     overflow: visible !important; /* ✅ Cho phép dropdown hiển thị ra ngoài header */
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/HuyTung
 }
 
 .logo-section {
@@ -83,8 +87,14 @@ body {
     gap: 43px; /* Increased gap between nav items */
     min-width: 380px; /* Ensure minimum width for nav section */
     justify-content: flex-end; /* Align items to the right */
+<<<<<<< HEAD
     position: relative;
     z-index: 1000;
+=======
+    padding-left: 20px; /* Add some padding on the left */
+    position: relative;   /* ✅ Thêm dòng này */
+    z-index: 1000;        /* ✅ Và dòng này */
+>>>>>>> origin/HuyTung
 }
 
 .nav-link i {
@@ -210,6 +220,7 @@ body {
     color: #fff;
 }
 
+<<<<<<< HEAD
 .header .login-btn:hover {
     color: #cce2ff;
 }
@@ -217,6 +228,32 @@ body {
 
 
 
+=======
+/*.header .cart-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 1.06rem;
+  text-decoration: none;
+  font-weight: 500;
+  background: #2a60e8;
+  border-radius: 36px;
+  padding: 14px 32px;
+  border: none;
+  outline: none;
+  box-shadow: 0 1.5px 8px rgba(53,86,233,0.09);
+  transition: background 0.22s, color 0.22s;
+}
+.header .cart-btn i {
+  font-size: 1.22em;
+  color: #fff;
+}
+.header .cart-btn:hover { background: #1751c9; color: #e0eaff; }*/
+
+
+
+>>>>>>> origin/HuyTung
 /* --- Mini Cart Dropdown (FINAL POLISHED VERSION) --- */
 .cart-wrapper {
     position: relative;
@@ -392,6 +429,7 @@ html, body {
   max-width: 100vw;
   overflow-x: clip;
 }
+<<<<<<< HEAD
 
 
 .header .cart-btn:hover {
@@ -800,3 +838,5 @@ html, body {
 .top-item.danger {
     color: #ffffff;
 }
+=======
+>>>>>>> origin/HuyTung

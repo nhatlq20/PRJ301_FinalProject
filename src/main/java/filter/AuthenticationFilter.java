@@ -11,8 +11,9 @@ import java.io.IOException;
 import models.User;
 
 @WebFilter(filterName = "AuthenticationFilter", urlPatterns = {
-    "/cart", "/order", "/my-orders", "/product/cart", "/checkout", "/placeOrder"
-})
+
+    "/cart", "/order", "/my-orders", "/product/cart", "/checkout", "/placeOrder"})
+
 
 public class AuthenticationFilter extends HttpFilter {
 

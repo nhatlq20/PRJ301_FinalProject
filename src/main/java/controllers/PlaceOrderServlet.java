@@ -42,6 +42,9 @@ public class PlaceOrderServlet extends HttpServlet {
         }
 
         String[] selectedIds = request.getParameterValues("selectedIds");
+
+        String paymentMethod = request.getParameter("paymentMethod");
+
         BigDecimal total = new BigDecimal(request.getParameter("total"));
         String shippingAddress = request.getParameter("shippingAddress");
 
@@ -62,11 +65,14 @@ public class PlaceOrderServlet extends HttpServlet {
 
         long orderId = orderDAO.insertOrder(order);
         if (orderId == -1) {
+
             response.sendRedirect(request.getContextPath() + "/checkout?error=Lỗi khi tạo đơn hàng");
+
             return;
         }
 
         // ✅ Lưu chi tiết sản phẩm
+
         boolean allItemsSaved = true;
         for (CartItem item : cart.getItems()) {
             for (String id : selectedIds) {
@@ -78,6 +84,7 @@ public class PlaceOrderServlet extends HttpServlet {
                         e.printStackTrace();
                         allItemsSaved = false;
                     }
+
                 }
             }
         }
@@ -92,5 +99,6 @@ public class PlaceOrderServlet extends HttpServlet {
         
         // Redirect đến trang thành công với orderId
         response.sendRedirect(request.getContextPath() + "/view/client/order-success.jsp?orderId=" + orderId + "&total=" + total);
+
     }
 }

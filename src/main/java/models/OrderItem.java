@@ -10,6 +10,7 @@ public class OrderItem {
     private String medicineName;
     private String imageUrl;
 
+
     public OrderItem() {}
 
     public OrderItem(long orderID, String medicineID, int quantity, BigDecimal unitPrice) {
@@ -37,4 +38,5 @@ public class OrderItem {
 
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
 }

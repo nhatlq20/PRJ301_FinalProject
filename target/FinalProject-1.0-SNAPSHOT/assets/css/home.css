@@ -1,0 +1,606 @@
+
+ Global Reset and Base Styles 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+ Category Card 
+.categories-grid .category-card,
+.category-grid .category-card,
+.category-card {
+    display: flex !important;
+    align-items: center !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    border-radius: 14px !important;
+    padding: 18px 14px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.categories-grid .category-card::before,
+.category-grid .category-card::before,
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.categories-grid .category-card:hover::before,
+.category-grid .category-card:hover::before,
+.category-card:hover::before {
+    left: 100%;
+}
+
+.categories-grid .category-card:hover,
+.category-grid .category-card:hover,
+.category-card:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.25), 0 8px 15px rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(102, 126, 234, 0.3) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%) !important;
+}
+
+ Category Image 
+.categories-grid .category-card img,
+.categories-grid .category-card .category-image,
+.category-grid .category-card img,
+.category-grid .category-card .category-image,
+.category-card img,
+.category-image {
+    width: 65px !important;
+    height: 65px !important;
+    object-fit: contain !important;
+    margin-right: 14px !important;
+    flex-shrink: 0 !important;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.3s ease !important;
+}
+
+.categories-grid .category-card:hover img,
+.categories-grid .category-card:hover .category-image,
+.category-grid .category-card:hover img,
+.category-grid .category-card:hover .category-image,
+.category-card:hover img,
+.category-card:hover .category-image {
+    transform: scale(1.1) rotate(2deg) !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2) !important;
+}
+
+.category-card img[alt] {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+}
+
+ Category Info 
+.categories-grid .category-info,
+.category-grid .category-info,
+.category-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+.categories-grid .category-card .category-name,
+.categories-grid .category-name,
+.category-grid .category-card .category-name,
+.category-grid .category-name,
+.category-card h3,
+.category-name {
+    font-size: 16px !important;
+    color: #2d3748 !important;
+    font-weight: 600 !important;
+    margin-bottom: 5px !important;
+    line-height: 1.3 !important;
+    transition: color 0.3s ease !important;
+    word-wrap: break-word !important;
+}
+
+.categories-grid .category-card:hover .category-name,
+.category-grid .category-card:hover .category-name,
+.category-card:hover .category-name {
+    color: #667eea !important;
+}
+
+.categories-grid .category-card .category-count,
+.categories-grid .category-count,
+.category-grid .category-card .category-count,
+.category-grid .category-count,
+.category-card .small,
+.category-count {
+    font-size: 0.875rem !important;
+    color: #718096 !important;
+    font-weight: 500 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.categories-grid .category-card .category-count::before,
+.category-grid .category-card .category-count::before,
+.category-count::before {
+    content: '•';
+    color: #667eea;
+    font-size: 1.2rem;
+    line-height: 0;
+}
+
+.categories-grid .category-card:hover .category-count,
+.category-grid .category-card:hover .category-count,
+.category-card:hover .category-count {
+    color: #4a5568 !important;
+}
+
+ Featured Products 
+.featured-products {
+    background-color: #f5f8ff;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.featured-products.bg-light {
+    background-color: #f8f9fa;
+}
+
+.product-card {
+    transition: all 0.2s ease;
+    border-radius: 12px;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.product-card img,
+.product-img {
+    height: 160px;
+    object-fit: contain;
+}
+
+.product-card .badge {
+    font-size: 13px;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.category-placeholder {
+    height: 160px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    margin: 15px;
+}
+
+.card-title {
+    font-size: 0.9rem;
+    min-height: 40px;
+}
+
+ Welcome Bar 
+.welcome-bar {
+    width: 100%;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    padding: 14px 10px;
+    position: relative;
+    z-index: 5;
+}
+
+.welcome-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.name-form input[type="text"] {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 260px;
+    outline: none;
+}
+
+.name-form button {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: none;
+    background: #0a66ff;
+    color: white;
+    cursor: pointer;
+    margin-left: 6px;
+}
+
+.greeting {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* --- Danh mục sản phẩm: 3 hàng x 6 cột --- */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px;
+}
+
+/* --- Danh mục: margin 2 bên --- */
+.categories-grid {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+@media (max-width: 1200px) {
+  .categories-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+}
+@media (max-width: 992px) {
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+ Bestsellers Grid Layout 
+.bestsellers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bestseller-card-large {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+}
+
+.bestseller-card {
+    position: relative;
+}
+
+.bestsellers-grid .product-card {
+    height: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bestsellers-grid .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.bestsellers-grid .bestseller-card-large .product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.bestsellers-grid .bestseller-card-large .product-img {
+    height: 280px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.bestsellers-grid .bestseller-card-small .product-img {
+    height: 140px;
+    object-fit: contain;
+}
+
+.bestsellers-grid .bestseller-card-large .card-body {
+    padding: 20px 0 0 0;
+}
+
+.bestsellers-grid .bestseller-card-small .card-body {
+    padding: 15px;
+}
+
+.nav-categories ul {
+  display: flex;
+  gap: 24px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.nav-categories li {
+  list-style: none;
+}
+
+.nav-categories li a {
+  position: relative;
+  text-decoration: none;
+  color: #334155;
+  padding: 12px 0;
+  transition: color 0.22s cubic-bezier(.4,0,.2,1);
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  background: none;
+}
+
+.nav-categories li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 3px;
+  background: #1a73e8;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.22s cubic-bezier(.33,1.14,.46,.98);
+}
+
+.nav-categories li a:hover,
+.nav-categories li a:focus {
+  color: #1a73e8;
+  outline: none;
+}
+
+.nav-categories li a:hover::after,
+.nav-categories li a.active::after {
+  transform: scaleX(1);
+}
+
+.nav-categories li a.active {
+  color: #1a73e8;
+  font-weight: 700;
+}
+
+/* --- Category card: compact, vertical (image on top, text below) --- */
+.categories-grid .category-card,
+.category-grid .category-card,
+.category-card {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 14px 12px !important;
+    min-height: 150px !important; /* compact height */
+}
+
+.categories-grid .category-card img,
+.categories-grid .category-card .category-image,
+.category-grid .category-card img,
+.category-grid .category-card .category-image,
+.category-card img,
+.category-image {
+    width: 56px !important;
+    height: 56px !important;
+    margin-right: 0 !important;
+    margin-bottom: 10px !important; /* image above text */
+}
+
+.categories-grid .category-info,
+.category-grid .category-info,
+.category-info {
+    text-align: center !important;
+}
+
+.categories-grid .category-card .category-name,
+.category-grid .category-card .category-name,
+.category-card h3,
+.category-name {
+    margin-bottom: 6px !important;
+}
+
+.categories-grid .category-card .category-count,
+.category-grid .category-card .category-count,
+.category-card .small,
+.category-count {
+    justify-content: center !important;
+}
+
+/* Slightly tighter gaps for denser layout */
+.categories-grid { gap: 16px; }
+
+/* --- Section title base style --- */
+.section-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #2563eb; /* blue */
+  margin: 10px auto 24px auto;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* --- Nav menu: remove gray divider --- */
+.nav-categories ul { border-bottom: none; }
+.main-menu { border-bottom: none; }
+
+/* --- Sản phẩm bán chạy nhất: layout đẹp, card lớn nổi bật --- */
+#bestsellers {
+  background: #f7faff;
+  border-radius: 18px;
+  box-shadow: 0 8px 34px rgba(60, 105, 220, 0.06);
+  padding: 48px 12px 38px 12px;
+  margin-bottom: 40px;
+}
+#bestsellers .bestsellers-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 28px;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+#bestsellers .bestseller-card-large {
+  grid-row: 1 / span 2;
+  grid-column: 1 / 2;
+}
+#bestsellers .bestseller-card-small {
+  grid-row: span 1;
+}
+#bestsellers .bestseller-card-small:nth-child(2) { grid-column: 2; grid-row: 1; }
+#bestsellers .bestseller-card-small:nth-child(3) { grid-column: 3; grid-row: 1; }
+#bestsellers .bestseller-card-small:nth-child(4) { grid-column: 2; grid-row: 2; }
+#bestsellers .bestseller-card-small:nth-child(5) { grid-column: 3; grid-row: 2; }
+
+#bestsellers .product-card {
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 6px 28px rgba(80, 130, 229, 0.04), 0 1.2px 6px rgba(60, 92, 200, 0.07);
+  transition: transform 0.19s, box-shadow 0.20s;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#bestsellers .product-card:hover {
+  box-shadow: 0 11px 37px rgba(64, 102, 216, 0.11);
+  transform: translateY(-6px) scale(1.025);
+}
+#bestsellers .bestseller-card-large .card-img-top {
+  height: 258px;
+  width: auto;
+  object-fit: contain;
+  padding: 22px 0 12px 0;
+  margin-bottom: 6px;
+}
+#bestsellers .bestseller-card-small .card-img-top {
+  height: 115px;
+  padding: 14px 0 10px 0;
+  object-fit: contain;
+}
+#bestsellers .card-body {
+  padding: 14px 14px 0 14px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 95px;
+  justify-content: center;
+}
+#bestsellers .card-title {
+  font-size: 1.09rem;
+  font-weight: 600;
+  color: #2e315d;
+  margin-bottom: 1px;
+  text-align: center;
+}
+#bestsellers .text-primary {
+  color: #2563eb !important;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+#bestsellers .btn {
+  border-radius: 12px;
+  min-width: 92px;
+  padding: 7px 0;
+  font-size: 1rem;
+}
+@media (max-width: 991px) {
+  #bestsellers .bestsellers-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+  #bestsellers .bestseller-card-large { grid-row: 1 / span 2; grid-column: 1 / span 2; }
+  #bestsellers .bestseller-card-small:nth-child(2) { grid-column: 1; grid-row: 3; }
+  #bestsellers .bestseller-card-small:nth-child(3) { grid-column: 2; grid-row: 3; }
+  #bestsellers .bestseller-card-small:nth-child(4), #bestsellers .bestseller-card-small:nth-child(5) { display: none; }
+  #bestsellers .bestseller-card-large .card-img-top {height:160px;}
+}
+@media (max-width: 767px) {
+  #bestsellers {
+    padding:18px 0;
+    border-radius:10px;
+  }
+  #bestsellers .bestsellers-grid {
+    display:block;
+    max-width:100%;
+    gap:0;
+  }
+  #bestsellers .bestseller-card, #bestsellers .bestseller-card-large, #bestsellers .bestseller-card-small {
+    margin-bottom: 18px;
+    width: 100%;
+  }
+  #bestsellers .product-card { border-radius:8px; }
+  #bestsellers .bestseller-card-large .card-img-top {height:95px;}
+  #bestsellers .bestseller-card-small .card-img-top {height:58px;}
+}
+
+/* --- Clamp long product titles to 2 lines with ellipsis --- */
+.featured-products .card-title,
+#bestsellers .card-title,
+#today-featured .card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+/* --- Title clamp: reserve fixed block to avoid pushing content below --- */
+.featured-products .card-title,
+#bestsellers .card-title,
+#today-featured .card-title {
+  line-height: 1.35;
+  min-height: calc(1.35em * 2); /* reserve space for exactly 2 lines */
+}
+
+/* --- Price line: single-line with ellipsis, prevent wrapping below --- */
+.featured-products .card .text-primary,
+#bestsellers .text-primary,
+#today-featured .text-primary {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* ✅ Ngăn tràn ngang toàn trang */
+html, body {
+  overflow-x: hidden;
+}
+
+/* ✅ Giới hạn header và nav không vượt quá chiều rộng trang */
+.header, .nav-section, .nav-categories, .main-content {
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+

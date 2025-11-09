@@ -1,17 +1,20 @@
 package dao;
 
 import java.sql.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import models.Order;
 import models.CartItem;
 import models.OrderItem;
+
 import utils.DBContext;
 
 public class OrderDAO extends DBContext {
 
     // Thêm đơn hàng và trả về ID tự sinh
     public long insertOrder(Order order) {
+
         String sql = "INSERT INTO Orders (UserID, OrderDate, Status, ShippingName, ShippingPhone, ShippingAddress, TotalAmount) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -310,5 +313,6 @@ public class OrderDAO extends DBContext {
         order.setTotalAmount(rs.getBigDecimal("TotalAmount"));
         return order;
     }
+
 
 }
