@@ -15,6 +15,7 @@
         <link href="<c:url value='/assets/css/header.css'/>" rel="stylesheet">
         <link href="<c:url value='/assets/css/home.css'/>" rel="stylesheet">
         <link href="<c:url value='/assets/css/style.css'/>" rel="stylesheet">
+        <link href="<c:url value='/assets/css/season-section.css'/>" rel="stylesheet">
     </head>
 
 
@@ -36,6 +37,7 @@
                 <li><a href="#today-featured" data-duration="800">Sản phẩm nổi bật hôm nay</a></li>
             </ul>
         </nav>
+
         <!-- Main Content: danh mục tổng quan -->
         <div class="main-content">
             <!-- Categories Section (grid 18 nhóm danh mục) -->
@@ -53,180 +55,27 @@
                         </div>
                     </div>
 
-                    <!-- Category 2 -->
-                    <div class="category-card" onclick="viewCategory('CAT002')">
-                        <img src="<c:url value='/assets/img/category/2.png'/>"
-                             alt="Thuốc giải độc" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc giải độc, khử độc và hỗ trợ cai nghiện</div>
-                            <div class="category-count">7 sản phẩm</div>
-                        </div>
-                    </div>
 
-                    <!-- Category 3 -->
-                    <div class="category-card" onclick="viewCategory('CAT003')">
-                        <img src="<c:url value='/assets/img/category/3.png'/>"
-                             alt="Thuốc da liễu" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc da liễu</div>
-                            <div class="category-count">289 sản phẩm</div>
-                        </div>
+        <!-- 🔹 Banner quảng cáo dưới thanh danh mục -->
+        <!-- 🔹 Banner ngang: 1 to bên trái, 2 nhỏ bên phải -->
+        <section class="main-banner">
+            <!-- Banner bên trái (slider) -->
+            <div id="mainBannerCarousel" class="carousel slide banner-left" data-bs-ride="carousel" data-bs-interval="4000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="<c:url value='/assets/img/banner-left-1.png'/>" 
+                             alt="Banner 1" class="banner-img">
                     </div>
-
-                    <!-- Category 4 -->
-                    <div class="category-card" onclick="viewCategory('CAT004')">
-                        <img src="<c:url value='/assets/img/category/4.png'/>"
-                             alt="Miếng dán" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Miếng dán, cao xoa, dầu</div>
-                            <div class="category-count">51 sản phẩm</div>
-                        </div>
+                    <div class="carousel-item">
+                        <img src="<c:url value='/assets/img/banner-left-2.png'/>" 
+                             alt="Banner 2" class="banner-img">
                     </div>
-
-                    <!-- Category 5 -->
-                    <div class="category-card" onclick="viewCategory('CAT005')">
-                        <img src="<c:url value='/assets/img/category/5.png'/>"
-                             alt="Cơ xương khớp" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Cơ - xương - khớp</div>
-                            <div class="category-count">175 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 6 -->
-                    <div class="category-card" onclick="viewCategory('CAT006')">
-                        <img src="<c:url value='/assets/img/category/6.png'/>"
-                             alt="Thuốc bổ" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc bổ & vitamin</div>
-                            <div class="category-count">281 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 7 -->
-                    <div class="category-card" onclick="viewCategory('CAT007')">
-                        <img src="<c:url value='/assets/img/category/7.png'/>"
-                             alt="Thuốc ung thư" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc ung thư</div>
-                            <div class="category-count">130 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 8 -->
-                    <div class="category-card" onclick="viewCategory('CAT008')">
-                        <img src="<c:url value='/assets/img/category/8.png'/>"
-                             alt="Thuốc giảm đau" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc giảm đau, hạ sốt, kháng
-                                viêm</div>
-                            <div class="category-count">384 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 9 -->
-                    <div class="category-card" onclick="viewCategory('CAT009')">
-                        <img src="<c:url value='/assets/img/category/9.png'/>"
-                             alt="Thuốc hô hấp" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc hô hấp</div>
-                            <div class="category-count">310 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 10 -->
-                    <div class="category-card" onclick="viewCategory('CAT010')">
-                        <img src="<c:url value='/assets/img/category/10.png'/>"
-                             alt="Thuốc kháng sinh" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc kháng sinh, kháng nấm</div>
-                            <div class="category-count">556 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 11 -->
-                    <div class="category-card" onclick="viewCategory('CAT011')">
-                        <img src="<c:url value='/assets/img/category/11.png'/>"
-                             alt="Thuốc Mắt Tai Mũi Họng" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc Mắt, Tai, Mũi, Họng</div>
-                            <div class="category-count">225 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 12 -->
-                    <div class="category-card" onclick="viewCategory('CAT012')">
-                        <img src="<c:url value='/assets/img/category/12.png'/>"
-                             alt="Thuốc hệ thần kinh" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc hệ thần kinh</div>
-                            <div class="category-count">324 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 13 -->
-                    <div class="category-card" onclick="viewCategory('CAT013')">
-                        <img src="<c:url value='/assets/img/category/13.png'/>"
-                             alt="Thuốc tiêm chích" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc tiêm chích & dịch truyền
-                            </div>
-                            <div class="category-count">143 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 14 -->
-                    <div class="category-card" onclick="viewCategory('CAT014')">
-                        <img src="<c:url value='/assets/img/category/14.png'/>"
-                             alt="Thuốc tiêu hoá" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc tiêu hoá & gan mật</div>
-                            <div class="category-count">650 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 15 -->
-                    <div class="category-card" onclick="viewCategory('CAT015')">
-                        <img src="<c:url value='/assets/img/category/15.png'/>"
-                             alt="Thuốc tim mạch" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc tim mạch & máu</div>
-                            <div class="category-count">858 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 16 -->
-                    <div class="category-card" onclick="viewCategory('CAT016')">
-                        <img src="<c:url value='/assets/img/category/16.png'/>"
-                             alt="Thuốc tiết niệu" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc tiết niệu - sinh dục</div>
-                            <div class="category-count">248 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 17 -->
-                    <div class="category-card" onclick="viewCategory('CAT017')">
-                        <img src="<c:url value='/assets/img/category/17.png'/>"
-                             alt="Thuốc tê bôi" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc tê bôi</div>
-                            <div class="category-count">1 sản phẩm</div>
-                        </div>
-                    </div>
-
-                    <!-- Category 18 -->
-                    <div class="category-card" onclick="viewCategory('CAT018')">
-                        <img src="<c:url value='/assets/img/category/18.png'/>"
-                             alt="Thuốc trị tiểu đường" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc trị tiểu đường</div>
-                            <div class="category-count">186 sản phẩm</div>
-                        </div>
+                    <div class="carousel-item">
+                        <img src="<c:url value='/assets/img/banner-left-3.png'/>" 
+                             alt="Banner 3" class="banner-img">
                     </div>
                 </div>
-            </section>
-        </div>
+
 
         <!-- Section: Sản phẩm bán chạy nhất -->
         <section class="featured-products py-5">
@@ -298,16 +147,128 @@
                             </c:choose>
                         </c:forEach>
                     </c:if>
+
+                <!-- Nút điều hướng -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#mainBannerCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#mainBannerCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div class="banner-right">
+                <div class="banner-small">
+                    <img src="<c:url value='/assets/img/banner-top.png'/>"
+                         alt="Banner nhỏ trên" class="banner-img">
+                </div>
+                <div class="banner-small">
+                    <img src="<c:url value='/assets/img/banner-bot.png'/>"
+                         alt="Banner nhỏ dưới" class="banner-img">
+
                 </div>
             </div>
         </section>
 
-        <!-- Section: Danh mục nổi bật -->
-        <section class="featured-products py-5 bg-light">
-            <div id="featured-categories" class="container">
+
+
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="categories-section">
+                <h2 class="section-title">Danh Mục Sản Phẩm</h2>
+                <div class="categories-grid">
+                    <c:forEach var="c" items="${listCategory}" varStatus="loop">
+                        <div class="category-card" onclick="viewCategory('${c.categoryID}')">
+                            <img src="<c:url value='/assets/img/category/${loop.index + 1}.png'/>"
+                                 alt="${c.categoryName}" class="category-image">
+                            <div class="category-info">
+                                <div class="category-name">${c.categoryName}</div>
+                                <div class="category-count">${c.productCount} sản phẩm</div>
+                            </div>
+                        </div>
+                    </c:forEach>
+
+                </div>
+            </section>
+        </div>
+
+
+
+        <section class="bestseller-section">
+            <div class="bestseller-header">
+                <h3><i class="bi bi-star-fill"></i> Sản phẩm bán chạy</h3>
+            </div>
+
+            <div class="bestseller-layout">
+                <!-- 🔹 Sản phẩm đầu tiên (to) -->
+                <c:if test="${not empty bestSellers}">
+                    <div class="bestseller-left">
+                        <c:set var="firstProduct" value="${bestSellers[0]}" />
+                        <div class="bestseller-card bestseller-big">
+                            <div class="card-top" 
+                                 onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${firstProduct.medicineID}'">
+                                <img src="<c:out value='${firstProduct.imageUrl}'/>"
+                                     alt="<c:out value='${firstProduct.medicineName}'/>" 
+                                     class="bestseller-img-big">
+                                <h5 class="bestseller-name"><c:out value='${firstProduct.medicineName}'/></h5>
+                            </div>
+                            <div class="card-bottom">
+                                <p class="bestseller-price">
+                                    <fmt:formatNumber value="${firstProduct.sellingPrice}" type="number" groupingUsed="true"/>₫ /
+                                    <c:out value='${firstProduct.unit}'/>
+                                </p>
+                                <a class="btn-buy-blue" 
+                                   href="${pageContext.request.contextPath}/cart?action=add&id=${firstProduct.medicineID}">
+                                    Chọn mua
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+
+                <!-- 🔹 4 sản phẩm nhỏ kế tiếp -->
+                <div class="bestseller-right">
+                    <c:forEach var="m" items="${bestSellers}" varStatus="vs" begin="1" end="4">
+                        <div class="bestseller-card">
+                            <div class="card-top" 
+                                 onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'">
+                                <img src="<c:out value='${m.imageUrl}'/>"
+                                     alt="<c:out value='${m.medicineName}'/>" 
+                                     class="bestseller-img">
+                                <h6 class="bestseller-name"><c:out value='${m.medicineName}'/></h6>
+                            </div>
+                            <div class="card-bottom">
+                                <p class="bestseller-price">
+                                    <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ /
+                                    <c:out value='${m.unit}'/>
+                                </p>
+                                <a class="btn-buy-blue" 
+                                   href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">
+                                    Chọn mua
+                                </a>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+        <!-- Danh mục nổi bật -->
+        <section class="featured-wrapper py-5">
+            <div class="featured-products container">
+
                 <div class="d-flex align-items-center mb-4">
-                    <i class="bi bi-grid-fill text-primary me-2 fs-4"></i>
-                    <h3 class="fw-bold m-0">Danh mục nổi bật</h3>
+                    <h3 class="fw-bold m-0 text-primary">🌟 Sản phẩm nổi bật</h3>
                 </div>
                 <div class="row g-4 text-center">
                     <%-- featuredProducts: List<Medicine> đại diện cho các danh mục được đề xuất. --%>
@@ -340,7 +301,9 @@
             </div>
         </section>
 
+
         <!-- Section: Thương hiệu yêu thích -->
+
         <section class="featured-products py-5">
             <div id="favorite-brands" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -378,45 +341,156 @@
             </div>
         </section>
 
-        <!-- Section: Bệnh theo mùa -->
-        <section class="featured-products py-5 bg-light">
-            <div id="seasonal" class="container">
-                <div class="d-flex align-items-center mb-4">
-                    <i class="bi bi-calendar-fill text-primary me-2 fs-4"></i>
-                    <h3 class="fw-bold m-0">Bệnh theo mùa</h3>
-                </div>
-                <div class="row g-4 text-center">
-                    <%-- seasonalProducts: List<Medicine> theo mùa (ví dụ cảm cúm khi giao mùa). --%>
-                    <c:forEach var="m" items="${seasonalProducts}">
-                        <div class="col-12 col-sm-6 col-lg-2">
-                            <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="<c:out value='${m.imageUrl}'/>"
-                                     alt="<c:out value='${m.medicineName}'/>"
-                                     class="card-img-top p-3 product-img"
-                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
-                                <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
-                                    <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                    <c:choose>
-                                        <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
-                                            <p class="text-primary fw-semibold mb-1">
-                                                <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
-                                            </p>
-                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
-                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
-                                        </c:otherwise>
-                                    </c:choose>
+
+
+
+
+        <section class="season-section py-5">
+            <div class="container">
+                <h3 class="fw-bold text-primary mb-4">
+                    <i class="bi bi-calendar-heart me-2"></i>Bệnh theo mùa
+                </h3>
+
+                <!-- Tabs -->
+                <ul class="nav nav-tabs mb-4" id="diseaseTabs">
+                    <li class="nav-item">
+                        <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#tab-dengue">Sốt xuất huyết</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#tab-flu">Cúm mùa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#tab-skin">Da liễu & Dị ứng</a>
+                    </li>
+                </ul>
+
+                <!-- Nội dung 3 tab -->
+                <div class="tab-content">
+
+                    <!-- 🩸 Sốt xuất huyết -->
+                    <div class="tab-pane fade show active" id="tab-dengue">
+                        <div class="row align-items-center g-4">
+                            <!-- Ảnh bên trái -->
+                            <div class="col-lg-3 col-md-12 text-center">
+                                <img src="${pageContext.request.contextPath}/assets/img/benh-sot-xuat-huyet.png"
+                                     alt="Sốt xuất huyết" class="img-fluid disease-left-img">
+                            </div>
+
+                            <!-- Sản phẩm bên phải -->
+                            <div class="col-lg-9 col-md-12">
+                                <div class="row g-3">
+                                    <c:forEach var="m" items="${dengueMedicines}" varStatus="vs" end="3">
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="disease-card">
+                                                <!-- Phần trên: ảnh + tên -->
+                                                <div class="card-top"
+                                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'">
+                                                    <img src="${m.imageUrl}" alt="${m.medicineName}" class="disease-img">
+                                                    <p class="name">${m.medicineName}</p>
+                                                </div>
+
+                                                <!-- Phần dưới: giá + nút -->
+                                                <div class="card-bottom">
+                                                    <p class="price">
+                                                        <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / ${m.unit}
+                                                    </p>
+                                                    <a href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}"
+                                                       class="btn-buy-blue">Chọn mua</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+
                                 </div>
                             </div>
                         </div>
-                    </c:forEach>
+                    </div>
+
+                    <!-- 🤧 Cúm mùa -->
+                    <div class="tab-pane fade" id="tab-flu">
+                        <div class="row align-items-center g-4">
+                            <!-- Ảnh bên trái -->
+                            <div class="col-lg-3 col-md-12 text-center">
+                                <img src="${pageContext.request.contextPath}/assets/img/benh-cum-mua.png"
+                                     alt="Cúm mùa" class="img-fluid disease-left-img">
+                            </div>
+
+                            <!-- Sản phẩm bên phải -->
+                            <div class="col-lg-9 col-md-12">
+                                <div class="row g-3">
+                                    <c:forEach var="m" items="${fluMedicines}" varStatus="vs" end="3">
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="disease-card">
+                                                <!-- Phần trên: ảnh + tên -->
+                                                <div class="card-top"
+                                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'">
+                                                    <img src="${m.imageUrl}" alt="${m.medicineName}" class="disease-img">
+                                                    <p class="name">${m.medicineName}</p>
+                                                </div>
+
+                                                <!-- Phần dưới: giá + nút -->
+                                                <div class="card-bottom">
+                                                    <p class="price">
+                                                        <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / ${m.unit}
+                                                    </p>
+                                                    <a href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}"
+                                                       class="btn-buy-blue">Chọn mua</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 🌿 Da liễu & Dị ứng -->
+                    <div class="tab-pane fade" id="tab-skin">
+                        <div class="row align-items-center g-4">
+                            <!-- Ảnh bên trái -->
+                            <div class="col-lg-3 col-md-12 text-center">
+                                <img src="${pageContext.request.contextPath}/assets/img/benh-da-lieu.png"
+                                     alt="Da liễu & Dị ứng" class="img-fluid disease-left-img">
+                            </div>
+
+                            <!-- Sản phẩm bên phải -->
+                            <div class="col-lg-9 col-md-12">
+                                <div class="row g-3">
+                                    <c:forEach var="m" items="${skinMedicines}" varStatus="vs" end="3">
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="disease-card">
+                                                <!-- Phần trên: ảnh + tên -->
+                                                <div class="card-top"
+                                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'">
+                                                    <img src="${m.imageUrl}" alt="${m.medicineName}" class="disease-img">
+                                                    <p class="name">${m.medicineName}</p>
+                                                </div>
+
+                                                <!-- Phần dưới: giá + nút -->
+                                                <div class="card-bottom">
+                                                    <p class="price">
+                                                        <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / ${m.unit}
+                                                    </p>
+                                                    <a href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}"
+                                                       class="btn-buy-blue">Chọn mua</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
+
         <!-- Section: Góc sức khỏe -->
+
         <section class="featured-products py-5">
             <div id="health-corner" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -631,51 +705,72 @@
                 });
             });
         </script>
-    </body>
-
-</html>
 
 
-<section class="featured-products py-5">
-    <div id="today-featured" class="container">
-        <div class="d-flex align-items-center mb-4">
-            <i class="bi bi-plus-circle-fill text-primary me-2 fs-4"></i>
-            <h3 class="fw-bold m-0">Sản phẩm nổi bật hôm nay</h3>
-        </div>
 
-        <div class="row g-4 text-center">
-            <c:forEach var="m" items="${todayFeaturedProducts}">
-                <div class="col-12 col-sm-6 col-lg-2">
-                    <div class="card product-card h-100 border-0 shadow-sm">
-                        <img src="<c:out value='${m.imageUrl}'/>"
-                             alt="<c:out value='${m.medicineName}'/>" class="card-img-top p-3 product-img"
-                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
-                        <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
-                            <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                            <c:choose>
-                                <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
-                                    <p class="text-primary fw-semibold mb-1"><fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/></p>
-                                    <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
-                                    <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
-                                </c:otherwise>
-                            </c:choose>
-                            <c:choose>
-                                <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
-                                    <p class="text-primary fw-semibold mb-1"><fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/></p>
-                                    <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
-                                    <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
-                                </c:otherwise>
-                            </c:choose>
+        <section class="featured-products py-5">
+            <div id="today-featured" class="container">
+                <div class="d-flex align-items-center mb-4">
+                    <i class="bi bi-plus-circle-fill text-primary me-2 fs-4"></i>
+                    <h3 class="fw-bold m-0">Sản phẩm nổi bật hôm nay</h3>
+                </div>
+
+                <div class="row g-4 text-center">
+                    <c:forEach var="m" items="${todayFeaturedProducts}">
+                        <div class="col-12 col-sm-6 col-lg-2">
+                            <div class="card product-card h-100 border-0 shadow-sm">
+                                <img src="<c:out value='${m.imageUrl}'/>"
+                                     alt="<c:out value='${m.medicineName}'/>" class="card-img-top p-3 product-img"
+                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
+                                <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
+                                    <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
+                                    <c:choose>
+                                        <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                            <p class="text-primary fw-semibold mb-1"><fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/></p>
+                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                            <p class="text-primary fw-semibold mb-1"><fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/></p>
+                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
+                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                            </div>
                         </div>
+                    </c:forEach>
+
+                </div>
+            </div>
+
+            <!-- 🔹 Floating AI Chat Icon -->
+            <div id="chat-launcher">
+                <img src="${pageContext.request.contextPath}/assets/img/chatbot-icon.png" alt="Chatbot" />
+            </div>
+
+            <!-- Chat Window -->
+            <div id="chat-window" class="hidden">
+                <div class="chat-header">
+                    <img src="${pageContext.request.contextPath}/assets/img/chatbot-icon.png" alt="Logo" class="chat-logo">
+                    <span>Chat với Dược Sĩ Pharmacy</span>
+                    <button id="close-chat">&times;</button>
+                </div>
+
+                <div class="chat-body" id="chat-body">
+                    <div class="chat-placeholder">
+                        <p>Xin chào 👋<br>Bạn cần hỗ trợ gì hôm nay?</p>
                     </div>
                 </div>
-            </c:forEach>
+
 
         </div>
     </div>
@@ -706,10 +801,13 @@
 
     <%@ include file="../common/footer.jsp" %>
 
+
     <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/ai.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/chatbox.js"></script>
+
 </body>
+
 
 </html>
 

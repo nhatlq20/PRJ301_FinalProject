@@ -460,3 +460,62 @@ a.text-decoration-none:hover {
   50% { opacity: 1; }
 }
 
+
+
+
+
+
+.disease-left-img {
+    border-radius: 20px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Tabs */
+.nav-tabs .nav-link {
+    border: none;
+    color: #555;
+}
+
+.nav-tabs .nav-link.active {
+    color: #2a60e8;
+    font-weight: 600;
+    border-bottom: 3px solid #2a60e8;
+    background-color: transparent;
+}
+
+/* Cards */
+.product-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.product-img {
+    height: 180px;
+    object-fit: contain;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.btn-buy {
+    background-color: #2a60e8;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+}
+
+.btn-buy:hover {
+    background-color: #1746c9;
+}

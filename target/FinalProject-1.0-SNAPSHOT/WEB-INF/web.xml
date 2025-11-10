@@ -41,6 +41,11 @@
         <servlet-class>controllers.AIController</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>CategoryController</servlet-name>
+        <servlet-class>controllers.CategoryController</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -61,7 +66,7 @@
         <servlet-name>ProductDetailController</servlet-name>
         <url-pattern>/product/detail</url-pattern>
     </servlet-mapping>
-<!--    <servlet-mapping>
+    <!--    <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/product/cart</url-pattern>
     </servlet-mapping>-->
@@ -84,6 +89,11 @@
     <servlet-mapping>
         <servlet-name>AIController</servlet-name>
         <url-pattern>/ai</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>CategoryController</servlet-name>
+        <url-pattern>/category</url-pattern>
     </servlet-mapping>
     
     <session-config>

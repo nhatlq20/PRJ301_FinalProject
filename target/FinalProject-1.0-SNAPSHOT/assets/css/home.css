@@ -643,3 +643,384 @@ html, body {
 }
 
 
+/* 🌊 Nền sáng nhẹ sau khối banner */
+.main-banner {
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background: url("../img/banner-bg.png") center/cover no-repeat;
+}
+
+/* Làm mờ nền nhẹ để banner nổi lên */
+.main-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: 0;
+}
+
+.banner-left,
+.banner-right {
+    position: relative;
+    z-index: 1; /* Giữ các banner nổi trên nền */
+}
+
+.banner-left {
+    flex: 2;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.banner-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.banner-small {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.banner-img:hover {
+    transform: scale(1.03);
+}
+
+/* 🔹 Responsive */
+@media (max-width: 992px) {
+    .main-banner {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .banner-right {
+        flex-direction: row;
+    }
+}
+
+
+
+/* 🌟 KHU VỰC: SẢN PHẨM BÁN CHẠY */
+.bestseller-section {
+    background: #3FC0EF; /* xanh nhạt hơn tí */
+    border-radius: 20px;
+    padding: 60px 50px;
+    width: 92%;
+    margin: 70px auto;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    color: #000;
+}
+
+/* 🔴 Tiêu đề */
+.bestseller-header {
+    text-align: center;
+    margin-bottom: 35px;
+    position: relative;
+    top: -10px; /* đẩy lên chút */
+}
+
+.bestseller-header h3 {
+    background: #dc1f26;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 50px;
+    border-radius: 100px;
+    font-size: 22px;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* 🧩 Bố cục 2 phần */
+.bestseller-layout {
+    display: grid;
+    grid-template-columns: 1.3fr 2.7fr;
+    gap: 25px;
+    align-items: stretch;
+}
+
+/* 🔹 Sản phẩm to bên trái */
+.bestseller-big {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.bestseller-big:hover {
+    transform: translateY(-5px);
+}
+
+.bestseller-img-big {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.bestseller-name {
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.bestseller-price {
+    color: #0066ff;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.btn-buy-blue {
+    background: #005bff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    display: inline-block;
+    text-decoration: none;
+    width: 80%;
+    margin: 0 auto;
+    transition: background 0.3s ease;
+}
+
+.btn-buy-blue:hover {
+    background: #003ecc;
+}
+
+/* 🔹 4 sản phẩm bên phải */
+.bestseller-right {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.bestseller-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    padding: 16px 12px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bestseller-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.bestseller-img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.card-bottom {
+    margin-top: auto;
+}
+
+@media (max-width: 1200px) {
+    .bestseller-right {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .bestseller-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+/* ===============================================
+   🩵 FIX CỨNG KHUNG BANNER TRÁI - KHÔNG NHẢY 100%
+================================================ */
+
+/* ===============================================
+   🩵 FINAL FIX: BANNER TRÁI KHÔNG DỊCH ẢNH, KHÔNG NHẢY KHUNG
+================================================ */
+
+/* Khung carousel chính */
+.banner-left .carousel {
+    width: 100%;
+    height: 350px; /* ✅ Cố định chiều cao */
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: #f3f5ff;
+    flex-shrink: 0;
+}
+
+/* Bắt buộc tất cả item cùng kích thước */
+.banner-left .carousel-inner,
+.banner-left .carousel-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* ✅ khóa ảnh phóng không tràn */
+}
+
+/* Ảnh trong carousel */
+.banner-left .carousel-item img {
+    position: absolute; /* ✅ Giữ ảnh tại chỗ, không đẩy bố cục */
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: translate(-50%, -50%) scale(1); /* ✅ Cố định tâm */
+    border-radius: 12px;
+    transition: transform 0.5s ease;
+    will-change: transform; /* ✅ Tối ưu animation, tránh rung */
+}
+
+/* Hiệu ứng hover mượt, không dịch */
+.banner-left .carousel-item:hover img {
+    transform: translate(-50%, -50%) scale(1.03); /* ✅ Giữ tâm, không lệch */
+}
+
+/* Nút điều hướng trái/phải */
+.banner-left .carousel-control-prev,
+.banner-left .carousel-control-next {
+    width: 44px;
+    height: 44px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    transition: all 0.25s ease;
+    z-index: 2;
+}
+
+.banner-left .carousel-control-prev:hover,
+.banner-left .carousel-control-next:hover {
+    background: #1c4ed8;
+}
+
+.banner-left .carousel-control-prev-icon,
+.banner-left .carousel-control-next-icon {
+    filter: invert(1) brightness(0.3);
+}
+
+.banner-left .carousel-control-prev:hover .carousel-control-prev-icon,
+.banner-left .carousel-control-next:hover .carousel-control-next-icon {
+    filter: invert(1) brightness(2);
+}
+
+/* Đảm bảo layout tổng */
+.main-banner {
+    display: flex;
+    gap: 20px;
+    min-height: 350px;
+    overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .banner-left .carousel {
+        height: 260px;
+    }
+    .main-banner {
+        min-height: 260px;
+        flex-direction: column;
+    }
+}
+
+
+/* 🌟 SECTION - SẢN PHẨM NỔI BẬT */
+.featured-wrapper {
+    background: linear-gradient(180deg, #eaf4ff 0%, #d7ecff 100%);
+    border-radius: 20px;
+    padding: 50px 0;
+    margin: 40px 0;
+    position: relative;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+}
+
+/* 🎯 Tiêu đề */
+.featured-wrapper h3 {
+    font-weight: 800;
+    font-size: 28px;
+    color: #2a60e8;
+}
+
+.featured-mascot {
+    width: 48px;
+    height: 48px;
+}
+
+/* 🧩 Thẻ sản phẩm */
+.product-card {
+    border-radius: 14px;
+    background: #fff;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+
+.product-img {
+    height: 180px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-img:hover {
+    transform: scale(1.05);
+}
+
+/* 💰 Giá & tên sản phẩm */
+.card-title {
+    font-weight: 500;
+    color: #222;
+    min-height: 48px;
+}
+
+.text-primary.fw-semibold {
+    color: #2a60e8 !important;
+    font-weight: 700 !important;
+}
+
+
+/* ⭐ Icon nổi bật góc trên card (tuỳ chọn) */
+.product-card::before {
+    content: "⭐";
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    font-size: 18px;
+    color: #f7b500;
+    opacity: 0.9;
+}
+

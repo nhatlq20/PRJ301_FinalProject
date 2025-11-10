@@ -19,6 +19,18 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
+        
+        // --- 🔹 Người dùng xem sản phẩm theo danh mục ---
+    String categoryID = request.getParameter("category");
+    if (categoryID != null && !categoryID.isEmpty()) {
+        List<Medicine> medicines = medicineDAO.getMedicinesByCategory(categoryID);
+        models.Category category = categoryDAO.getCategoryById(categoryID);
+
+        request.setAttribute("category", category);
+        request.setAttribute("medicines", medicines);
+        request.getRequestDispatcher("/view/client/category-products.jsp").forward(request, response);
+        return;
+    }
 
         // Admin guard
         jakarta.servlet.http.HttpSession session = request.getSession(false);

@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.util.List;
 import models.User;
 
+
 @WebFilter(filterName = "AdminFilter", urlPatterns = {"/product"})
+
 public class AdminFilter extends HttpFilter {
 
     @Override
