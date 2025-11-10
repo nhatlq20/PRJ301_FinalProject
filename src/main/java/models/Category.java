@@ -9,6 +9,18 @@ public class Category {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    private int productCount;
+
+    // Getter
+    public int getProductCount() {
+        return productCount;
+    }
+
+// Setter
+    public void setProductCount(int productCount) {
+        this.productCount = productCount;
+    }
+
     // Constructors
     public Category() {
     }

@@ -5,42 +5,69 @@ import utils.DBContext;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CategoryDAO {
     private DBContext dbContext = new DBContext();
     
+//    public List<Category> getAllCategories() {
+//        List<Category> categories = new ArrayList<>();
+//        String sql = "SELECT CategoryID, CategoryName, CreatedAt, UpdatedAt FROM Category ORDER BY CategoryName";
+//        
+//        try (Connection conn = dbContext.getConnection();
+//             PreparedStatement ps = conn.prepareStatement(sql);
+//             ResultSet rs = ps.executeQuery()) {
+//            
+//            while (rs.next()) {
+//                Category category = new Category();
+//                category.setCategoryID(rs.getString("CategoryID"));
+//                category.setCategoryName(rs.getString("CategoryName"));
+//                
+//                Timestamp createdAt = rs.getTimestamp("CreatedAt");
+//                if (createdAt != null) {
+//                    category.setCreatedAt(createdAt.toLocalDateTime());
+//                }
+//                
+//                Timestamp updatedAt = rs.getTimestamp("UpdatedAt");
+//                if (updatedAt != null) {
+//                    category.setUpdatedAt(updatedAt.toLocalDateTime());
+//                }
+//                
+//                categories.add(category);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        
+//        return categories;
+//    }
+    
     public List<Category> getAllCategories() {
-        List<Category> categories = new ArrayList<>();
-        String sql = "SELECT CategoryID, CategoryName, CreatedAt, UpdatedAt FROM Category ORDER BY CategoryName";
-        
-        try (Connection conn = dbContext.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            
-            while (rs.next()) {
-                Category category = new Category();
-                category.setCategoryID(rs.getString("CategoryID"));
-                category.setCategoryName(rs.getString("CategoryName"));
-                
-                Timestamp createdAt = rs.getTimestamp("CreatedAt");
-                if (createdAt != null) {
-                    category.setCreatedAt(createdAt.toLocalDateTime());
-                }
-                
-                Timestamp updatedAt = rs.getTimestamp("UpdatedAt");
-                if (updatedAt != null) {
-                    category.setUpdatedAt(updatedAt.toLocalDateTime());
-                }
-                
-                categories.add(category);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    List<Category> categories = new ArrayList<>();
+    String sql = "SELECT CategoryID, CategoryName FROM Category ORDER BY CategoryName";
+
+    try (Connection conn = dbContext.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+
+        while (rs.next()) {
+            Category category = new Category();
+            category.setCategoryID(rs.getString("CategoryID"));
+            category.setCategoryName(rs.getString("CategoryName"));
+            categories.add(category);
         }
-        
-        return categories;
+
+        System.out.println("✅ Total categories loaded: " + categories.size());
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+
+    return categories;
+}
+
     
     public Category getCategoryById(String categoryID) {
         String sql = "SELECT CategoryID, CategoryName, CreatedAt, UpdatedAt FROM Category WHERE CategoryID = ?";
@@ -188,4 +215,21 @@ public class CategoryDAO {
         
         return categories;
     }
+    
+    public Map<String, Integer> countAllMedicinesByCategory() {
+    Map<String, Integer> map = new HashMap<>();
+    String sql = "SELECT CategoryID, COUNT(*) AS total FROM Medicine GROUP BY CategoryID";
+    try (Connection conn = dbContext.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+        while (rs.next()) {
+            map.put(rs.getString("CategoryID"), rs.getInt("total"));
+        }
+    } catch (SQLException e) {
+        System.out.println("Error in countAllMedicinesByCategory: " + e.getMessage());
+    }
+    return map;
+}
+
+
 }
