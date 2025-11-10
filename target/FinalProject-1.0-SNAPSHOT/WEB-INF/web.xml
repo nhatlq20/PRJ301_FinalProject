@@ -17,10 +17,6 @@
         <servlet-class>controllers.OrderController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminController</servlet-name>
-        <servlet-class>controllers.AdminController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ProductDetailController</servlet-name>
         <servlet-class>controllers.ProductDetailController</servlet-class>
     </servlet>
@@ -60,10 +56,6 @@
     <servlet-mapping>
         <servlet-name>OrderController</servlet-name>
         <url-pattern>/order</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AdminController</servlet-name>
-        <url-pattern>/admin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductDetailController</servlet-name>

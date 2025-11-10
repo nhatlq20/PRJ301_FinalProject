@@ -1,16 +1,15 @@
 # File Tree: PRJ301_FinalProject
 
-**Generated:** 11/9/2025, 9:21:29 PM
-**Root Path:** `d:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject`
 
 ```
+├── 📁 .github
 ├── 📁 src
 │   └── 📁 main
 │       ├── 📁 java
 │       │   ├── 📁 config
 │       │   │   └── ☕ EmailInformation.java
 │       │   ├── 📁 controllers
-│       │   │   ├── ☕ AdminController.java
+│       │   │   ├── ☕ AIController.java
 │       │   │   ├── ☕ AuthController.java
 │       │   │   ├── ☕ CartController.java
 │       │   │   ├── ☕ CheckoutServlet.java
@@ -22,8 +21,7 @@
 │       │   │   ├── ☕ ProductDetailController.java
 │       │   │   ├── ☕ ProfileController.java
 │       │   │   ├── ☕ SearchController.java
-│       │   │   ├── ☕ StaffController.java
-│       │   │   └── ☕ medicineDAO.java
+│       │   │   └── ☕ StaffController.java
 │       │   ├── 📁 dao
 │       │   │   ├── ☕ CartDAO.java
 │       │   │   ├── ☕ CategoryDAO.java
@@ -35,6 +33,7 @@
 │       │   │   ├── ☕ AuthenticationFilter.java
 │       │   │   └── ☕ CartCountFilter.java
 │       │   ├── 📁 models
+│       │   │   ├── ☕ AIService.java
 │       │   │   ├── ☕ Cart.java
 │       │   │   ├── ☕ CartItem.java
 │       │   │   ├── ☕ Category.java
@@ -70,18 +69,20 @@
 │           │   │   └── 🎨 style.css
 │           │   ├── 📁 img
 │           │   └── 📁 js
+│           │       ├── 📄 ai.js
 │           │       ├── 📄 cart.js
+│           │       ├── 📄 chatbox.js
 │           │       ├── 📄 header.js
 │           │       └── 📄 main.js
 │           └── 📁 view
 │               ├── 📁 admin
-│               │   ├── 📄 dashboard.jsp
 │               │   ├── 📄 product-add.jsp
 │               │   ├── 📄 product-content.jsp
 │               │   ├── 📄 product-edit.jsp
 │               │   ├── 📄 product.jsp
-│               │   ├── 📄 staff-content.jsp
 │               │   └── 📄 staff.jsp
+│               ├── 📁 ai
+│               │   └── 📄 assistant.jsp
 │               ├── 📁 auth
 │               │   ├── 📄 forgot-password.jsp
 │               │   ├── 📄 login.jsp
@@ -110,4 +111,3 @@
 ├── ⚙️ nb-configuration.xml
 └── ⚙️ pom.xml
 ```
-

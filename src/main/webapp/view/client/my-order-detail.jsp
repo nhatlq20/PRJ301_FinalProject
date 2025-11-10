@@ -245,10 +245,21 @@
                     <h3 class="card-title">Sản phẩm đã đặt</h3>
                     <c:forEach var="item" items="${orderItems}">
                         <div class="product-item">
-                            <img src="${pageContext.request.contextPath}/assets/img/${item.imageUrl}" 
-                                 alt="${item.medicineName}" 
-                                 class="product-img"
-                                 onerror="this.src='${pageContext.request.contextPath}/assets/img/default.png'">
+                            <c:set var="rawUrl" value="${item.imageUrl}" />
+                            <c:choose>
+                                <c:when test="${fn:startsWith(rawUrl, 'http') || fn:startsWith(rawUrl, '/')}">
+                                    <img src="${rawUrl}" 
+                                         alt="${item.medicineName}" 
+                                         class="product-img"
+                                         onerror="this.src='${pageContext.request.contextPath}/assets/img/default.png'">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="${pageContext.request.contextPath}/assets/img/${rawUrl}" 
+                                         alt="${item.medicineName}" 
+                                         class="product-img"
+                                         onerror="this.src='${pageContext.request.contextPath}/assets/img/default.png'">
+                                </c:otherwise>
+                            </c:choose>
                             <div class="product-info">
                                 <div class="product-name">${item.medicineName}</div>
                                 <div class="product-details">

@@ -1,12 +1,12 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
 <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="../../assets/css/header.css">
-<link rel="stylesheet" type="text/css" href="../../assets/css/home.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/header.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/home.css">
 
 
 <header class="header">

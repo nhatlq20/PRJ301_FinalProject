@@ -25,7 +25,6 @@ controllers\ProductController.class
 models\Order.class
 utils\Validator$ValidationResult.class
 utils\OtpService.class
-controllers\AdminController.class
 controllers\CheckoutServlet.class
 utils\HashUtil.class
 filter\AdminFilter.class

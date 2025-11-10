@@ -1,4 +1,3 @@
-<%-- Document : list Created on : Oct 22, 2025, 11:08:04 PM Author : qnhat --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -20,7 +19,11 @@
 
 
     <body>
+        <%-- Global header (fixed) --%>
         <%@ include file="../common/header.jsp" %>
+
+        <%-- Top navigation for smooth scrolling to sections.
+             data-duration (ms) is read by JS below to control easing time per-section. --%>
         <nav class="nav-categories">
             <ul>
                 <!-- data-duration values are milliseconds; adjust per-section below -->
@@ -33,12 +36,13 @@
                 <li><a href="#today-featured" data-duration="800">Sản phẩm nổi bật hôm nay</a></li>
             </ul>
         </nav>
-        <!-- Main Content -->
+        <!-- Main Content: danh mục tổng quan -->
         <div class="main-content">
-            <!-- Categories Section -->
+            <!-- Categories Section (grid 18 nhóm danh mục) -->
             <section class="categories-section">
                 <h2 class="section-title">Danh Mục Sản Phẩm</h2>
                 <div class="categories-grid">
+                    <%-- Mỗi category-card click sẽ gọi viewCategory(CATxxx) ở cuối file để điều hướng tới trang /product?category=CATxxx. --%>
                     <!-- Category 1 -->
                     <div class="category-card" onclick="viewCategory('CAT001')">
                         <img src="<c:url value='/assets/img/category/1.png'/>"
@@ -224,7 +228,7 @@
             </section>
         </div>
 
-        <!-- Sản phẩm bán chạy nhất -->
+        <!-- Section: Sản phẩm bán chạy nhất -->
         <section class="featured-products py-5">
             <div id="bestsellers" class="container">
                 <div class="text-center mb-4">
@@ -234,6 +238,7 @@
                     </h3>
                 </div>
                 <div class="bestsellers-grid">
+                    <%-- bestSellers: List<Medicine> (đã được HomeController sắp xếp theo tiêu chí “bán chạy”). --%>
                     <c:if test="${not empty bestSellers}">
                         <c:forEach var="m" items="${bestSellers}" varStatus="vs">
                             <c:choose>
@@ -247,6 +252,7 @@
                                                  onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                             <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                                 <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
+                                                <%-- Nếu có giá bán: hiển thị giá + nút Chọn mua; ngược lại hiển thị thông điệp cần tư vấn. --%>
                                                 <c:choose>
                                                     <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
                                                         <p class="text-primary fw-semibold mb-1">
@@ -296,7 +302,7 @@
             </div>
         </section>
 
-        <!-- Danh mục nổi bật -->
+        <!-- Section: Danh mục nổi bật -->
         <section class="featured-products py-5 bg-light">
             <div id="featured-categories" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -304,6 +310,7 @@
                     <h3 class="fw-bold m-0">Danh mục nổi bật</h3>
                 </div>
                 <div class="row g-4 text-center">
+                    <%-- featuredProducts: List<Medicine> đại diện cho các danh mục được đề xuất. --%>
                     <c:forEach var="m" items="${featuredProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
@@ -333,7 +340,7 @@
             </div>
         </section>
 
-        <!-- Thương hiệu yêu thích -->
+        <!-- Section: Thương hiệu yêu thích -->
         <section class="featured-products py-5">
             <div id="favorite-brands" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -341,6 +348,7 @@
                     <h3 class="fw-bold m-0">Thương hiệu yêu thích</h3>
                 </div>
                 <div class="row g-4 text-center">
+                    <%-- favoriteBrandsProducts: List<Medicine> lấy theo bộ lọc thương hiệu ưa chuộng. --%>
                     <c:forEach var="m" items="${favoriteBrandsProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
@@ -370,7 +378,7 @@
             </div>
         </section>
 
-        <!-- Bệnh theo mùa -->
+        <!-- Section: Bệnh theo mùa -->
         <section class="featured-products py-5 bg-light">
             <div id="seasonal" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -378,6 +386,7 @@
                     <h3 class="fw-bold m-0">Bệnh theo mùa</h3>
                 </div>
                 <div class="row g-4 text-center">
+                    <%-- seasonalProducts: List<Medicine> theo mùa (ví dụ cảm cúm khi giao mùa). --%>
                     <c:forEach var="m" items="${seasonalProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
@@ -407,7 +416,7 @@
             </div>
         </section>
 
-        <!-- Góc sức khỏe -->
+        <!-- Section: Góc sức khỏe -->
         <section class="featured-products py-5">
             <div id="health-corner" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -415,6 +424,7 @@
                     <h3 class="fw-bold m-0">Góc sức khỏe</h3>
                 </div>
                 <div class="row g-4 text-center">
+                    <%-- healthCornerProducts: List<Medicine/Article> các sản phẩm/chủ đề sức khỏe tiêu biểu. --%>
                     <c:forEach var="m" items="${healthCornerProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
@@ -444,7 +454,7 @@
             </div>
         </section>
 
-        <!-- Thuốc tim mạch -->
+        <!-- Section: Thuốc tim mạch -->
         <section class="featured-products py-5 bg-light">
             <div id="cardio" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -452,6 +462,7 @@
                     <h3 class="fw-bold m-0">Thuốc tim mạch</h3>
                 </div>
                 <div class="row g-4 text-center">
+                    <%-- cardioProducts: List<Medicine> thuộc nhóm tim mạch & máu. --%>
                     <c:forEach var="m" items="${cardioProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
@@ -481,7 +492,7 @@
             </div>
         </section>
 
-        <!-- Thuốc bổ & vitamin -->
+        <!-- Section: Thuốc bổ & vitamin -->
         <section class="featured-products py-5">
             <div id="supplements" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -489,6 +500,7 @@
                     <h3 class="fw-bold m-0">Thuốc bổ & vitamin</h3>
                 </div>
                 <div class="row g-4 text-center">
+                    <%-- supplementsProducts: List<Medicine> nhóm vitamin & khoáng. --%>
                     <c:forEach var="m" items="${supplementsProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
@@ -510,6 +522,10 @@
             </div>
         </section>
 
+        <!-- Page scripts:
+             - viewCategory: điều hướng theo mã danh mục (CATxxx).
+             - smoothScroll: cuộn mượt tới section theo thời gian đọc từ data-duration.
+             - Khối demo lưu tên người dùng vào localStorage (chỉ hiển thị ở trang này). -->
         <script>
             function viewCategory(categoryId) {
                 // Redirect to product page with category filter
@@ -663,7 +679,36 @@
 
         </div>
     </div>
+    <!-- 🔹 Floating AI Chat Icon -->
+    <div id="chat-launcher">
+        <img src="${pageContext.request.contextPath}/assets/img/banner/chatbox.png" alt="Chatbot" />
+    </div>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="hidden">
+        <div class="chat-header">
+            <img src="${pageContext.request.contextPath}/assets/img/banner/chatbox.png" alt="Logo" class="chat-logo">
+            <span>Chat với Dược Sĩ Pharmacy</span>
+            <button id="close-chat">&times;</button>
+        </div>
+
+        <div class="chat-body" id="chat-body">
+            <div class="chat-placeholder">
+                <p>Xin chào 👋<br>Bạn cần hỗ trợ gì hôm nay?</p>
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Nhập tin nhắn..." />
+            <button id="send-btn"><i class="bi bi-send-fill"></i></button>
+        </div>
+    </div>
+
     <%@ include file="../common/footer.jsp" %>
+
+    <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/ai.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/chatbox.js"></script>
 </body>
 
 </html>

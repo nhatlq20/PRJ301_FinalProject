@@ -14,7 +14,6 @@ D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\dao\MedicineDAO.
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\models\User.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\models\Cart.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\controllers\HomeController.java
-D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\controllers\medicineDAO.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\dao\UserDAO.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\models\Order.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\models\Category.java
@@ -24,7 +23,6 @@ D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\controllers\Prod
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\controllers\CartController.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\controllers\OrderController.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\controllers\SearchController.java
-D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\controllers\AdminController.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\controllers\MyOrderController.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\filter\AuthenticationFilter.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\config\EmailInformation.java

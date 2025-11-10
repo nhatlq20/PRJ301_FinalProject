@@ -47,7 +47,7 @@ public class Validator {
             return new ValidationResult(false, "Vui lòng điền đầy đủ thông tin bắt buộc!");
         }
         
-        // Validate email format
+        // Validate email format 
         if (!isValidEmail(email)) {
             return new ValidationResult(false, "Email không hợp lệ!");
         }

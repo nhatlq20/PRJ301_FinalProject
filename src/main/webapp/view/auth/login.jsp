@@ -10,7 +10,7 @@
     <link href="<c:url value='/assets/css/style.css'/>" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="login-page">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
