@@ -49,9 +49,41 @@
                                                checked>
 
                                         <!-- Ảnh sản phẩm -->
-                                        <img src="<c:out value='${it.imageUrl}'/>"
-                                             alt="<c:out value='${it.medicineName}'/>"
-                                             class="product-img me-3">
+                                        <c:choose>
+                                            <c:when test="${not empty it.imageUrl}">
+                                                <c:set var="imageUrlTrimmed" value="${fn:trim(it.imageUrl)}"/>
+                                                <c:choose>
+                                                    <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                        <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                                    </c:when>
+                                                    <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                                    </c:when>
+                                                    <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                        <c:choose>
+                                                            <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <img src="<c:out value='${imgSrc}'/>"
+                                                     alt="<c:out value='${it.medicineName}'/>"
+                                                     class="product-img me-3"
+                                                     onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${pageContext.request.contextPath}/assets/img/no-image.png"
+                                                     alt="<c:out value='${it.medicineName}'/>"
+                                                     class="product-img me-3">
+                                            </c:otherwise>
+                                        </c:choose>
 
                                         <!-- Tên + Giá -->
                                         <div class="flex-grow-1">

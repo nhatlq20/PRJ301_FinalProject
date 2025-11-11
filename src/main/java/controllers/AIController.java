@@ -1,4 +1,3 @@
-
 package controllers;
 
 import dao.MedicineDAO;
@@ -18,10 +17,6 @@ import java.sql.Connection;
 import models.AIService;
 import utils.DBContext;
 
-/**
- *
- * @author ADMIN
- */
 public class AIController extends HttpServlet {
 
    

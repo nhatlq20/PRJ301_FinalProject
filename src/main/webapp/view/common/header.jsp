@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -83,7 +84,41 @@
                         <c:otherwise>
                             <c:forEach var="it" items="${cartItems}">
                                 <div class="cart-item d-flex align-items-center p-2 border-bottom">
-                                    <img src="${it.imageUrl}" alt="${it.medicineName}" class="cart-img me-2">
+                                    <c:choose>
+                                        <c:when test="${not empty it.imageUrl}">
+                                            <c:set var="imageUrlTrimmed" value="${fn:trim(it.imageUrl)}"/>
+                                            <c:choose>
+                                                <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                    <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                                </c:when>
+                                                <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                                </c:when>
+                                                <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                    <c:choose>
+                                                        <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <img src="<c:out value='${imgSrc}'/>" 
+                                                 alt="${it.medicineName}" 
+                                                 class="cart-img me-2"
+                                                 onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="${pageContext.request.contextPath}/assets/img/no-image.png" 
+                                                 alt="${it.medicineName}" 
+                                                 class="cart-img me-2">
+                                        </c:otherwise>
+                                    </c:choose>
                                     <div class="flex-grow-1" style="min-width: 0;">
                                         <div class="cart-name text-truncate">${it.medicineName}</div>
                                         <div class="cart-price text-primary fw-semibold">

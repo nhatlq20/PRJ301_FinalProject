@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controllers;
 
 import dao.CartDAO;
@@ -19,10 +15,7 @@ import models.CartItem;
 import models.Order;
 import models.User;
 
-/**
- *
- * @author ADMIN
- */
+
 public class PlaceOrderServlet extends HttpServlet {
 
     private final OrderDAO orderDAO = new OrderDAO();

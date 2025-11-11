@@ -71,17 +71,26 @@ public class MedicineDAO {
                 + "LEFT JOIN Category c ON m.CategoryID = c.CategoryID "
                 + "WHERE m.CategoryID = ? ORDER BY m.MedicineName";
 
+        System.out.println("🔍 MedicineDAO.getMedicinesByCategory() - CategoryID: [" + categoryID + "]");
+        System.out.println("🔍 MedicineDAO.getMedicinesByCategory() - SQL: " + sql);
+
         try (Connection conn = dbContext.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, categoryID);
+            System.out.println("🔍 MedicineDAO.getMedicinesByCategory() - Executing query with CategoryID: " + categoryID);
 
             try (ResultSet rs = ps.executeQuery()) {
+                int count = 0;
                 while (rs.next()) {
                     Medicine medicine = mapResultSetToMedicine(rs);
                     medicines.add(medicine);
+                    count++;
+                    System.out.println("✅ MedicineDAO - Found medicine #" + count + ": " + medicine.getMedicineID() + " - " + medicine.getMedicineName());
                 }
+                System.out.println("✅ MedicineDAO.getMedicinesByCategory() - Total medicines found: " + medicines.size());
             }
         } catch (SQLException e) {
+            System.out.println("❌ MedicineDAO.getMedicinesByCategory() - SQL Error: " + e.getMessage());
             e.printStackTrace();
         }
 

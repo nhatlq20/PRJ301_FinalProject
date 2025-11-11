@@ -1,8 +1,3 @@
-/*
- * Author: Phan Tuan Thanh
- * Created date: 2025-11-01
- * Purpose: Xử lý bước xác nhận thanh toán - hiển thị danh sách sản phẩm đã chọn
- */
 package controllers;
 
 import models.*;

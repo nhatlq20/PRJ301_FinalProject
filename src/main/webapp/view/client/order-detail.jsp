@@ -245,19 +245,39 @@
                     <h3 class="card-title">Sản phẩm đã đặt</h3>
                     <c:forEach var="item" items="${orderItems}">
                         <div class="product-item">
-                            <c:set var="rawUrl" value="${item.imageUrl}" />
                             <c:choose>
-                                <c:when test="${fn:startsWith(rawUrl, 'http') || fn:startsWith(rawUrl, '/')}">
-                                    <img src="${rawUrl}" 
+                                <c:when test="${not empty item.imageUrl}">
+                                    <c:set var="imageUrlTrimmed" value="${fn:trim(item.imageUrl)}"/>
+                                    <c:choose>
+                                        <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                            <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                        </c:when>
+                                        <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                        </c:when>
+                                        <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                            <c:choose>
+                                                <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <img src="<c:out value='${imgSrc}'/>" 
                                          alt="${item.medicineName}" 
                                          class="product-img"
-                                         onerror="this.src='${pageContext.request.contextPath}/assets/img/default.png'">
+                                         onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
                                 </c:when>
                                 <c:otherwise>
-                                    <img src="${pageContext.request.contextPath}/assets/img/${rawUrl}" 
+                                    <img src="${pageContext.request.contextPath}/assets/img/no-image.png" 
                                          alt="${item.medicineName}" 
-                                         class="product-img"
-                                         onerror="this.src='${pageContext.request.contextPath}/assets/img/default.png'">
+                                         class="product-img">
                                 </c:otherwise>
                             </c:choose>
                             <div class="product-info">

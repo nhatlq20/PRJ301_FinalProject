@@ -7,7 +7,6 @@ import models.Category;
 import java.io.IOException;
 import java.util.List;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,6 +21,11 @@ public class CategoryController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Thiết lập encoding UTF-8 để hiển thị đúng tiếng Việt
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+
         // Lấy id danh mục từ URL
         String categoryID = request.getParameter("category");
         if (categoryID == null || categoryID.isEmpty()) {
@@ -29,9 +33,23 @@ public class CategoryController extends HttpServlet {
             return;
         }
 
-        // Lấy thông tin danh mục và sản phẩm
+
         Category category = categoryDAO.getCategoryById(categoryID);
+        
+       
+        if (category == null) {
+            System.out.println("⚠️ Category not found: " + categoryID);
+            response.sendRedirect(request.getContextPath() + "/home");
+            return;
+        }
+        
+        // Log để debug
+        System.out.println("✅ Category found: " + category.getCategoryID() + " - " + category.getCategoryName());
+        
         List<Medicine> medicines = medicineDAO.getMedicinesByCategory(categoryID);
+        
+        // Log số lượng sản phẩm
+        System.out.println("✅ Found " + medicines.size() + " medicines in category " + categoryID);
 
         // Đưa dữ liệu sang JSP
         request.setAttribute("category", category);

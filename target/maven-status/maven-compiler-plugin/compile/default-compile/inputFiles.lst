@@ -8,6 +8,7 @@ D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\utils\EmailServi
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\models\Medicine.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\utils\OtpService.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\controllers\AuthController.java
+D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\controllers\CategoryController.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\models\OrderItem.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\dao\CartDAO.java
 D:\FA25\PRJ301\PRJ301_Project\PRJ301_FinalProject\src\main\java\dao\MedicineDAO.java

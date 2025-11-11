@@ -18,19 +18,47 @@ public class ProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Thiết lập encoding UTF-8 ngay từ đầu để đảm bảo xử lý đúng tiếng Việt
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+
         String action = request.getParameter("action");
         
         // --- 🔹 Người dùng xem sản phẩm theo danh mục ---
-    String categoryID = request.getParameter("category");
-    if (categoryID != null && !categoryID.isEmpty()) {
-        List<Medicine> medicines = medicineDAO.getMedicinesByCategory(categoryID);
-        models.Category category = categoryDAO.getCategoryById(categoryID);
+        String categoryID = request.getParameter("category");
+        System.out.println("🔍 ProductController.processRequest() - Request URI: " + request.getRequestURI());
+        System.out.println("🔍 ProductController.processRequest() - Query String: " + request.getQueryString());
+        System.out.println("🔍 ProductController.processRequest() - CategoryID parameter (raw): [" + categoryID + "]");
+        
+        if (categoryID != null && !categoryID.trim().isEmpty()) {
+            // Trim để loại bỏ khoảng trắng thừa
+            categoryID = categoryID.trim();
+            System.out.println("🔍 ProductController - CategoryID after trim: [" + categoryID + "]");
+            
+            models.Category category = categoryDAO.getCategoryById(categoryID);
+            
+            // Nếu không tìm thấy danh mục, redirect về trang chủ
+            if (category == null) {
+                System.out.println("⚠️ ProductController - Category not found in database: " + categoryID);
+                System.out.println("⚠️ ProductController - Redirecting to home page");
+                response.sendRedirect(request.getContextPath() + "/home");
+                return;
+            }
+            
+            // Log để debug
+            System.out.println("✅ ProductController - Category found: " + category.getCategoryID() + " - " + category.getCategoryName());
+            System.out.println("✅ ProductController - CategoryName length: " + (category.getCategoryName() != null ? category.getCategoryName().length() : 0));
+            
+            List<Medicine> medicines = medicineDAO.getMedicinesByCategory(categoryID);
+            System.out.println("✅ ProductController - Found " + medicines.size() + " medicines in category " + categoryID);
+            System.out.println("✅ ProductController - Forwarding to category-products.jsp");
 
-        request.setAttribute("category", category);
-        request.setAttribute("medicines", medicines);
-        request.getRequestDispatcher("/view/client/category-products.jsp").forward(request, response);
-        return;
-    }
+            request.setAttribute("category", category);
+            request.setAttribute("medicines", medicines);
+            request.getRequestDispatcher("/view/client/category-products.jsp").forward(request, response);
+            return;
+        }
 
         // Admin guard
         jakarta.servlet.http.HttpSession session = request.getSession(false);
@@ -40,10 +68,7 @@ public class ProductController extends HttpServlet {
             return;
         }
 
-        // Ensure UTF-8 output
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        // UTF-8 encoding đã được set ở đầu method
 
         if ("add".equalsIgnoreCase(action)) {
             request.setAttribute("pageTitle", "Thêm Sản Phẩm");

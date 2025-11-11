@@ -1,7 +1,9 @@
+<%-- Document : list Created on : Oct 22, 2025, 11:08:04 PM Author : qnhat --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -20,11 +22,7 @@
 
 
     <body>
-        <%-- Global header (fixed) --%>
         <%@ include file="../common/header.jsp" %>
-
-        <%-- Top navigation for smooth scrolling to sections.
-             data-duration (ms) is read by JS below to control easing time per-section. --%>
         <nav class="nav-categories">
             <ul>
                 <!-- data-duration values are milliseconds; adjust per-section below -->
@@ -37,24 +35,6 @@
                 <li><a href="#today-featured" data-duration="800">Sản phẩm nổi bật hôm nay</a></li>
             </ul>
         </nav>
-
-        <!-- Main Content: danh mục tổng quan -->
-        <div class="main-content">
-            <!-- Categories Section (grid 18 nhóm danh mục) -->
-            <section class="categories-section">
-                <h2 class="section-title">Danh Mục Sản Phẩm</h2>
-                <div class="categories-grid">
-                    <%-- Mỗi category-card click sẽ gọi viewCategory(CATxxx) ở cuối file để điều hướng tới trang /product?category=CATxxx. --%>
-                    <!-- Category 1 -->
-                    <div class="category-card" onclick="viewCategory('CAT001')">
-                        <img src="<c:url value='/assets/img/category/1.png'/>"
-                             alt="Thuốc dị ứng" class="category-image">
-                        <div class="category-info">
-                            <div class="category-name">Thuốc dị ứng</div>
-                            <div class="category-count">139 sản phẩm</div>
-                        </div>
-                    </div>
-
 
         <!-- 🔹 Banner quảng cáo dưới thanh danh mục -->
         <!-- 🔹 Banner ngang: 1 to bên trái, 2 nhỏ bên phải -->
@@ -73,80 +53,8 @@
                     <div class="carousel-item">
                         <img src="<c:url value='/assets/img/banner-left-3.png'/>" 
                              alt="Banner 3" class="banner-img">
+                        </div>
                     </div>
-                </div>
-
-
-        <!-- Section: Sản phẩm bán chạy nhất -->
-        <section class="featured-products py-5">
-            <div id="bestsellers" class="container">
-                <div class="text-center mb-4">
-                    <h3 class="fw-bold text-danger">
-                        <i class="bi bi-star-fill me-2 fs-4"></i>
-                        Sản phẩm bán chạy nhất
-                    </h3>
-                </div>
-                <div class="bestsellers-grid">
-                    <%-- bestSellers: List<Medicine> (đã được HomeController sắp xếp theo tiêu chí “bán chạy”). --%>
-                    <c:if test="${not empty bestSellers}">
-                        <c:forEach var="m" items="${bestSellers}" varStatus="vs">
-                            <c:choose>
-                                <c:when test="${vs.index == 0}">
-                                    <!-- 1 - Card lớn -->
-                                    <div class="bestseller-card bestseller-card-large">
-                                        <div class="card product-card h-100 border-0 shadow-sm">
-                                            <img src="<c:out value='${m.imageUrl}'/>"
-                                                 alt="<c:out value='${m.medicineName}'/>"
-                                                 class="card-img-top p-3 product-img"
-                                                 onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
-                                            <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
-                                                <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                                <%-- Nếu có giá bán: hiển thị giá + nút Chọn mua; ngược lại hiển thị thông điệp cần tư vấn. --%>
-                                                <c:choose>
-                                                    <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
-                                                        <p class="text-primary fw-semibold mb-1">
-                                                            <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
-                                                        </p>
-                                                        <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
-                                                        <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:when>
-                                <c:otherwise>
-                                    <!-- Small cards -->
-                                    <div class="bestseller-card bestseller-card-small">
-                                        <div class="card product-card h-100 border-0 shadow-sm">
-                                            <img src="<c:out value='${m.imageUrl}'/>"
-                                                 alt="<c:out value='${m.medicineName}'/>"
-                                                 class="card-img-top p-3 product-img"
-                                                 onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
-                                            <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
-                                                <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                                <c:choose>
-                                                    <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
-                                                        <p class="text-primary fw-semibold mb-1">
-                                                            <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/>
-                                                        </p>
-                                                        <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
-                                                        <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </c:if>
 
                 <!-- Nút điều hướng -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#mainBannerCarousel" data-bs-slide="prev">
@@ -157,21 +65,19 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
-            </div>
+                    </div>
 
             <div class="banner-right">
                 <div class="banner-small">
                     <img src="<c:url value='/assets/img/banner-top.png'/>"
                          alt="Banner nhỏ trên" class="banner-img">
-                </div>
+                        </div>
                 <div class="banner-small">
                     <img src="<c:url value='/assets/img/banner-bot.png'/>"
                          alt="Banner nhỏ dưới" class="banner-img">
-
-                </div>
-            </div>
+                        </div>
+                    </div>
         </section>
-
 
 
 
@@ -182,11 +88,11 @@
                 <h2 class="section-title">Danh Mục Sản Phẩm</h2>
                 <div class="categories-grid">
                     <c:forEach var="c" items="${listCategory}" varStatus="loop">
-                        <div class="category-card" onclick="viewCategory('${c.categoryID}')">
+                        <div class="category-card" onclick="viewCategory('<c:out value="${c.categoryID}"/>')">
                             <img src="<c:url value='/assets/img/category/${loop.index + 1}.png'/>"
-                                 alt="${c.categoryName}" class="category-image">
-                            <div class="category-info">
-                                <div class="category-name">${c.categoryName}</div>
+                                 alt="<c:out value='${c.categoryName}'/>" class="category-image">
+                        <div class="category-info">
+                                <div class="category-name"><c:out value="${c.categoryName}"/></div>
                                 <div class="category-count">${c.productCount} sản phẩm</div>
                             </div>
                         </div>
@@ -201,33 +107,76 @@
         <section class="bestseller-section">
             <div class="bestseller-header">
                 <h3><i class="bi bi-star-fill"></i> Sản phẩm bán chạy</h3>
-            </div>
+                </div>
 
             <div class="bestseller-layout">
                 <!-- 🔹 Sản phẩm đầu tiên (to) -->
-                <c:if test="${not empty bestSellers}">
+                    <c:if test="${not empty bestSellers}">
                     <div class="bestseller-left">
                         <c:set var="firstProduct" value="${bestSellers[0]}" />
                         <div class="bestseller-card bestseller-big">
                             <div class="card-top" 
                                  onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${firstProduct.medicineID}'">
-                                <img src="<c:out value='${firstProduct.imageUrl}'/>"
-                                     alt="<c:out value='${firstProduct.medicineName}'/>" 
-                                     class="bestseller-img-big">
+                                <c:choose>
+                                    <c:when test="${not empty firstProduct.imageUrl}">
+                                        <c:set var="imageUrlTrimmed" value="${fn:trim(firstProduct.imageUrl)}"/>
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                <c:choose>
+                                                    <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <img src="<c:out value='${imgSrc}'/>"
+                                             alt="<c:out value='${firstProduct.medicineName}'/>" 
+                                             class="bestseller-img-big"
+                                             onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/assets/img/no-image.png"
+                                             alt="<c:out value='${firstProduct.medicineName}'/>" 
+                                             class="bestseller-img-big">
+                                    </c:otherwise>
+                                </c:choose>
                                 <h5 class="bestseller-name"><c:out value='${firstProduct.medicineName}'/></h5>
                             </div>
                             <div class="card-bottom">
-                                <p class="bestseller-price">
-                                    <fmt:formatNumber value="${firstProduct.sellingPrice}" type="number" groupingUsed="true"/>₫ /
-                                    <c:out value='${firstProduct.unit}'/>
-                                </p>
-                                <a class="btn-buy-blue" 
-                                   href="${pageContext.request.contextPath}/cart?action=add&id=${firstProduct.medicineID}">
-                                    Chọn mua
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                                <c:choose>
+                                    <c:when test="${firstProduct.sellingPrice != null && firstProduct.sellingPrice > 0}">
+                                        <p class="bestseller-price">
+                                            <fmt:formatNumber value="${firstProduct.sellingPrice}" type="number" groupingUsed="true"/>₫ /
+                                            <c:out value='${firstProduct.unit}'/>
+                                        </p>
+                                        <a class="btn-buy-blue" 
+                                           href="${pageContext.request.contextPath}/cart?action=add&id=${firstProduct.medicineID}">
+                                            Chọn mua
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p class="bestseller-price text-muted">Cần được sự tư vấn của bác sĩ</p>
+                                        <a class="btn-buy-blue" 
+                                           href="${pageContext.request.contextPath}/product/detail?id=${firstProduct.medicineID}">
+                                            Xem chi tiết
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
+                                            </div>
+                                        </div>
+                                    </div>
                 </c:if>
 
                 <!-- 🔹 4 sản phẩm nhỏ kế tiếp -->
@@ -236,23 +185,66 @@
                         <div class="bestseller-card">
                             <div class="card-top" 
                                  onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'">
-                                <img src="<c:out value='${m.imageUrl}'/>"
-                                     alt="<c:out value='${m.medicineName}'/>" 
-                                     class="bestseller-img">
+                                <c:choose>
+                                    <c:when test="${not empty m.imageUrl}">
+                                        <c:set var="imageUrlTrimmed" value="${fn:trim(m.imageUrl)}"/>
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                <c:choose>
+                                                    <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <img src="<c:out value='${imgSrc}'/>"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="bestseller-img"
+                                             onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/assets/img/no-image.png"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="bestseller-img">
+                                    </c:otherwise>
+                                </c:choose>
                                 <h6 class="bestseller-name"><c:out value='${m.medicineName}'/></h6>
                             </div>
                             <div class="card-bottom">
-                                <p class="bestseller-price">
-                                    <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ /
-                                    <c:out value='${m.unit}'/>
-                                </p>
-                                <a class="btn-buy-blue" 
-                                   href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">
-                                    Chọn mua
-                                </a>
-                            </div>
-                        </div>
-                    </c:forEach>
+                                <c:choose>
+                                    <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                        <p class="bestseller-price">
+                                            <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ /
+                                            <c:out value='${m.unit}'/>
+                                        </p>
+                                        <a class="btn-buy-blue" 
+                                           href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">
+                                            Chọn mua
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p class="bestseller-price text-muted">Cần được sự tư vấn của bác sĩ</p>
+                                        <a class="btn-buy-blue" 
+                                           href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">
+                                            Xem chi tiết
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
+                                        </div>
+                                    </div>
+                        </c:forEach>
                 </div>
             </div>
         </section>
@@ -266,19 +258,52 @@
         <!-- Danh mục nổi bật -->
         <section class="featured-wrapper py-5">
             <div class="featured-products container">
-
-                <div class="d-flex align-items-center mb-4">
+                <div class="d-flex align-items-center justify-content-start mb-4">
                     <h3 class="fw-bold m-0 text-primary">🌟 Sản phẩm nổi bật</h3>
                 </div>
                 <div class="row g-4 text-center">
-                    <%-- featuredProducts: List<Medicine> đại diện cho các danh mục được đề xuất. --%>
                     <c:forEach var="m" items="${featuredProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="<c:out value='${m.imageUrl}'/>"
-                                     alt="<c:out value='${m.medicineName}'/>"
-                                     class="card-img-top p-3 product-img"
-                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
+                                <c:choose>
+                                    <c:when test="${not empty m.imageUrl}">
+                                        <c:set var="imageUrlTrimmed" value="${fn:trim(m.imageUrl)}"/>
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                <c:choose>
+                                                    <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <img src="<c:out value='${imgSrc}'/>"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="card-img-top p-3 product-img"
+                                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" 
+                                             style="cursor:pointer;"
+                                             onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/assets/img/no-image.png"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="card-img-top p-3 product-img"
+                                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" 
+                                             style="cursor:pointer;">
+                                    </c:otherwise>
+                                </c:choose>
                                 <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                     <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
                                     <c:choose>
@@ -302,8 +327,7 @@
         </section>
 
 
-        <!-- Section: Thương hiệu yêu thích -->
-
+        <!-- Thương hiệu yêu thích -->
         <section class="featured-products py-5">
             <div id="favorite-brands" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -311,14 +335,48 @@
                     <h3 class="fw-bold m-0">Thương hiệu yêu thích</h3>
                 </div>
                 <div class="row g-4 text-center">
-                    <%-- favoriteBrandsProducts: List<Medicine> lấy theo bộ lọc thương hiệu ưa chuộng. --%>
                     <c:forEach var="m" items="${favoriteBrandsProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="<c:out value='${m.imageUrl}'/>"
-                                     alt="<c:out value='${m.medicineName}'/>"
-                                     class="card-img-top p-3 product-img"
-                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
+                                <c:choose>
+                                    <c:when test="${not empty m.imageUrl}">
+                                        <c:set var="imageUrlTrimmed" value="${fn:trim(m.imageUrl)}"/>
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                <c:choose>
+                                                    <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <img src="<c:out value='${imgSrc}'/>"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="card-img-top p-3 product-img"
+                                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" 
+                                             style="cursor:pointer;"
+                                             onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/assets/img/no-image.png"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="card-img-top p-3 product-img"
+                                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" 
+                                             style="cursor:pointer;">
+                                    </c:otherwise>
+                                </c:choose>
                                 <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                     <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
                                     <c:choose>
@@ -340,7 +398,6 @@
                 </div>
             </div>
         </section>
-
 
 
 
@@ -385,22 +442,60 @@
                                                 <!-- Phần trên: ảnh + tên -->
                                                 <div class="card-top"
                                                      onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'">
-                                                    <img src="${m.imageUrl}" alt="${m.medicineName}" class="disease-img">
+                                                    <c:choose>
+                                                        <c:when test="${not empty m.imageUrl}">
+                                                            <c:set var="imageUrlTrimmed" value="${fn:trim(m.imageUrl)}"/>
+                                                            <c:choose>
+                                                                <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                                    <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                                                </c:when>
+                                                                <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                                                </c:when>
+                                                                <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                                    <c:choose>
+                                                                        <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                            <img src="<c:out value='${imgSrc}'/>" alt="${m.medicineName}" class="disease-img"
+                                                                 onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="${pageContext.request.contextPath}/assets/img/no-image.png" alt="${m.medicineName}" class="disease-img">
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <p class="name">${m.medicineName}</p>
                                                 </div>
 
                                                 <!-- Phần dưới: giá + nút -->
                                                 <div class="card-bottom">
-                                                    <p class="price">
-                                                        <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / ${m.unit}
-                                                    </p>
-                                                    <a href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}"
-                                                       class="btn-buy-blue">Chọn mua</a>
+                                                    <c:choose>
+                                                        <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                            <p class="price">
+                                                                <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / ${m.unit}
+                                                            </p>
+                                                            <a href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}"
+                                                               class="btn-buy-blue">Chọn mua</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <p class="price text-muted">Cần được sự tư vấn của bác sĩ</p>
+                                                            <a href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}"
+                                                               class="btn-buy-blue">Xem chi tiết</a>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </div>
                                             </div>
                                         </div>
                                     </c:forEach>
-
                                 </div>
                             </div>
                         </div>
@@ -424,17 +519,56 @@
                                                 <!-- Phần trên: ảnh + tên -->
                                                 <div class="card-top"
                                                      onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'">
-                                                    <img src="${m.imageUrl}" alt="${m.medicineName}" class="disease-img">
+                                                    <c:choose>
+                                                        <c:when test="${not empty m.imageUrl}">
+                                                            <c:set var="imageUrlTrimmed" value="${fn:trim(m.imageUrl)}"/>
+                                                            <c:choose>
+                                                                <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                                    <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                                                </c:when>
+                                                                <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                                                </c:when>
+                                                                <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                                    <c:choose>
+                                                                        <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                            <img src="<c:out value='${imgSrc}'/>" alt="${m.medicineName}" class="disease-img"
+                                                                 onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="${pageContext.request.contextPath}/assets/img/no-image.png" alt="${m.medicineName}" class="disease-img">
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <p class="name">${m.medicineName}</p>
                                                 </div>
 
                                                 <!-- Phần dưới: giá + nút -->
                                                 <div class="card-bottom">
-                                                    <p class="price">
-                                                        <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / ${m.unit}
-                                                    </p>
-                                                    <a href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}"
-                                                       class="btn-buy-blue">Chọn mua</a>
+                                                    <c:choose>
+                                                        <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                            <p class="price">
+                                                                <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / ${m.unit}
+                                                            </p>
+                                                            <a href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}"
+                                                               class="btn-buy-blue">Chọn mua</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <p class="price text-muted">Cần được sự tư vấn của bác sĩ</p>
+                                                            <a href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}"
+                                                               class="btn-buy-blue">Xem chi tiết</a>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </div>
                                             </div>
 
@@ -463,22 +597,61 @@
                                                 <!-- Phần trên: ảnh + tên -->
                                                 <div class="card-top"
                                                      onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'">
-                                                    <img src="${m.imageUrl}" alt="${m.medicineName}" class="disease-img">
+                                                    <c:choose>
+                                                        <c:when test="${not empty m.imageUrl}">
+                                                            <c:set var="imageUrlTrimmed" value="${fn:trim(m.imageUrl)}"/>
+                                                            <c:choose>
+                                                                <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                                    <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                                                </c:when>
+                                                                <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                                                </c:when>
+                                                                <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                                    <c:choose>
+                                                                        <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                            <img src="<c:out value='${imgSrc}'/>" alt="${m.medicineName}" class="disease-img"
+                                                                 onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="${pageContext.request.contextPath}/assets/img/no-image.png" alt="${m.medicineName}" class="disease-img">
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <p class="name">${m.medicineName}</p>
                                                 </div>
 
                                                 <!-- Phần dưới: giá + nút -->
                                                 <div class="card-bottom">
-                                                    <p class="price">
-                                                        <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / ${m.unit}
-                                                    </p>
-                                                    <a href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}"
-                                                       class="btn-buy-blue">Chọn mua</a>
+                                                    <c:choose>
+                                                        <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
+                                                            <p class="price">
+                                                                <fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / ${m.unit}
+                                                            </p>
+                                                            <a href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}"
+                                                               class="btn-buy-blue">Chọn mua</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <p class="price text-muted">Cần được sự tư vấn của bác sĩ</p>
+                                                            <a href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}"
+                                                               class="btn-buy-blue">Xem chi tiết</a>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </div>
                                             </div>
 
-                                        </div>
-                                    </c:forEach>
+                        </div>
+                    </c:forEach>
                                 </div>
                             </div>
                         </div>
@@ -489,8 +662,10 @@
         </section>
 
 
-        <!-- Section: Góc sức khỏe -->
 
+
+
+        <!-- Góc sức khỏe -->
         <section class="featured-products py-5">
             <div id="health-corner" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -498,14 +673,48 @@
                     <h3 class="fw-bold m-0">Góc sức khỏe</h3>
                 </div>
                 <div class="row g-4 text-center">
-                    <%-- healthCornerProducts: List<Medicine/Article> các sản phẩm/chủ đề sức khỏe tiêu biểu. --%>
                     <c:forEach var="m" items="${healthCornerProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="<c:out value='${m.imageUrl}'/>"
-                                     alt="<c:out value='${m.medicineName}'/>"
-                                     class="card-img-top p-3 product-img"
-                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
+                                <c:choose>
+                                    <c:when test="${not empty m.imageUrl}">
+                                        <c:set var="imageUrlTrimmed" value="${fn:trim(m.imageUrl)}"/>
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                <c:choose>
+                                                    <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <img src="<c:out value='${imgSrc}'/>"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="card-img-top p-3 product-img"
+                                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" 
+                                             style="cursor:pointer;"
+                                             onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/assets/img/no-image.png"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="card-img-top p-3 product-img"
+                                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" 
+                                             style="cursor:pointer;">
+                                    </c:otherwise>
+                                </c:choose>
                                 <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                     <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
                                     <c:choose>
@@ -528,7 +737,7 @@
             </div>
         </section>
 
-        <!-- Section: Thuốc tim mạch -->
+        <!-- Thuốc tim mạch -->
         <section class="featured-products py-5 bg-light">
             <div id="cardio" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -536,14 +745,48 @@
                     <h3 class="fw-bold m-0">Thuốc tim mạch</h3>
                 </div>
                 <div class="row g-4 text-center">
-                    <%-- cardioProducts: List<Medicine> thuộc nhóm tim mạch & máu. --%>
                     <c:forEach var="m" items="${cardioProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="<c:out value='${m.imageUrl}'/>"
-                                     alt="<c:out value='${m.medicineName}'/>"
-                                     class="card-img-top p-3 product-img"
-                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
+                                <c:choose>
+                                    <c:when test="${not empty m.imageUrl}">
+                                        <c:set var="imageUrlTrimmed" value="${fn:trim(m.imageUrl)}"/>
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                <c:choose>
+                                                    <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <img src="<c:out value='${imgSrc}'/>"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="card-img-top p-3 product-img"
+                                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" 
+                                             style="cursor:pointer;"
+                                             onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/assets/img/no-image.png"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="card-img-top p-3 product-img"
+                                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" 
+                                             style="cursor:pointer;">
+                                    </c:otherwise>
+                                </c:choose>
                                 <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                     <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
                                     <c:choose>
@@ -566,7 +809,7 @@
             </div>
         </section>
 
-        <!-- Section: Thuốc bổ & vitamin -->
+        <!-- Thuốc bổ & vitamin -->
         <section class="featured-products py-5">
             <div id="supplements" class="container">
                 <div class="d-flex align-items-center mb-4">
@@ -574,14 +817,48 @@
                     <h3 class="fw-bold m-0">Thuốc bổ & vitamin</h3>
                 </div>
                 <div class="row g-4 text-center">
-                    <%-- supplementsProducts: List<Medicine> nhóm vitamin & khoáng. --%>
                     <c:forEach var="m" items="${supplementsProducts}">
                         <div class="col-12 col-sm-6 col-lg-2">
                             <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="<c:out value='${m.imageUrl}'/>"
-                                     alt="<c:out value='${m.medicineName}'/>"
-                                     class="card-img-top p-3 product-img"
-                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
+                                <c:choose>
+                                    <c:when test="${not empty m.imageUrl}">
+                                        <c:set var="imageUrlTrimmed" value="${fn:trim(m.imageUrl)}"/>
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                            </c:when>
+                                            <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                <c:choose>
+                                                    <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <img src="<c:out value='${imgSrc}'/>"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="card-img-top p-3 product-img"
+                                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" 
+                                             style="cursor:pointer;"
+                                             onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png';">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/assets/img/no-image.png"
+                                             alt="<c:out value='${m.medicineName}'/>"
+                                             class="card-img-top p-3 product-img"
+                                             onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" 
+                                             style="cursor:pointer;">
+                                    </c:otherwise>
+                                </c:choose>
                                 <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
                                     <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
                                     <p class="text-primary fw-semibold mb-1">
@@ -596,14 +873,21 @@
             </div>
         </section>
 
-        <!-- Page scripts:
-             - viewCategory: điều hướng theo mã danh mục (CATxxx).
-             - smoothScroll: cuộn mượt tới section theo thời gian đọc từ data-duration.
-             - Khối demo lưu tên người dùng vào localStorage (chỉ hiển thị ở trang này). -->
         <script>
             function viewCategory(categoryId) {
+                console.log('viewCategory called with categoryId:', categoryId);
+                console.log('categoryId type:', typeof categoryId);
+                console.log('categoryId length:', categoryId ? categoryId.length : 0);
+                
                 // Redirect to product page with category filter
-                window.location.href = 'product?category=' + categoryId;
+                if (categoryId && categoryId.trim() !== '') {
+                    var contextPath = '${pageContext.request.contextPath}';
+                    var url = contextPath + '/product?category=' + encodeURIComponent(categoryId.trim());
+                    console.log('Redirecting to URL:', url);
+                    window.location.href = url;
+                } else {
+                    console.error('Invalid categoryId:', categoryId);
+                }
             }
 
             // Smooth scroll function
@@ -708,81 +992,18 @@
 
 
 
-        <section class="featured-products py-5">
-            <div id="today-featured" class="container">
-                <div class="d-flex align-items-center mb-4">
-                    <i class="bi bi-plus-circle-fill text-primary me-2 fs-4"></i>
-                    <h3 class="fw-bold m-0">Sản phẩm nổi bật hôm nay</h3>
-                </div>
-
-                <div class="row g-4 text-center">
-                    <c:forEach var="m" items="${todayFeaturedProducts}">
-                        <div class="col-12 col-sm-6 col-lg-2">
-                            <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="<c:out value='${m.imageUrl}'/>"
-                                     alt="<c:out value='${m.medicineName}'/>" class="card-img-top p-3 product-img"
-                                     onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
-                                <div class="card-body" onclick="window.location.href = '${pageContext.request.contextPath}/product/detail?id=${m.medicineID}'" style="cursor:pointer;">
-                                    <h6 class="card-title"><c:out value='${m.medicineName}'/></h6>
-                                    <c:choose>
-                                        <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
-                                            <p class="text-primary fw-semibold mb-1"><fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/></p>
-                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
-                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <c:choose>
-                                        <c:when test="${m.sellingPrice != null && m.sellingPrice > 0}">
-                                            <p class="text-primary fw-semibold mb-1"><fmt:formatNumber value="${m.sellingPrice}" type="number" groupingUsed="true"/>₫ / <c:out value='${m.unit}'/></p>
-                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/cart?action=add&id=${m.medicineID}">Chọn mua</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <p class="text-muted fw-semibold mb-1">Cần được sự tư vấn của bác sĩ</p>
-                                            <a class="btn btn-primary w-100 mt-2" href="${pageContext.request.contextPath}/product/detail?id=${m.medicineID}">Xem chi tiết</a>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
-
-                </div>
-            </div>
-
-            <!-- 🔹 Floating AI Chat Icon -->
-            <div id="chat-launcher">
-                <img src="${pageContext.request.contextPath}/assets/img/chatbot-icon.png" alt="Chatbot" />
-            </div>
-
-            <!-- Chat Window -->
-            <div id="chat-window" class="hidden">
-                <div class="chat-header">
-                    <img src="${pageContext.request.contextPath}/assets/img/chatbot-icon.png" alt="Logo" class="chat-logo">
-                    <span>Chat với Dược Sĩ Pharmacy</span>
-                    <button id="close-chat">&times;</button>
-                </div>
-
-                <div class="chat-body" id="chat-body">
-                    <div class="chat-placeholder">
-                        <p>Xin chào 👋<br>Bạn cần hỗ trợ gì hôm nay?</p>
-                    </div>
-                </div>
+<section class="featured-products py-5">
 
 
-        </div>
-    </div>
     <!-- 🔹 Floating AI Chat Icon -->
     <div id="chat-launcher">
-        <img src="${pageContext.request.contextPath}/assets/img/banner/chatbox.png" alt="Chatbot" />
+                <img src="${pageContext.request.contextPath}/assets/img/banner/chatbox.png" alt="Chatbot" />
     </div>
 
     <!-- Chat Window -->
     <div id="chat-window" class="hidden">
         <div class="chat-header">
-            <img src="${pageContext.request.contextPath}/assets/img/banner/chatbox.png" alt="Logo" class="chat-logo">
+                    <img src="${pageContext.request.contextPath}/assets/img/banner/chatbox.png" alt="Logo" class="chat-logo">
             <span>Chat với Dược Sĩ Pharmacy</span>
             <button id="close-chat">&times;</button>
         </div>
@@ -800,14 +1021,11 @@
     </div>
 
     <%@ include file="../common/footer.jsp" %>
-
+    </body>
 
     <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/ai.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/chatbox.js"></script>
-
-</body>
-
 
 </html>
 

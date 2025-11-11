@@ -530,10 +530,23 @@ body {
   margin-bottom: 5px;
 }
 #bestsellers .btn {
-  border-radius: 12px;
-  min-width: 92px;
-  padding: 7px 0;
-  font-size: 1rem;
+  border-radius: 8px;
+  min-width: 80px;
+  padding: 6px 16px;
+  font-size: 0.875rem;
+}
+
+/* Nút "Chọn mua" nhỏ cho tất cả các section sản phẩm */
+.featured-products .btn-primary,
+#bestsellers .btn-primary,
+#favorite-brands .btn-primary,
+#health-corner .btn-primary,
+#cardio .btn-primary,
+#supplements .btn-primary {
+  padding: 6px 16px !important;
+  font-size: 0.875rem !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
 }
 @media (max-width: 991px) {
   #bestsellers .bestsellers-grid {
@@ -567,8 +580,7 @@ body {
 
 /* --- Clamp long product titles to 2 lines with ellipsis --- */
 .featured-products .card-title,
-#bestsellers .card-title,
-#today-featured .card-title {
+#bestsellers .card-title {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -579,16 +591,14 @@ body {
 
 /* --- Title clamp: reserve fixed block to avoid pushing content below --- */
 .featured-products .card-title,
-#bestsellers .card-title,
-#today-featured .card-title {
+#bestsellers .card-title {
   line-height: 1.35;
   min-height: calc(1.35em * 2); /* reserve space for exactly 2 lines */
 }
 
 /* --- Price line: single-line with ellipsis, prevent wrapping below --- */
 .featured-products .card .text-primary,
-#bestsellers .text-primary,
-#today-featured .text-primary {
+#bestsellers .text-primary {
   display: block;
   white-space: nowrap;
   overflow: hidden;
@@ -795,13 +805,13 @@ html, body {
     background: #005bff;
     color: #fff;
     border: none;
-    border-radius: 30px;
-    padding: 12px 28px;
-    font-size: 16px;
-    font-weight: 600;
+    border-radius: 8px;
+    padding: 6px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
     display: inline-block;
     text-decoration: none;
-    width: 80%;
+    width: auto;
     margin: 0 auto;
     transition: background 0.3s ease;
 }

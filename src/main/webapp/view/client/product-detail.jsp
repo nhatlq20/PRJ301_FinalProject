@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -18,7 +19,41 @@
         <div class="row g-4">
             <div class="col-12 col-lg-5">
                 <div class="card border-0 shadow-sm p-4 h-100 d-flex align-items-center justify-content-center">
-                    <img src="<c:out value='${medicine.imageUrl}'/>" alt="<c:out value='${medicine.medicineName}'/>" style="max-width:100%;max-height:340px;object-fit:contain;"/>
+                    <c:choose>
+                        <c:when test="${not empty medicine.imageUrl}">
+                            <c:set var="imageUrlTrimmed" value="${fn:trim(medicine.imageUrl)}"/>
+                            <c:choose>
+                                <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                    <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                </c:when>
+                                <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                </c:when>
+                                <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                    <c:choose>
+                                        <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                </c:otherwise>
+                            </c:choose>
+                            <img src="<c:out value='${imgSrc}'/>" 
+                                 alt="<c:out value='${medicine.medicineName}'/>" 
+                                 style="max-width:100%;max-height:340px;object-fit:contain;"
+                                 onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/assets/img/no-image.png'; console.error('Image load error:', this.src);"/>
+                        </c:when>
+                        <c:otherwise>
+                            <img src="${pageContext.request.contextPath}/assets/img/no-image.png" 
+                                 alt="<c:out value='${medicine.medicineName}'/>" 
+                                 style="max-width:100%;max-height:340px;object-fit:contain;"/>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
             <div class="col-12 col-lg-7">

@@ -1,6 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <link href="<c:url value='/assets/css/product.css'/>" rel="stylesheet">
 <style>
@@ -255,10 +256,48 @@
                                                 <td>
                                                     <c:choose>
                                                         <c:when test="${not empty medicine.imageUrl}">
-                                                            <img src="${medicine.imageUrl}" alt="${medicine.medicineName}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;"/>
+                                                            <c:set var="imageUrlTrimmed" value="${fn:trim(medicine.imageUrl)}"/>
+                                                            <c:set var="imgSrc" value=""/>
+                                                            
+                                                            <%-- Debug: Hiển thị imageUrl để kiểm tra (có thể bỏ comment để debug) --%>
+                                                            <%-- 
+                                                            <small style="display:block;font-size:8px;color:red;">URL: ${imgSrc}</small>
+                                                            --%>
+                                                            
+                                                            <c:choose>
+                                                                <c:when test="${fn:startsWith(imageUrlTrimmed, 'http://') or fn:startsWith(imageUrlTrimmed, 'https://')}">
+                                                                    <%-- imageUrl là URL đầy đủ --%>
+                                                                    <c:set var="imgSrc" value="${imageUrlTrimmed}"/>
+                                                                </c:when>
+                                                                <c:when test="${fn:startsWith(imageUrlTrimmed, '/')}">
+                                                                    <%-- imageUrl bắt đầu bằng /, cần thêm context path --%>
+                                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}${imageUrlTrimmed}"/>
+                                                                </c:when>
+                                                                <c:when test="${fn:contains(imageUrlTrimmed, 'assets/img')}">
+                                                                    <%-- imageUrl chứa assets/img nhưng chưa có context path --%>
+                                                                    <c:choose>
+                                                                        <c:when test="${fn:startsWith(imageUrlTrimmed, 'assets/img')}">
+                                                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <c:set var="imgSrc" value="${pageContext.request.contextPath}/${imageUrlTrimmed}"/>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <%-- imageUrl chỉ là tên file hoặc đường dẫn tương đối, cần thêm đường dẫn --%>
+                                                                    <c:set var="imgSrc" value="${pageContext.request.contextPath}/assets/img/${imageUrlTrimmed}"/>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                            
+                                                            <img src="<c:out value='${imgSrc}'/>" 
+                                                                 alt="<c:out value='${medicine.medicineName}'/>" 
+                                                                 style="width:48px;height:48px;object-fit:cover;border-radius:6px;background:#f0f0f0;"
+                                                                 onerror="console.error('Image load error:', this.src); this.onerror=null; var parent=this.parentElement; var div=document.createElement('div'); div.style.cssText='width:48px;height:48px;border-radius:6px;background:#eef2ff;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:10px;'; div.textContent='N/A'; parent.innerHTML=''; parent.appendChild(div);"
+                                                                 onload="this.style.background='transparent'; console.log('Image loaded:', this.src);"/>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <div style="width:48px;height:48px;border-radius:6px;background:#eef2ff;display:flex;align-items:center;justify-content:center;color:#64748b;">N/A</div>
+                                                            <div style="width:48px;height:48px;border-radius:6px;background:#eef2ff;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:10px;">N/A</div>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </td>

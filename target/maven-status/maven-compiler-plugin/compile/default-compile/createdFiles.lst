@@ -13,6 +13,7 @@ models\Cart.class
 utils\DBContext.class
 utils\EmailService$1.class
 utils\Validator.class
+controllers\CategoryController.class
 filter\CartCountFilter.class
 models\AIService.class
 controllers\CartController.class
